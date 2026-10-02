@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>トレーディア新聞 第107期 夕刊</title>
 <style>
-/* トレーディア新聞 ── 日本の新聞に近い密な紙面 */
+/* トレーディア新聞 ── 縦書きの日本の新聞紙面 */
 
 :root {
   --paper: #f7f1e3;
@@ -15,6 +15,7 @@
   --accent: #b31b1b;
   --rule: #1a1a1a;
   --rule-soft: #9a917c;
+  --v-height: 680px;
   --mincho: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", "MS PMincho", serif;
   --gothic: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Meiryo", sans-serif;
 }
@@ -27,8 +28,8 @@ body {
   background: #3d3832;
   color: var(--ink);
   font-family: var(--mincho);
-  font-size: 13.5px;
-  line-height: 1.65;
+  font-size: 14px;
+  line-height: 1.9;
 }
 
 .paper {
@@ -37,14 +38,12 @@ body {
   padding: 14px 18px 20px;
   background: var(--paper);
   box-shadow: 0 4px 24px rgba(0, 0, 0, .5);
+  writing-mode: horizontal-tb;
 }
 
 img { max-width: 100%; display: block; }
-hr { border: 0; border-top: 1px solid var(--rule); margin: 8px 0; }
-p { margin: 0 0 .45em; text-align: justify; text-indent: 1em; }
-p.noindent, .lead, figcaption, .brief p, .byline, .ad p, .toc li { text-indent: 0; }
 
-/* ---------- 題字（日本の紙面みたく、太い罫で区切る） ---------- */
+/* ---------- 題字・要点・面名は横書き ---------- */
 
 .masthead {
   display: grid;
@@ -55,6 +54,7 @@ p.noindent, .lead, figcaption, .brief p, .byline, .ad p, .toc li { text-indent: 
   border-bottom: 4px solid var(--rule);
   padding: 6px 0 8px;
   position: relative;
+  writing-mode: horizontal-tb;
 }
 .masthead::after {
   content: "";
@@ -103,23 +103,23 @@ p.noindent, .lead, figcaption, .brief p, .byline, .ad p, .toc li { text-indent: 
   padding: 3px 0 4px;
   margin: 0 0 10px;
   display: flex;
-  gap: 1.2em;
+  gap: 0;
   flex-wrap: wrap;
   align-items: baseline;
+  writing-mode: horizontal-tb;
+  line-height: 1.6;
 }
-.ticker b { color: var(--accent); font-weight: 800; }
-.ticker span + span::before {
+.ticker b { color: var(--accent); font-weight: 800; margin-right: 1em; }
+.ticker > span + span::before {
   content: "／";
   color: var(--rule-soft);
-  margin-right: 1.2em;
+  margin: 0 .6em;
 }
-
-/* ---------- 面 ---------- */
 
 .page {
   margin-bottom: 0;
   padding: 10px 0 12px;
-  position: relative;
+  writing-mode: horizontal-tb;
 }
 .page + .page {
   border-top: 3px double var(--rule);
@@ -134,6 +134,7 @@ p.noindent, .lead, figcaption, .brief p, .byline, .ad p, .toc li { text-indent: 
   display: flex;
   align-items: center;
   gap: 8px;
+  writing-mode: horizontal-tb;
 }
 .page-name .tag {
   background: var(--ink);
@@ -147,14 +148,19 @@ p.noindent, .lead, figcaption, .brief p, .byline, .ad p, .toc li { text-indent: 
   margin-left: auto;
   color: var(--ink-soft);
 }
-.page-name::after { content: none; }
 
+/* 格子は右から左へ（右が主記事） */
 .grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 10px 14px;
+  gap: 12px 16px;
+  direction: rtl;
 }
-.grid > * { grid-column: span 12; min-width: 0; }
+.grid > * {
+  grid-column: span 12;
+  min-width: 0;
+  direction: ltr;
+}
 .span-2 { grid-column: span 2 !important; }
 .span-3 { grid-column: span 3 !important; }
 .span-4 { grid-column: span 4 !important; }
@@ -163,89 +169,128 @@ p.noindent, .lead, figcaption, .brief p, .byline, .ad p, .toc li { text-indent: 
 .span-7 { grid-column: span 7 !important; }
 .span-8 { grid-column: span 8 !important; }
 .span-9 { grid-column: span 9 !important; }
-.ruled-left { border-left: 1px solid var(--rule); padding-left: 12px; }
-.ruled-right { border-right: 1px solid var(--rule); padding-right: 12px; }
 
-.cols-2, .cols-3, .cols-4 {
-  column-gap: 14px;
-  column-rule: 1px solid var(--rule-soft);
+/* ---------- 本文は縦書き ---------- */
+
+.page .grid > article,
+.page .grid > aside,
+.page .grid > div:not(.ad-row) {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  height: var(--v-height);
+  overflow-x: auto;
+  overflow-y: hidden;
+  font-size: 14px;
+  line-height: 1.95;
+  text-align: justify;
+  padding: 0 2px;
 }
-.cols-2 { columns: 2; }
-.cols-3 { columns: 3; }
-.cols-4 { columns: 4; }
-.cols-2 h3, .cols-3 h3, .cols-4 h3,
-.cols-2 figure, .cols-3 figure, .cols-4 figure,
-.cols-2 .box, .cols-3 .box { break-inside: avoid; }
 
-/* ---------- 見出し ---------- */
+.ruled-left {
+  border-block-start: 1px solid var(--rule);
+  padding-block-start: 12px;
+}
+.ruled-right {
+  border-block-end: 1px solid var(--rule);
+  padding-block-end: 12px;
+}
+
+hr {
+  border: 0;
+  border-block-start: 1px solid var(--rule);
+  margin: 0 .5em;
+  block-size: auto;
+  inline-size: 100%;
+  min-block-size: 3em;
+}
+
+p {
+  margin: 0;
+  padding-inline-end: .7em;
+  text-indent: 1em;
+}
+p.noindent, .lead, figcaption, .brief p, .byline, .ad p, .toc li { text-indent: 0; }
+
+/* 縦書きの中では段組みCSSは使わない（高さで自然に左へ進む） */
+.cols-2, .cols-3, .cols-4 {
+  columns: unset;
+  column-rule: none;
+}
 
 .kicker {
   font-family: var(--gothic);
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 800;
   color: var(--accent);
   letter-spacing: .12em;
-  margin-bottom: 1px;
+  margin-block-end: .35em;
 }
 .headline {
   font-family: var(--gothic);
   font-weight: 900;
-  font-size: 28px;
-  line-height: 1.25;
-  margin: 0 0 4px;
-  letter-spacing: .01em;
+  font-size: 26px;
+  line-height: 1.35;
+  margin: 0;
+  padding-inline-end: .5em;
+  letter-spacing: .08em;
 }
-.headline.xl { font-size: 36px; }
-.headline.lg { font-size: 24px; }
+.headline.xl { font-size: 32px; letter-spacing: .1em; }
+.headline.lg { font-size: 22px; }
 .subhead {
   font-family: var(--gothic);
   font-weight: 700;
-  font-size: 15px;
-  line-height: 1.35;
-  margin: 0 0 8px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid var(--rule);
+  font-size: 14px;
+  line-height: 1.45;
+  margin: 0;
+  padding-inline-end: .6em;
+  border-block-end: 1px solid var(--rule);
+  padding-block-end: .4em;
+  margin-block-end: .5em;
 }
 article h2 {
   font-family: var(--gothic);
   font-weight: 800;
   font-size: 17px;
-  line-height: 1.3;
-  margin: 0 0 5px;
+  line-height: 1.4;
+  margin: 0;
+  padding-inline-end: .45em;
+  letter-spacing: .06em;
 }
 article h3 {
   font-family: var(--gothic);
   font-weight: 700;
-  font-size: 13px;
-  margin: .55em 0 .2em;
-  padding-left: 6px;
-  border-left: 3px solid var(--ink);
+  font-size: 13.5px;
+  margin: 0;
+  padding-inline-end: .4em;
+  padding-block-start: .35em;
+  border-block-start: 3px solid var(--ink);
+  letter-spacing: .04em;
 }
-.lead { font-weight: 700; font-size: 14px; }
+.lead { font-weight: 700; font-size: 14.5px; }
 .lead .dateline { font-family: var(--gothic); font-weight: 800; }
 .banner {
   font-family: var(--gothic);
   font-weight: 900;
   background: var(--ink);
   color: var(--paper);
-  padding: 4px 10px;
-  font-size: 20px;
-  line-height: 1.25;
-  margin: 0 0 8px;
+  padding: .4em .5em;
+  font-size: 18px;
+  line-height: 1.35;
+  margin: 0;
+  padding-inline-end: .5em;
 }
 
-/* ---------- 図版 ---------- */
-
-figure { margin: 0 0 8px; }
-figure.float-left {
-  float: left;
-  width: 46%;
-  margin: 0 12px 6px 0;
+/* 図版・表・囲みは横書き部品として差し込む */
+figure {
+  writing-mode: horizontal-tb;
+  width: 220px;
+  margin: 0 .7em .2em 0;
+  display: inline-block;
+  vertical-align: top;
 }
-figure.float-right {
-  float: right;
-  width: 46%;
-  margin: 0 0 6px 12px;
+figure.float-left, figure.float-right {
+  float: none;
+  width: 240px;
 }
 figure img { border: 1px solid var(--rule); width: 100%; }
 figcaption {
@@ -254,15 +299,21 @@ figcaption {
   line-height: 1.4;
   color: var(--ink-soft);
   margin-top: 2px;
+  writing-mode: horizontal-tb;
 }
 figcaption::before { content: "▲"; margin-right: .15em; }
 
-/* ---------- 囲み ---------- */
-
 .box {
+  writing-mode: horizontal-tb;
   border: 1px solid var(--ink);
   padding: 8px 10px;
   background: rgba(255, 255, 255, .22);
+  width: 240px;
+  margin: 0 .6em .3em 0;
+  display: inline-block;
+  vertical-align: top;
+  line-height: 1.6;
+  font-size: 13px;
 }
 .box.accent { border: 2px solid var(--accent); }
 .column-title {
@@ -280,31 +331,36 @@ figcaption::before { content: "▲"; margin-right: .15em; }
   font-family: var(--gothic);
   font-size: 11.5px;
   color: var(--ink-soft);
-  margin-bottom: 5px;
+  margin: 0;
+  padding-inline-end: .4em;
 }
 .byline b { color: var(--ink); font-size: 12.5px; }
 blockquote {
-  margin: .4em 0;
-  padding: 3px 10px;
-  border-left: 3px solid var(--accent);
-  font-size: 13.5px;
+  margin: 0;
+  padding-block-start: .5em;
+  border-block-start: 3px solid var(--accent);
+  font-size: 14px;
+  padding-inline-end: .5em;
 }
 .poem {
   white-space: pre-line;
   text-indent: 0;
-  font-size: 13.5px;
-  line-height: 1.9;
-  text-align: left;
+  font-size: 14px;
+  line-height: 2.1;
+  text-align: start;
+  padding-inline-end: .5em;
 }
 
-/* ---------- 表 ---------- */
-
 table.data {
-  width: 100%;
+  writing-mode: horizontal-tb;
+  width: 250px;
   border-collapse: collapse;
   font-family: var(--gothic);
   font-size: 11.5px;
-  margin: 4px 0 8px;
+  margin: 0 .6em .4em 0;
+  display: inline-table;
+  vertical-align: top;
+  line-height: 1.45;
 }
 table.data caption { text-align: left; font-weight: 700; margin-bottom: 2px; font-size: 12px; }
 table.data th, table.data td { padding: 2px 5px; border-bottom: 1px solid var(--rule-soft); }
@@ -317,12 +373,22 @@ table.data thead th {
 table.data td.num, table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
 table.data tr.hl td { background: rgba(179, 27, 27, .07); font-weight: 700; }
 
-/* ---------- 短信・予定・目次 ---------- */
-
-.brief .item { margin-bottom: 5px; font-size: 12.5px; }
-.brief .item b { font-family: var(--gothic); font-size: 12.5px; }
+.brief .item { margin: 0; padding-inline-end: .55em; font-size: 13px; }
+.brief .item b { font-family: var(--gothic); font-size: 13px; }
 .brief .item b::before { content: "◆"; color: var(--accent); margin-right: .15em; }
-.schedule, .toc { list-style: none; padding: 0; margin: 0; font-family: var(--gothic); font-size: 12px; }
+
+.schedule, .toc {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--gothic);
+  font-size: 12px;
+  writing-mode: horizontal-tb;
+  width: 240px;
+  display: inline-block;
+  vertical-align: top;
+  line-height: 1.5;
+}
 .schedule li, .toc li {
   padding: 3px 0;
   border-bottom: 1px dotted var(--rule-soft);
@@ -331,15 +397,20 @@ table.data tr.hl td { background: rgba(179, 27, 27, .07); font-weight: 700; }
 }
 .schedule li .when, .toc li .when { font-weight: 700; min-width: 5em; flex-shrink: 0; }
 
-/* ---------- 広告（紙面に載せる営業枠） ---------- */
+/* ---------- 広告は横書き帯 ---------- */
 
 .ad-row {
+  writing-mode: horizontal-tb;
+  direction: ltr;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   margin-top: 10px;
   padding-top: 8px;
   border-top: 2px solid var(--rule);
+  grid-column: 1 / -1 !important;
+  height: auto !important;
+  overflow: visible !important;
 }
 .ad {
   border: 2px solid var(--ink);
@@ -348,6 +419,8 @@ table.data tr.hl td { background: rgba(179, 27, 27, .07); font-weight: 700; }
   font-family: var(--gothic);
   position: relative;
   min-height: 120px;
+  writing-mode: horizontal-tb;
+  line-height: 1.45;
 }
 .ad .ad-label {
   position: absolute;
@@ -373,6 +446,7 @@ table.data tr.hl td { background: rgba(179, 27, 27, .07); font-weight: 700; }
   line-height: 1.45;
   text-align: center;
   text-indent: 0;
+  padding-inline-end: 0;
 }
 .ad img {
   border: 0;
@@ -390,8 +464,6 @@ table.data tr.hl td { background: rgba(179, 27, 27, .07); font-weight: 700; }
   margin-top: 3px;
 }
 
-/* ---------- 奥付 ---------- */
-
 .colophon {
   border-top: 4px solid var(--rule);
   margin-top: 8px;
@@ -403,36 +475,53 @@ table.data tr.hl td { background: rgba(179, 27, 27, .07); font-weight: 700; }
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 6px;
+  writing-mode: horizontal-tb;
+  line-height: 1.5;
 }
 .colophon a { color: inherit; }
 
-.archive { list-style: none; padding: 0; margin: 0; font-family: var(--gothic); }
+.archive { list-style: none; padding: 0; margin: 0; font-family: var(--gothic); writing-mode: horizontal-tb; }
 .archive li {
   border-bottom: 1px solid var(--rule-soft);
   padding: 8px 0;
   display: grid;
   grid-template-columns: 11em 1fr;
   gap: 10px;
+  line-height: 1.5;
 }
 .archive a { color: var(--ink); font-weight: 700; text-decoration: none; }
 .archive a:hover { color: var(--accent); }
 .archive .top { font-family: var(--mincho); }
 
+/* 狭い画面は横書きに戻す（読みやすさ優先） */
 @media (max-width: 960px) {
   .paper { padding: 12px; }
   .masthead { grid-template-columns: 1fr; text-align: center; }
   .masthead .date { text-align: center; }
   .masthead .title { font-size: 40px; }
+  .grid { direction: ltr; }
   .grid > * { grid-column: span 12 !important; }
-  .ruled-left { border-left: 0; padding-left: 0; }
-  .ruled-right { border-right: 0; padding-right: 0; }
-  .cols-3, .cols-4 { columns: 2; }
+  .page .grid > article,
+  .page .grid > aside,
+  .page .grid > div:not(.ad-row) {
+    writing-mode: horizontal-tb;
+    height: auto;
+    overflow: visible;
+    line-height: 1.7;
+  }
+  .ruled-left { border: 0; border-left: 1px solid var(--rule); padding: 0 0 0 12px; }
+  .ruled-right { border: 0; border-right: 1px solid var(--rule); padding: 0 12px 0 0; }
+  hr { border: 0; border-top: 1px solid var(--rule); margin: 8px 0; min-block-size: 0; }
+  p { padding-inline-end: 0; margin: 0 0 .45em; }
+  figure, figure.float-left, figure.float-right, .box, table.data, .schedule, .toc {
+    width: 100%;
+    display: block;
+    margin: 0 0 8px;
+  }
   .headline.xl { font-size: 26px; }
   .ad-row { grid-template-columns: 1fr 1fr; }
-  figure.float-left, figure.float-right { float: none; width: 100%; margin: 0 0 8px; }
 }
 @media (max-width: 560px) {
-  .cols-2, .cols-3, .cols-4 { columns: 1; }
   .ad-row { grid-template-columns: 1fr; }
 }
 @media print {
