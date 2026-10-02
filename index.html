@@ -161,8 +161,8 @@ img { max-width: 100%; display: block; }
   text-orientation: mixed;
   overflow: hidden;
   font-size: 12.5px;
-  line-height: 1.95;
-  letter-spacing: .04em;
+  line-height: 1.75;
+  letter-spacing: 0;
   text-align: justify;
   height: 100%;
 }
@@ -339,34 +339,39 @@ table.data tr.hl td { background: rgba(177,12,12,.07); font-weight: 700; }
 
 /* 1面 */
 .front {
-  grid-template-columns: 168px 1fr 92px;
-  grid-template-rows: 1fr;
+  grid-template-columns: 160px minmax(0, 1fr) 108px;
   height: 100%;
-}
-.front .rail { /* 右端の目次欄（direction:rtl なので見た目は右） */ }
-.front .main {
-  display: grid;
-  grid-template-columns: 1fr 210px;
-  direction: rtl;
-  gap: 0;
-  padding: 0;
-  border-left: 1px solid var(--rule);
-}
-.front .main > * { direction: ltr; }
-.front .head-band {
-  display: flex;
-  flex-direction: row-reverse;
-  padding: 8px 6px;
-  border-left: 1px solid var(--rule);
 }
 .front .story {
   display: flex;
   flex-direction: column;
   padding: 8px;
   overflow: hidden;
+  border-left: 1px solid var(--rule);
 }
-.front .story .photo { margin-bottom: 8px; }
-.front .story .v { flex: 1; height: auto; max-height: 100%; }
+.front .story .photo {
+  margin-bottom: 6px;
+  max-height: 42%;
+  overflow: hidden;
+}
+.front .story .photo img {
+  width: 100%;
+  height: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  object-position: center;
+}
+.front .story .v { flex: 1; height: auto; min-height: 0; }
+.front .head-band {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  padding: 8px 4px;
+  border-left: 1px solid var(--rule);
+  overflow: hidden;
+}
+.front .v-headline { font-size: 36px; }
+.front .v-sub { font-size: 15px; margin-inline-end: .25em; }
 
 /* 2段・3段の汎用 */
 .cols-2 {
