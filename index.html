@@ -5,18 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>トレーディア新聞 バックナンバー</title>
 <style>
-/* トレーディア新聞 ── 毎日新聞などに近い「1枚の紙面」縦書き */
+/* トレーディア新聞 ── 横書きの紙面 */
 
 :root {
-  --paper: #f6f0e4;
-  --paper-ad: #fffcf5;
-  --ink: #111;
-  --ink-soft: #444;
-  --accent: #b10c0c;
-  --rule: #222;
-  --rule-soft: #aaa;
-  --sheet-h: 1040px;
-  --body-h: 780px;
+  --paper: #f4ecd8;
+  --paper-ad: #fffdf7;
+  --ink: #2b2b2b;
+  --ink-soft: #555;
+  --accent: #8c2d19;
+  --rule: #2b2b2b;
+  --rule-soft: #b9ad92;
   --mincho: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", "MS PMincho", serif;
   --gothic: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Meiryo", sans-serif;
 }
@@ -25,50 +23,62 @@
 
 body {
   margin: 0;
-  padding: 20px 12px;
-  background: #4a433c;
+  padding: 24px 12px;
+  background: #5a5248;
   color: var(--ink);
   font-family: var(--mincho);
+  font-size: 14.5px;
+  line-height: 1.7;
 }
 
 .paper {
-  max-width: 1080px;
+  max-width: 1180px;
   margin: 0 auto;
+  padding: 22px 28px 28px;
+  background: var(--paper);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, .45);
 }
 
 img { max-width: 100%; display: block; }
-
-/* ===== 創刊の題字（1面の上だけ横書き帯） ===== */
+hr { border: 0; border-top: 1px solid var(--rule); margin: 10px 0; }
+p { margin: 0 0 .55em; text-align: justify; text-indent: 1em; }
+p.noindent, .lead, figcaption, .brief p, .byline, .ad p, .toc li, .schedule li { text-indent: 0; }
 
 .masthead {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: end;
   gap: 8px;
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-bottom: 0;
-  padding: 8px 12px 6px;
+  border-top: 4px solid var(--rule);
+  border-bottom: 4px solid var(--rule);
+  padding: 8px 0 10px;
+  position: relative;
+}
+.masthead::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 2px;
+  border-bottom: 1px solid var(--rule);
 }
 .masthead .title {
   font-weight: 900;
-  font-size: 48px;
-  letter-spacing: .2em;
+  font-size: 56px;
+  letter-spacing: .14em;
   line-height: 1;
   text-align: center;
 }
 .masthead .title small {
   display: block;
   font-family: var(--gothic);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: .5em;
-  margin-top: 4px;
+  margin-top: 6px;
   font-weight: 600;
 }
 .masthead .issue, .masthead .date {
   font-family: var(--gothic);
-  font-size: 11px;
-  line-height: 1.5;
+  font-size: 12.5px;
+  line-height: 1.55;
 }
 .masthead .date { text-align: right; }
 .masthead .edition {
@@ -76,227 +86,235 @@ img { max-width: 100%; display: block; }
   font-weight: 800;
   color: #fff;
   background: var(--accent);
-  padding: 1px 8px;
-  margin-bottom: 2px;
+  padding: 2px 10px;
+  margin-bottom: 3px;
   letter-spacing: .2em;
 }
 
 .ticker {
   font-family: var(--gothic);
-  font-size: 11.5px;
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-top: 0;
-  padding: 3px 10px;
-  margin-bottom: 14px;
+  font-size: 12.5px;
+  border-bottom: 2px solid var(--rule);
+  padding: 4px 0;
+  margin-bottom: 16px;
   display: flex;
   flex-wrap: wrap;
   gap: 0;
-  line-height: 1.55;
 }
-.ticker b { color: var(--accent); margin-right: .8em; }
-.ticker > span + span::before { content: "／"; color: var(--rule-soft); margin: 0 .45em; }
+.ticker b { color: var(--accent); margin-right: 1em; }
+.ticker > span + span::before { content: "／"; color: var(--rule-soft); margin: 0 .7em; }
 
-/* ===== 1枚の紙面 ===== */
+.page { margin-bottom: 8px; padding: 12px 0 14px; }
+.page + .page { border-top: 3px double var(--rule); }
 
-.page {
-  margin: 0 0 18px;
-}
-
-.sheet {
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  height: var(--sheet-h);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  box-shadow: 0 3px 18px rgba(0,0,0,.35);
-}
-
-.sheet-top {
-  flex: 0 0 auto;
+.page-name, .sheet-top {
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: .28em;
+  margin: 0 0 12px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 4px 8px;
-  border-bottom: 2px solid var(--rule);
-  font-family: var(--gothic);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: .25em;
+  gap: 8px;
 }
-.sheet-top .tag {
+.page-name .tag, .sheet-top .tag {
   background: var(--ink);
   color: var(--paper);
-  padding: 1px 8px;
+  padding: 2px 10px;
   letter-spacing: .2em;
 }
-.sheet-top .pageno { margin-left: auto; letter-spacing: .05em; color: var(--ink-soft); font-weight: 700; }
+.page-name .pageno, .sheet-top .pageno {
+  margin-left: auto;
+  letter-spacing: .05em;
+  color: var(--ink-soft);
+}
 
-.sheet-body {
-  flex: 1 1 auto;
-  min-height: 0;
+.grid, .sheet-body {
   display: grid;
-  direction: rtl; /* 右から左へ読む */
-  gap: 0;
-  border-bottom: 1px solid var(--rule);
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px 18px;
 }
-.sheet-body > * { direction: ltr; min-width: 0; min-height: 0; }
+.grid > *, .sheet-body > * { grid-column: span 12; min-width: 0; }
+.span-3, .cell.span-3 { grid-column: span 3 !important; }
+.span-4, .cell.span-4 { grid-column: span 4 !important; }
+.span-5, .cell.span-5 { grid-column: span 5 !important; }
+.span-6, .cell.span-6 { grid-column: span 6 !important; }
+.span-7, .cell.span-7 { grid-column: span 7 !important; }
+.span-8, .cell.span-8 { grid-column: span 8 !important; }
 
-/* 紙面内の区画を縦線で区切る */
-.cell {
-  border-left: 1px solid var(--rule);
-  padding: 8px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
+/* 旧縦書き用のクラスも横書きとして扱う */
+.sheet { background: transparent; border: 0; height: auto; overflow: visible; box-shadow: none; display: block; }
+.sheet-body { direction: ltr; }
+.sheet-body.front,
+.sheet-body.cols-2,
+.sheet-body.cols-3,
+.sheet-body.cols-3-rail {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px 18px;
+  height: auto;
 }
-.sheet-body > .cell:last-child { border-left: 0; }
+.sheet-body.front > .rail { grid-column: span 4; }
+.sheet-body.front > .story { grid-column: span 8; }
+.sheet-body.front > .head-band { grid-column: span 12; }
+.sheet-body.cols-2 > * { grid-column: span 6; }
+.sheet-body.cols-3 > * { grid-column: span 4; }
+.sheet-body.cols-3-rail > *:nth-child(1) { grid-column: span 5; }
+.sheet-body.cols-3-rail > *:nth-child(2) { grid-column: span 4; }
+.sheet-body.cols-3-rail > *:nth-child(3) { grid-column: span 3; }
 
-/* ----- 縦書き本文（スクロールしない） ----- */
+.cell { border: 0; padding: 0; overflow: visible; display: block; }
+.cell.stack { display: block; }
+.cell.fig { display: block; }
+.split-v { display: block; }
+.split-v > * + * { border-top: 1px solid var(--rule-soft); margin-top: 10px; padding-top: 10px; }
 
-.v {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  overflow: hidden;
-  font-size: 12.5px;
-  line-height: 1.75;
-  letter-spacing: 0;
-  text-align: justify;
-  height: 100%;
-}
-.v p {
-  margin: 0;
-  padding-inline-end: .55em;
-  text-indent: 1em;
-}
-.v p.noindent, .v .lead { text-indent: 0; }
-.v .lead { font-weight: 700; }
-.v .dateline { font-family: var(--gothic); font-weight: 800; }
-.v h3 {
+.ruled-left { border-left: 1px solid var(--rule); padding-left: 16px; }
+.ruled-right { border-right: 1px solid var(--rule); padding-right: 16px; }
+
+.cols-2, .v .cols-2 { columns: 2; column-gap: 18px; column-rule: 1px solid var(--rule-soft); }
+.cols-3 { columns: 3; column-gap: 16px; column-rule: 1px solid var(--rule-soft); }
+
+.kicker, .v-kicker {
+  writing-mode: horizontal-tb;
   font-family: var(--gothic);
   font-size: 12.5px;
-  font-weight: 800;
-  margin: 0;
-  padding-inline-end: .4em;
-  padding-block-start: .3em;
-  border-block-start: 3px solid var(--ink);
-  letter-spacing: .06em;
-}
-
-/* 大きな縦見出し（1面の主役） */
-.v-headline {
-  writing-mode: vertical-rl;
-  font-family: var(--gothic);
-  font-weight: 900;
-  font-size: 42px;
-  line-height: 1.25;
-  letter-spacing: .12em;
-  margin: 0;
-  overflow: hidden;
-  height: 100%;
-}
-.v-kicker {
-  writing-mode: vertical-rl;
-  font-family: var(--gothic);
-  font-size: 13px;
   font-weight: 800;
   color: var(--accent);
-  letter-spacing: .15em;
-  margin: 0 0 0 .35em;
-}
-.v-sub {
-  writing-mode: vertical-rl;
-  font-family: var(--gothic);
-  font-weight: 800;
-  font-size: 18px;
-  line-height: 1.4;
-  letter-spacing: .08em;
-  margin: 0 .2em 0 0;
-  overflow: hidden;
-  height: 100%;
-}
-.v-title {
-  writing-mode: vertical-rl;
-  font-family: var(--gothic);
-  font-weight: 800;
-  font-size: 18px;
-  line-height: 1.35;
-  letter-spacing: .08em;
-  margin: 0 0 0 .4em;
-  flex: 0 0 auto;
-  max-height: 100%;
-  overflow: hidden;
+  letter-spacing: .1em;
+  margin: 0 0 2px;
 }
 
-/* 写真は横書き部品 */
-.photo {
+.headline, .v-headline, .v-title, .head-band .v-headline {
   writing-mode: horizontal-tb;
-  margin: 0;
-  flex: 0 0 auto;
-}
-.photo img {
-  width: 100%;
-  border: 1px solid var(--rule);
-}
-.photo figcaption {
   font-family: var(--gothic);
-  font-size: 10.5px;
-  color: var(--ink-soft);
-  margin-top: 2px;
-  line-height: 1.35;
-}
-.photo figcaption::before { content: "▲"; margin-right: .15em; }
-
-/* 横書きの小部品（表・目次・囲み） */
-.yoko {
-  writing-mode: horizontal-tb;
-  font-size: 11.5px;
-  line-height: 1.5;
-}
-.yoko h2 {
-  font-family: var(--gothic);
-  font-size: 14px;
-  font-weight: 800;
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 1.3;
   margin: 0 0 6px;
+  letter-spacing: .02em;
+  height: auto;
+  max-height: none;
+  overflow: visible;
 }
+.headline.xl, .front .v-headline { font-size: 36px; }
+.headline.lg { font-size: 24px; }
+.v-title { font-size: 22px; font-weight: 800; }
+
+.subhead, .v-sub {
+  writing-mode: horizontal-tb;
+  font-family: var(--gothic);
+  font-weight: 700;
+  font-size: 15.5px;
+  line-height: 1.4;
+  margin: 0 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+  height: auto;
+  overflow: visible;
+}
+
+.v, .head-band {
+  writing-mode: horizontal-tb;
+  height: auto;
+  overflow: visible;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+  display: block;
+}
+.head-band { margin-bottom: 8px; }
+
+article h2, .yoko h2 {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1.3;
+  margin: 0 0 8px;
+}
+article h3, .v h3 {
+  font-family: var(--gothic);
+  font-weight: 700;
+  font-size: 14px;
+  margin: .7em 0 .25em;
+  padding-left: 7px;
+  border-left: 3px solid var(--ink);
+  border-block-start: 0;
+  padding-block-start: 0;
+}
+.lead { font-weight: 700; font-size: 15px; }
+.lead .dateline, .dateline { font-family: var(--gothic); font-weight: 800; }
+
+figure, .photo {
+  writing-mode: horizontal-tb;
+  margin: 0 0 10px;
+  max-height: none;
+}
+.photo img, figure img {
+  border: 1px solid var(--rule);
+  width: 100%;
+  max-height: none;
+  object-fit: initial;
+}
+figcaption {
+  font-family: var(--gothic);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  margin-top: 3px;
+  line-height: 1.4;
+}
+figcaption::before { content: "▲"; margin-right: .15em; }
+figure.float-right { float: right; width: 42%; margin: 0 0 8px 14px; }
+figure.float-left { float: left; width: 42%; margin: 0 14px 8px 0; }
+
 .box {
+  writing-mode: horizontal-tb;
   border: 1px solid var(--ink);
-  padding: 6px 8px;
-  background: rgba(255,255,255,.28);
-  margin-bottom: 8px;
+  padding: 10px 12px;
+  background: rgba(255,255,255,.25);
+  margin-bottom: 10px;
+  width: auto;
+  display: block;
 }
 .column-title {
   font-family: var(--gothic);
   font-weight: 800;
-  font-size: 11px;
+  font-size: 12px;
   background: var(--ink);
   color: var(--paper);
   display: inline-block;
-  padding: 1px 6px;
-  margin-bottom: 4px;
+  padding: 1px 8px;
+  margin-bottom: 5px;
   letter-spacing: .12em;
 }
 .byline {
   font-family: var(--gothic);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--ink-soft);
-  margin: 0 0 4px;
-  writing-mode: horizontal-tb;
+  margin-bottom: 6px;
 }
 .byline b { color: var(--ink); }
+.poem {
+  writing-mode: horizontal-tb;
+  white-space: pre-line;
+  text-indent: 0;
+  line-height: 2;
+  font-size: 14.5px;
+  height: auto;
+  overflow: visible;
+  text-align: left;
+}
 
 table.data {
   width: 100%;
   border-collapse: collapse;
   font-family: var(--gothic);
-  font-size: 11px;
-  margin: 4px 0 8px;
-  writing-mode: horizontal-tb;
+  font-size: 12.5px;
+  margin: 4px 0 10px;
+  display: table;
 }
-table.data caption { text-align: left; font-weight: 700; margin-bottom: 2px; }
-table.data th, table.data td { padding: 2px 4px; border-bottom: 1px solid var(--rule-soft); }
+table.data caption { text-align: left; font-weight: 700; margin-bottom: 3px; }
+table.data th, table.data td { padding: 3px 6px; border-bottom: 1px solid var(--rule-soft); }
 table.data thead th {
   border-top: 2px solid var(--ink);
   border-bottom: 1px solid var(--ink);
@@ -304,233 +322,127 @@ table.data thead th {
   background: rgba(0,0,0,.04);
 }
 table.data td.num, table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
-table.data tr.hl td { background: rgba(177,12,12,.07); font-weight: 700; }
+table.data tr.hl td { background: rgba(140,45,25,.08); font-weight: 700; }
 
 .toc, .schedule {
   list-style: none;
   padding: 0;
   margin: 0;
   font-family: var(--gothic);
-  font-size: 11.5px;
+  font-size: 12.5px;
+  width: auto;
+  display: block;
 }
 .toc li, .schedule li {
-  padding: 3px 0;
+  padding: 4px 0;
   border-bottom: 1px dotted var(--rule-soft);
   display: flex;
-  gap: 6px;
+  gap: 8px;
 }
-.toc .when, .schedule .when { font-weight: 700; min-width: 3.2em; flex-shrink: 0; }
+.toc .when, .schedule .when { font-weight: 700; min-width: 4.5em; }
 
-.brief .item { margin-bottom: 6px; font-size: 12px; }
+.brief .item { margin-bottom: 6px; }
 .brief .item b { font-family: var(--gothic); }
 .brief .item b::before { content: "◆"; color: var(--accent); margin-right: .15em; }
 
-.poem {
-  writing-mode: vertical-rl;
-  white-space: pre-line;
-  text-indent: 0;
-  line-height: 2.05;
-  font-size: 13px;
-  height: 100%;
-  overflow: hidden;
-}
-
-/* ----- 面ごとの区画 ----- */
-
-/* 1面 */
-.front {
-  grid-template-columns: 160px minmax(0, 1fr) 108px;
-  height: 100%;
-}
-.front .story {
-  display: flex;
-  flex-direction: column;
-  padding: 8px;
-  overflow: hidden;
-  border-left: 1px solid var(--rule);
-}
-.front .story .photo {
-  margin-bottom: 6px;
-  max-height: 42%;
-  overflow: hidden;
-}
-.front .story .photo img {
-  width: 100%;
-  height: 100%;
-  max-height: 280px;
-  object-fit: cover;
-  object-position: center;
-}
-.front .story .v { flex: 1; height: auto; min-height: 0; }
-.front .head-band {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-start;
-  padding: 8px 4px;
-  border-left: 1px solid var(--rule);
-  overflow: hidden;
-}
-.front .v-headline { font-size: 36px; }
-.front .v-sub { font-size: 15px; margin-inline-end: .25em; }
-
-/* 2段・3段の汎用 */
-.cols-2 {
-  grid-template-columns: 1fr 1fr;
-  height: 100%;
-}
-.cols-3 {
-  grid-template-columns: 1fr 1fr 1fr;
-  height: 100%;
-}
-.cols-3-rail {
-  grid-template-columns: 1fr 1fr 200px;
-  height: 100%;
-}
-.cell.stack {
-  display: flex;
-  flex-direction: row-reverse;
-  gap: 0;
-}
-.cell.stack .v-title { margin: 0 .15em; }
-
-.split-v {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  height: 100%;
-  gap: 0;
-}
-.split-v > * {
-  overflow: hidden;
-  padding-top: 6px;
-}
-.split-v > * + * {
-  border-top: 1px solid var(--rule);
-  padding-top: 8px;
-}
-
-/* 図版セル */
-.cell.fig {
-  display: flex;
-  flex-direction: column;
-}
-.cell.fig .photo { flex: 1; }
-.cell.fig .photo img { height: 100%; object-fit: cover; }
-.cell.fig .v { flex: 0 0 auto; height: 9.5em; margin-top: 6px; }
-
-/* ===== 広告帯（紙面下） ===== */
-
 .ad-row {
-  flex: 0 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-  padding: 6px;
-  background: var(--paper);
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 2px solid var(--rule);
   writing-mode: horizontal-tb;
   direction: ltr;
+  height: auto;
+  overflow: visible;
 }
 .ad {
-  border: 1.5px solid var(--ink);
+  border: 2px solid var(--ink);
   background: var(--paper-ad);
-  padding: 6px;
+  padding: 8px;
   font-family: var(--gothic);
   position: relative;
-  min-height: 88px;
-  line-height: 1.4;
+  min-height: 110px;
+  line-height: 1.45;
 }
 .ad .ad-label {
   position: absolute;
   top: -1px;
-  right: 5px;
+  right: 6px;
   font-size: 9px;
-  letter-spacing: .15em;
+  letter-spacing: .2em;
   background: var(--paper-ad);
-  padding: 0 3px;
+  padding: 0 4px;
   color: var(--ink-soft);
 }
 .ad h4 {
-  margin: 0 0 3px;
-  font-size: 13px;
+  margin: 0 0 4px;
+  font-size: 14px;
   font-weight: 800;
   text-align: center;
   letter-spacing: .05em;
 }
-.ad p {
-  margin: 0;
-  font-size: 10.5px;
-  text-align: center;
-  text-indent: 0;
-}
-.ad img {
-  border: 0;
-  margin: 0 auto 3px;
-  max-height: 52px;
-  width: auto;
-}
+.ad p { margin: 0; font-size: 11.5px; text-align: center; }
+.ad img { border: 0; margin: 0 auto 4px; max-height: 70px; width: auto; }
 .ad.wide { grid-column: span 2; }
 .ad.accent-border { border-color: var(--accent); }
-.ad .price { font-weight: 800; color: var(--accent); font-size: 11.5px; margin-top: 2px; text-align: center; }
+.ad .price { font-weight: 800; color: var(--accent); font-size: 12.5px; margin-top: 3px; text-align: center; }
 
 .colophon {
-  max-width: 1080px;
-  margin: 0 auto 24px;
-  padding: 6px 4px;
+  border-top: 4px solid var(--rule);
+  margin-top: 8px;
+  padding-top: 8px;
   font-family: var(--gothic);
-  font-size: 11px;
-  color: #ddd;
+  font-size: 11.5px;
+  color: var(--ink-soft);
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
+  max-width: none;
 }
-.colophon a { color: #eee; }
+.colophon a { color: inherit; }
 
 .archive {
   list-style: none;
   padding: 0;
   margin: 0;
   font-family: var(--gothic);
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  padding: 12px 16px;
 }
 .archive li {
   border-bottom: 1px solid var(--rule-soft);
-  padding: 8px 0;
+  padding: 10px 0;
   display: grid;
   grid-template-columns: 11em 1fr;
-  gap: 10px;
+  gap: 12px;
 }
 .archive a { color: var(--ink); font-weight: 700; text-decoration: none; }
 .archive a:hover { color: var(--accent); }
 
-/* 狭い画面：紙面を縮小表示（縦書きは維持） */
-@media (max-width: 1100px) {
-  body { padding: 8px; }
-  .paper { max-width: 100%; }
-  .sheet {
-    height: auto;
-    min-height: 0;
-    transform-origin: top center;
-  }
-  .sheet-body {
-    height: var(--body-h);
-  }
-  .front, .cols-2, .cols-3, .cols-3-rail {
-    height: var(--body-h);
-  }
+@media (max-width: 900px) {
+  .paper { padding: 16px; }
+  .masthead { grid-template-columns: 1fr; text-align: center; }
+  .masthead .date { text-align: center; }
+  .masthead .title { font-size: 40px; }
+  .grid > *, .sheet-body > *,
+  .sheet-body.front > *,
+  .sheet-body.cols-2 > *,
+  .sheet-body.cols-3 > *,
+  .sheet-body.cols-3-rail > * { grid-column: span 12 !important; }
+  .ruled-left, .ruled-right { border: 0; padding: 0; }
+  .cols-2, .cols-3 { columns: 1; }
+  .ad-row { grid-template-columns: 1fr 1fr; }
+  figure.float-left, figure.float-right { float: none; width: 100%; margin: 0 0 10px; }
 }
-@media (max-width: 720px) {
-  /* スマホでは紙面を横スクロールできる台紙として見せる */
-  body { overflow-x: auto; }
-  .paper { min-width: 980px; }
+@media (max-width: 560px) {
+  .ad-row { grid-template-columns: 1fr; }
 }
-
 @media print {
   body { background: none; padding: 0; }
-  .page { break-after: page; }
-  .sheet { box-shadow: none; height: 100vh; }
-  @page { size: A3 portrait; margin: 8mm; }
+  .paper { box-shadow: none; }
+  .page { break-before: page; }
+  .page:first-of-type { break-before: auto; }
 }
 </style>
 </head>
