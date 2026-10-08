@@ -413,11 +413,27 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   color: var(--accent);
 }
 .facts .fact.sea .n { color: #1f5f7a; }
+.facts .fact .k {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .04em;
+  margin-bottom: 2px;
+}
 .facts .fact .l {
   font-family: var(--gothic);
   font-size: 11.5px;
   line-height: 1.35;
   margin-top: 2px;
+}
+.fact-head {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .14em;
+  margin: 0 0 6px;
+  text-indent: 0;
+  color: var(--accent);
 }
 .scale { margin: 2px 0 10px; }
 .scale-row {
@@ -839,10 +855,11 @@ b.sea { color: #1f5f7a; font-weight: 800; }
     <div class="sheet-body">
       <div class="cell span-7">
         <h2 class="v-title">駆逐艦が先に動き、沈めたときだけ育つ</h2>
+        <p class="fact-head">1期に動く回数</p>
         <div class="facts">
-          <div class="fact"><div class="n">約1.7回</div><div class="l">駆逐艦。障害がなければ、命令より前に動く</div></div>
-          <div class="fact sea"><div class="n">最大2回</div><div class="l">巡洋艦。平均は約1.5回</div></div>
-          <div class="fact"><div class="n">1回</div><div class="l">戦艦、空母、潜水艦</div></div>
+          <div class="fact"><div class="k">駆逐艦</div><div class="n">約1.7回動く</div><div class="l">障害がなければ、命令より前</div></div>
+          <div class="fact sea"><div class="k">巡洋艦</div><div class="n">最大2回動く</div><div class="l">平均は約1.5回</div></div>
+          <div class="fact"><div class="k">戦艦・空母・潜水艦</div><div class="n">1回動く</div><div class="l">1期につき1回</div></div>
         </div>
         <div class="v">
           <p class="lead noindent"><span class="dateline">【解説】</span>補給のあと、駆逐艦は国の命令より前に出る。経験は、艦を沈めたときと怪獣を倒したときにだけ増える。命中だけでは増えない。</p>
