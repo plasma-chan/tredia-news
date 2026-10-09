@@ -47,6 +47,9 @@ img.fitmap {
   margin-left: auto;
   margin-right: auto;
 }
+img.fitmap.mainmap { max-height: 620px; }
+img.fitmap.seamap { max-height: 480px; }
+.wx-board.cols2 { grid-template-columns: 1fr 1fr; }
 .wx-board {
   display: grid;
   grid-template-columns: 1fr;
@@ -543,7 +546,9 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   .sheet-body.front > *,
   .sheet-body.cols-2 > *,
   .sheet-body.cols-3 > *,
-  .sheet-body.cols-3-rail > * { grid-column: span 12 !important; }
+  .sheet-body.cols-3-rail > *,
+  .sheet-body > .cell,
+  .grid > .cell { grid-column: 1 / -1 !important; }
   .ruled-left, .ruled-right { border: 0; padding: 0; }
   .cols-2, .cols-3 { columns: 1; }
   .ad-row { grid-template-columns: 1fr 1fr; }
