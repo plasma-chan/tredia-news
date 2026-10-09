@@ -49,37 +49,38 @@ img.fitmap {
 }
 .wx-board {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
+  grid-template-columns: 1fr;
+  gap: 4px;
   margin: 0 0 10px;
 }
 .wx-card {
-  aspect-ratio: 1;
   border: 1px solid var(--rule-soft);
-  border-radius: 10px;
+  border-radius: 8px;
   background: var(--paper-ad);
-  text-align: center;
-  padding: 6px 4px;
+  text-align: left;
+  padding: 4px 6px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  gap: 6px;
 }
-.wx-card svg { width: 28px; height: 28px; margin: 0 0 2px; display: block; }
+.wx-card svg { width: 22px; height: 22px; margin: 0; display: block; flex: none; }
 .wx-card .wx-name {
   font-family: var(--gothic);
   font-weight: 800;
-  font-size: 13px;
+  font-size: 12.5px;
   letter-spacing: 0;
   margin: 0;
   text-indent: 0;
+  line-height: 1.2;
 }
 .wx-card .wx-state {
   font-family: var(--gothic);
   color: var(--ink-soft);
-  font-size: 12px;
+  font-size: 11.5px;
   margin: 0;
   text-indent: 0;
+  line-height: 1.2;
 }
 hr { border: 0; border-top: 1px solid var(--rule); margin: 10px 0; }
 p { margin: 0 0 .55em; text-align: justify; text-indent: 1em; }
@@ -174,6 +175,7 @@ p.noindent, .lead, figcaption, .brief p, .byline, .ad p, .toc li, .schedule li {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 14px 18px;
+  align-items: start;
 }
 .grid > *, .sheet-body > * { grid-column: span 12; min-width: 0; }
 .span-3, .cell.span-3 { grid-column: span 3 !important; }
@@ -551,14 +553,22 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   .facts { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
-  .ad-row { grid-template-columns: 1fr; }
-  .ad.banner, .ad.half { grid-column: span 1; grid-template-columns: 1fr; }
+  .ad-row { grid-template-columns: minmax(0, 1fr); }
+  .ad.wide, .ad.banner, .ad.half { grid-column: 1 / -1; }
+  .ad.banner, .ad.half { grid-template-columns: 1fr; }
+  .ad.banner img, .ad.half img { height: 180px; max-height: 180px; }
+  .ticker { font-size: 12px; }
+  table.data { font-size: 12px; }
 }
 @media print {
   body { background: none; padding: 0; }
-  .paper { box-shadow: none; }
-  .page { break-before: page; }
-  .page:first-of-type { break-before: auto; }
+  .paper { box-shadow: none; max-width: none; padding: 0; }
+  .page { break-before: page; margin: 0; padding: 8mm 0 0; border: 0; }
+  .page:first-of-type { break-before: auto; padding-top: 0; }
+  .page + .page { border: 0; }
+  h1, h2, h3, .v-headline, .v-sub { break-after: avoid; }
+  figure, .ad, .box, table, .wx-board, .ad-row { break-inside: avoid; }
+  img { break-inside: avoid; }
 }
 </style>
 </head>
