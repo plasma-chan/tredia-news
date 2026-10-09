@@ -49,30 +49,35 @@ img.fitmap {
 }
 .wx-board {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 8px;
-  margin: 0 0 12px;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin: 0 0 10px;
 }
 .wx-card {
+  aspect-ratio: 1;
   border: 1px solid var(--rule-soft);
-  border-radius: 12px;
+  border-radius: 10px;
   background: var(--paper-ad);
   text-align: center;
-  padding: 12px 8px 10px;
+  padding: 6px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.wx-card svg { width: 36px; height: 36px; margin: 0 auto 4px; display: block; }
+.wx-card svg { width: 28px; height: 28px; margin: 0 0 2px; display: block; }
 .wx-card .wx-name {
   font-family: var(--gothic);
   font-weight: 800;
-  font-size: 15px;
-  letter-spacing: .04em;
+  font-size: 13px;
+  letter-spacing: 0;
   margin: 0;
   text-indent: 0;
 }
 .wx-card .wx-state {
   font-family: var(--gothic);
   color: var(--ink-soft);
-  font-size: 13px;
+  font-size: 12px;
   margin: 0;
   text-indent: 0;
 }
@@ -987,29 +992,36 @@ b.sea { color: #1f5f7a; font-weight: 800; }
         <div class="column-title">各地の空模様</div>
         <div class="wx-board">
           <div class="wx-card">
-            <svg viewBox="0 0 48 48" aria-hidden="true">
-              <path fill="#7eb6e8" d="M16 28h18a8 8 0 0 0 1-15.9 10 10 0 0 0-19.2-2A7 7 0 0 0 16 28z"/>
-              <path stroke="#3a7eb5" stroke-width="2" stroke-linecap="round" d="M18 32l-2 6M24 32l-2 6M30 32l-2 6"/>
-            </svg>
-            <p class="wx-name">黄砂・緑丘</p>
-            <p class="wx-state">雨</p>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#7eb6e8" d="M16 28h18a8 8 0 0 0 1-15.9 10 10 0 0 0-19.2-2A7 7 0 0 0 16 28z"/><path stroke="#3a7eb5" stroke-width="2" stroke-linecap="round" d="M18 32l-2 6M24 32l-2 6M30 32l-2 6"/></svg>
+            <p class="wx-name">黄砂</p><p class="wx-state">雨</p>
           </div>
           <div class="wx-card">
-            <svg viewBox="0 0 48 48" aria-hidden="true">
-              <path fill="#9aa3ad" d="M16 30h18a8 8 0 0 0 1-15.9 10 10 0 0 0-19.2-2A7 7 0 0 0 16 30z"/>
-            </svg>
-            <p class="wx-name">テキシャ</p>
-            <p class="wx-state">曇り</p>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#7eb6e8" d="M16 28h18a8 8 0 0 0 1-15.9 10 10 0 0 0-19.2-2A7 7 0 0 0 16 28z"/><path stroke="#3a7eb5" stroke-width="2" stroke-linecap="round" d="M18 32l-2 6M24 32l-2 6M30 32l-2 6"/></svg>
+            <p class="wx-name">緑丘</p><p class="wx-state">雨</p>
           </div>
           <div class="wx-card">
-            <svg viewBox="0 0 48 48" aria-hidden="true">
-              <circle cx="24" cy="24" r="8" fill="#f0b429"/>
-              <g stroke="#f0b429" stroke-width="2" stroke-linecap="round">
-                <path d="M24 8v6M24 34v6M8 24h6M34 24h6M12.5 12.5l4 4M31.5 31.5l4 4M35.5 12.5l-4 4M16.5 31.5l-4 4"/>
-              </g>
-            </svg>
-            <p class="wx-name">電都・黒潮</p>
-            <p class="wx-state">晴れ</p>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#7eb6e8" d="M16 28h18a8 8 0 0 0 1-15.9 10 10 0 0 0-19.2-2A7 7 0 0 0 16 28z"/><path stroke="#3a7eb5" stroke-width="2" stroke-linecap="round" d="M18 32l-2 6M24 32l-2 6M30 32l-2 6"/></svg>
+            <p class="wx-name">ネルヴェナ</p><p class="wx-state">雨</p>
+          </div>
+          <div class="wx-card">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#9aa3ad" d="M16 30h18a8 8 0 0 0 1-15.9 10 10 0 0 0-19.2-2A7 7 0 0 0 16 30z"/></svg>
+            <p class="wx-name">テキシャ</p><p class="wx-state">曇り</p>
+          </div>
+          <div class="wx-card">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="8" fill="#f0b429"/><g stroke="#f0b429" stroke-width="2" stroke-linecap="round"><path d="M24 8v6M24 34v6M8 24h6M34 24h6M12.5 12.5l4 4M31.5 31.5l4 4M35.5 12.5l-4 4M16.5 31.5l-4 4"/></g></svg>
+            <p class="wx-name">電都</p><p class="wx-state">晴れ</p>
+          </div>
+          <div class="wx-card">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="8" fill="#f0b429"/><g stroke="#f0b429" stroke-width="2" stroke-linecap="round"><path d="M24 8v6M24 34v6M8 24h6M34 24h6M12.5 12.5l4 4M31.5 31.5l4 4M35.5 12.5l-4 4M16.5 31.5l-4 4"/></g></svg>
+            <p class="wx-name">プライム</p><p class="wx-state">晴れ</p>
+          </div>
+          <div class="wx-card">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="8" fill="#f0b429"/><g stroke="#f0b429" stroke-width="2" stroke-linecap="round"><path d="M24 8v6M24 34v6M8 24h6M34 24h6M12.5 12.5l4 4M31.5 31.5l4 4M35.5 12.5l-4 4M16.5 31.5l-4 4"/></g></svg>
+            <p class="wx-name">黒潮</p><p class="wx-state">晴れ</p>
+          </div>
+          <div class="wx-card">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="8" fill="#f0b429"/><g stroke="#f0b429" stroke-width="2" stroke-linecap="round"><path d="M24 8v6M24 34v6M8 24h6M34 24h6M12.5 12.5l4 4M31.5 31.5l4 4M35.5 12.5l-4 4M16.5 31.5l-4 4"/></g></svg>
+            <p class="wx-name">天都</p><p class="wx-state">晴れ</p>
           </div>
         </div>
         <div class="box">
