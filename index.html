@@ -47,6 +47,35 @@ img.fitmap {
   margin-left: auto;
   margin-right: auto;
 }
+.wx-board {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+.wx-card {
+  border: 1px solid var(--rule-soft);
+  border-radius: 12px;
+  background: var(--paper-ad);
+  text-align: center;
+  padding: 12px 8px 10px;
+}
+.wx-card svg { width: 36px; height: 36px; margin: 0 auto 4px; display: block; }
+.wx-card .wx-name {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: .04em;
+  margin: 0;
+  text-indent: 0;
+}
+.wx-card .wx-state {
+  font-family: var(--gothic);
+  color: var(--ink-soft);
+  font-size: 13px;
+  margin: 0;
+  text-indent: 0;
+}
 hr { border: 0; border-top: 1px solid var(--rule); margin: 10px 0; }
 p { margin: 0 0 .55em; text-align: justify; text-indent: 1em; }
 p.noindent, .lead, figcaption, .brief p, .byline, .ad p, .toc li, .schedule li { text-indent: 0; }
