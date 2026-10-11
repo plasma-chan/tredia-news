@@ -606,7 +606,10 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   h1, h2, h3, .v-headline, .v-sub { break-after: avoid; }
   figure, .ad, .box, table, .wx-board, .ad-row { break-inside: avoid; }
   img { break-inside: avoid; }
-  img.fitmap.battle { max-height: 230mm; width: auto; }
+  img.fitmap.battle { max-height: 168mm; width: auto; max-width: 100%; }
+  img.fitmap.mainmap { max-height: 100mm; }
+  img.fitmap.seamap { max-height: 70mm; }
+  .page:nth-of-type(10) .photo img { max-height: 48mm; width: auto; object-fit: contain; }
 }
 </style>
 </head>
@@ -622,6 +625,7 @@ b.sea { color: #1f5f7a; font-weight: 800; }
 <section class="page">
   <h2 class="page-name"><span class="tag">バックナンバー</span></h2>
   <ul class="archive">
+    <li><a href="issues/126-朝刊.html">第126期 朝刊</a><span class="top">皇国首都エスペランサ陥落　チェス軍が占領</span></li>
     <li><a href="issues/125-夕刊.html">第125期 夕刊</a><span class="top">旧政府残党の「プライム」再び陥落</span></li>
     <li><a href="issues/124-朝刊.html">第123・124期 朝刊</a><span class="top">「プライム」が陥落　名は隣町へ移った</span></li>
     <li><a href="issues/122-朝刊.html">第122期 朝刊</a><span class="top">旧政府残党、東方の町を「プライム」と称す</span></li>
