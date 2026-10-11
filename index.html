@@ -262,6 +262,12 @@ p.noindent, .lead, figcaption, .brief p, .byline, .ad p, .toc li, .schedule li {
   overflow: visible;
 }
 .headline.xl, .front .v-headline { font-size: 36px; }
+@media (max-width: 680px) {
+  .front h1.v-headline {
+    font-size: clamp(18px, 5.1vw, 34px);
+    white-space: nowrap;
+  }
+}
 .headline.lg { font-size: 24px; }
 .v-title { font-size: 22px; font-weight: 800; }
 @media (max-width: 900px) {
@@ -616,7 +622,7 @@ b.sea { color: #1f5f7a; font-weight: 800; }
 <section class="page">
   <h2 class="page-name"><span class="tag">バックナンバー</span></h2>
   <ul class="archive">
-    <li><a href="issues/125-夕刊.html">第125期 夕刊</a><span class="top">旧政府残党の　「プライム」　再び陥落</span></li>
+    <li><a href="issues/125-夕刊.html">第125期 夕刊</a><span class="top">旧政府残党の「プライム」再び陥落</span></li>
     <li><a href="issues/124-朝刊.html">第123・124期 朝刊</a><span class="top">「プライム」が陥落　名は隣町へ移った</span></li>
     <li><a href="issues/122-朝刊.html">第122期 朝刊</a><span class="top">旧政府残党、東方の町を「プライム」と称す</span></li>
     <li><a href="issues/121-夕刊.html">第121期 夕刊</a><span class="top">プライム陥落！　歓呼の市民、なのです軍を迎う</span></li>

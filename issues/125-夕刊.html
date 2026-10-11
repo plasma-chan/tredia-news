@@ -262,6 +262,12 @@ p.noindent, .lead, figcaption, .brief p, .byline, .ad p, .toc li, .schedule li {
   overflow: visible;
 }
 .headline.xl, .front .v-headline { font-size: 36px; }
+@media (max-width: 680px) {
+  .front h1.v-headline {
+    font-size: clamp(18px, 5.1vw, 34px);
+    white-space: nowrap;
+  }
+}
 .headline.lg { font-size: 24px; }
 .v-title { font-size: 22px; font-weight: 800; }
 @media (max-width: 900px) {
@@ -637,7 +643,7 @@ b.sea { color: #1f5f7a; font-weight: 800; }
     <div class="sheet-top"><span class="tag">総合</span>旧政府残党<span class="pageno">1</span></div>
     <div class="sheet-body front">
       <div class="story">
-        <h1 class="v-headline">旧政府残党の　<br>「プライム」　<br>再び陥落</h1>
+        <h1 class="v-headline">旧政府残党の「プライム」再び陥落</h1>
         <p class="v-sub">東方の四都市・町を制圧　<br>残党は新首都を示さず</p>
         <div class="v">
           <p class="lead noindent"><span class="dateline">【総合部】</span>シンジケート連邦の旧政府残党が「プライム」と称していた東方の都市が、なのです主義人民共和国軍の占領下に入った。残党が旧首都の名を移してから、わずか一週。再び拠点を失った残党側は、次の首都を発表していない。</p>
