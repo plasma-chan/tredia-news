@@ -48,7 +48,7 @@ img.fitmap {
   margin-right: auto;
 }
 img.fitmap.mainmap { max-height: 620px; }
-img.fitmap.seamap { max-height: 480px; }
+img.fitmap.seamap { max-height: 620px; }
 img.fitmap.battle { width: 100%; max-width: 100%; height: auto; max-height: none; }
 .mill {
   display: grid;
@@ -329,6 +329,15 @@ figure, .photo {
   max-height: none;
   object-fit: initial;
 }
+.photo img.fitmap.mainmap,
+.photo img.fitmap.seamap,
+figure img.fitmap.mainmap,
+figure img.fitmap.seamap {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
 figcaption {
   font-family: var(--gothic);
   font-size: 11.5px;
@@ -607,8 +616,8 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   figure, .ad, .box, table, .wx-board, .ad-row { break-inside: avoid; }
   img { break-inside: avoid; }
   img.fitmap.battle { max-height: 168mm; width: auto; max-width: 100%; }
-  img.fitmap.mainmap { max-height: 100mm; }
-  img.fitmap.seamap { max-height: 70mm; }
+  img.fitmap.mainmap { max-height: 85mm; }
+  img.fitmap.seamap { max-height: 85mm; }
   .page:nth-of-type(10) .photo img { max-height: 48mm; width: auto; object-fit: contain; }
 }
 </style>
