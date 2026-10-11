@@ -49,6 +49,22 @@ img.fitmap {
 }
 img.fitmap.mainmap { max-height: 620px; }
 img.fitmap.seamap { max-height: 480px; }
+img.fitmap.battle { width: 100%; max-width: 100%; height: auto; max-height: none; }
+.mill {
+  display: grid;
+  grid-template-columns: 1.1fr auto 1fr auto 1.3fr;
+  gap: 8px 10px;
+  align-items: center;
+  margin: 4px 0 14px;
+}
+.mill .step {
+  border: 1px solid var(--rule);
+  padding: 8px 10px;
+  text-align: center;
+  background: var(--paper);
+}
+.mill .step b { display: block; font-size: 15px; }
+.mill .arr { text-align: center; font-weight: 800; font-size: 18px; }
 .wx-board.cols2 { grid-template-columns: 1fr 1fr; }
 .wx-board {
   display: grid;
@@ -560,6 +576,8 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   .ad.banner img, .ad.half img { height: 110px; max-height: 110px; }
   figure.float-left, figure.float-right { float: none; width: 100%; margin: 0 0 10px; }
   .facts { grid-template-columns: 1fr; }
+  .mill { grid-template-columns: 1fr; }
+  .mill .arr { transform: rotate(90deg); }
 }
 @media (max-width: 420px) {
   .masthead .title br.narrow { display: block; }
@@ -572,6 +590,7 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   .ticker { font-size: 12px; }
   table.data { font-size: 12px; }
 }
+@page { size: A3 portrait; margin: 14mm; }
 @media print {
   body { background: none; padding: 0; }
   .paper { box-shadow: none; max-width: none; padding: 0; }
@@ -581,6 +600,7 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   h1, h2, h3, .v-headline, .v-sub { break-after: avoid; }
   figure, .ad, .box, table, .wx-board, .ad-row { break-inside: avoid; }
   img { break-inside: avoid; }
+  img.fitmap.battle { max-height: 230mm; width: auto; }
 }
 </style>
 </head>
@@ -596,7 +616,7 @@ b.sea { color: #1f5f7a; font-weight: 800; }
 <section class="page">
   <h2 class="page-name"><span class="tag">バックナンバー</span></h2>
   <ul class="archive">
-    <li><a href="issues/125-夕刊.html">第125期 夕刊</a><span class="top">「プライム」が陥落　首都の場所は空いた</span></li>
+    <li><a href="issues/125-夕刊.html">第125期 夕刊</a><span class="top">「プライム」再陥落　所在は示されず</span></li>
     <li><a href="issues/124-朝刊.html">第123・124期 朝刊</a><span class="top">「プライム」が陥落　名は隣町へ移った</span></li>
     <li><a href="issues/122-朝刊.html">第122期 朝刊</a><span class="top">旧政府残党、東方の町を「プライム」と称す</span></li>
     <li><a href="issues/121-夕刊.html">第121期 夕刊</a><span class="top">プライム陥落！　歓呼の市民、なのです軍を迎う</span></li>
