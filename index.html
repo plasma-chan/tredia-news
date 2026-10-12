@@ -329,6 +329,13 @@ figure, .photo {
   max-height: none;
   object-fit: initial;
 }
+.photo img.fitphoto {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+}
 .photo img.fitmap.mainmap,
 .photo img.fitmap.seamap,
 figure img.fitmap.mainmap,
@@ -618,7 +625,9 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   img.fitmap.battle { max-height: 168mm; width: auto; max-width: 100%; }
   img.fitmap.mainmap { max-height: 85mm; }
   img.fitmap.seamap { max-height: 85mm; }
-  .page:nth-of-type(10) .photo img { max-height: 48mm; width: auto; object-fit: contain; }
+  .photo img.fitphoto,
+  figure.cap-photo img { max-height: 48mm; width: auto; object-fit: contain; }
+  .page:nth-of-type(5) .photo img.fitphoto { max-height: 36mm; }
 }
 </style>
 </head>
@@ -634,6 +643,7 @@ b.sea { color: #1f5f7a; font-weight: 800; }
 <section class="page">
   <h2 class="page-name"><span class="tag">バックナンバー</span></h2>
   <ul class="archive">
+    <li><a href="issues/128-朝刊.html">第128期 朝刊</a><span class="top">なのですとオリョルッル　ウェステラとエクアドリアへ進出</span></li>
     <li><a href="issues/127-夕刊.html">第127期 夕刊</a><span class="top">皇国、首都を隣町へ　名はエスペランサ</span></li>
     <li><a href="issues/126-朝刊.html">第126期 朝刊</a><span class="top">皇国首都エスペランサ陥落　チェス軍が占領</span></li>
     <li><a href="issues/125-夕刊.html">第125期 夕刊</a><span class="top">旧政府残党の「プライム」再び陥落</span></li>
