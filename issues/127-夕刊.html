@@ -605,6 +605,7 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   .ticker { font-size: 12px; }
   table.data { font-size: 12px; }
 }
+.photo img.fitphoto { width: auto; height: auto; max-width: 100%; max-height: 220px; object-fit: contain; }
 @page { size: A3 portrait; margin: 14mm; }
 @media print {
   body { background: none; padding: 0; }
@@ -618,7 +619,9 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   img.fitmap.battle { max-height: 168mm; width: auto; max-width: 100%; }
   img.fitmap.mainmap { max-height: 85mm; }
   img.fitmap.seamap { max-height: 85mm; }
-  .page:nth-of-type(10) .photo img { max-height: 48mm; width: auto; object-fit: contain; }
+  .photo img.fitphoto,
+  figure.cap-photo img { max-height: 48mm; width: auto; object-fit: contain; }
+  .page:nth-of-type(5) .photo img.fitphoto { max-height: 36mm; }
 }
 
 </style>
@@ -637,7 +640,7 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   <div class="date">
     トレーディア暦2年8月第4週<br>
     夏季<br>
-    本日11面
+    本日12面
   </div>
 </header>
 <div class="ticker">
@@ -645,7 +648,7 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   <span>皇国、新都の森で攻防</span>
   <span>カペレナ、国威発揚の大宣言</span>
   <span>残党の歩兵が消滅</span>
-  <span>緑丘軍港占領／火災死者2万6,700人</span>
+  <span>オリョルッル、緑丘軍港に報復</span>
   <span>民間食料の在庫に明暗</span>
   <span>胡椒帝国</span>
   <span>海の荷の新しい決まり</span>
@@ -677,13 +680,14 @@ b.sea { color: #1f5f7a; font-weight: 800; }
           <li><span class="when">2面</span>東の森の撃ち合い</li>
           <li><span class="when">3面</span>残党の歩兵が消滅</li>
           <li><span class="when">4面</span>国威発揚の大宣言</li>
-          <li><span class="when">5面</span>緑丘軍港を占領</li>
-          <li><span class="when">6面</span>食料の民間在庫</li>
-          <li><span class="when">7面</span>雪は42区画</li>
-          <li><span class="when">8面</span>船と造船</li>
-          <li><span class="when">9面</span>胡椒帝国</li>
-          <li><span class="when">10面</span>湖陽の合奏</li>
-          <li><span class="when">11面</span>海の荷の新しい決まり</li>
+          <li><span class="when">5面</span>軍港占領は報復</li>
+          <li><span class="when">6面</span>火災・移民・徴兵</li>
+          <li><span class="when">7面</span>食料の民間在庫</li>
+          <li><span class="when">8面</span>雪は42区画</li>
+          <li><span class="when">9面</span>船と造船</li>
+          <li><span class="when">10面</span>胡椒帝国</li>
+          <li><span class="when">11面</span>湖陽の合奏</li>
+          <li><span class="when">12面</span>海の荷の新しい決まり</li>
         </ol>
         <p>カペレナ王国は、首都の繁栄を国威発揚の宣言として掲げた。詳報は4面。</p>
       </aside>
@@ -870,23 +874,56 @@ b.sea { color: #1f5f7a; font-weight: 800; }
 <!-- ========== 5面 ========== -->
 <section class="page">
   <div class="sheet">
-    <div class="sheet-top"><span class="tag">社会</span>占領と火<span class="pageno">5</span></div>
+    <div class="sheet-top"><span class="tag">社会</span>軍港占領<span class="pageno">5</span></div>
     <div class="sheet-body">
       <div class="cell span-7">
-        <h2 class="v-headline">オリョルッル、緑丘の軍港を占領<br>交戦関係なき両国間で領有変更</h2>
-        <p class="v-sub">火災で2万6,700人死亡　金野・蒼森に移民も</p>
+        <h2 class="v-headline">オリョルッル、緑丘に報復の軍港占領　<br>「掣肘を加える」王国側、強硬姿勢を表明</h2>
+        <p class="v-sub">工場・農場めぐる領土紛争が軍事拠点に波及　非交戦の両国、新たな戦争の火種</p>
+        <figure class="photo">
+          <img class="fitphoto" src="../images/127-夕刊/127-port.jpg" alt="曇り空の軍港。岸壁に並ぶ兵と、煙を吐く軍艦">
+          <figcaption>石の岸壁と軍艦。情景図。</figcaption>
+        </figure>
         <div class="v">
-          <p class="lead noindent"><span class="dateline">【社会・安全保障部】</span>オリョルッル王国が、緑丘公国の軍港を占領した。両国は交戦状態にない。軍事施設の領有が王国側へ移ったことで、緑丘は海上拠点の一つを失った。オリョルッルはこのほか、中立地帯の山、森、荒地にも領土を広げている。</p>
-<p>王国の人口は641,700人、兵力457,000人。緑丘は人口20,300人、兵力76,000人で、働き手の不足は145,000人に達している。</p>
-<h3>各地で火災、2万6,700人死亡</h3>
-<p>青海共和国の二つの都市で9,900人と5,000人、なのです主義人民共和国の二つの町で各2,900人、あろあろ国の都市で6,000人が火災により死亡した。五つの都市・町の死者は計2万6,700人に上る。テキスタン共和国では工場が焼失し、建物が壊滅した。</p>
-<h3>金野と蒼森に移民到着</h3>
-<p>なのですから金野伯爵領へ18,600人、灰岩王国から蒼森辺境伯領へ13,300人が移住した。受け入れ後の人口は金野77,600人、蒼森66,300人。</p>
-<h3>狐っ娘の尻尾教団、各町で徴兵</h3>
-<p>狐っ娘の尻尾教団は複数の町で徴兵を行った。人口は95,300人、兵力は176,500人、働き手の不足は77,700人に達した。同教団は現在、他国と戦争していない。</p>
+          <p class="lead noindent"><span class="dateline">【社会・安全保障部】</span>オリョルッル王国が緑丘公国の軍港（17,50）を占領し、王国の支配下に置いた。緑丘が過去二度にわたり王国領を取得したことへの報復とみられる。王国側は緑丘の領土拡張を公然と非難し、「掣肘を加えるのです」と強硬な姿勢を示していた。両国は現在、交戦関係にないものの、領土を奪い合う対立はついに軍事拠点の争奪に発展した。</p>
+          <h3>王国側、緑丘を公然と非難</h3>
+          <p>オリョルッル王国側は交流チャットで、緑丘公国が工場を奪ったうえ、自国領にまで農場を建設したと非難した。</p>
+          <p>発言では、工場について「（元々奪った）工場」と、かつて王国側が緑丘から取得した経緯に自ら触れている。その一方で、農場については「あろうことかみゃーの国の平地に農場を建てたのです」と強い不満を表明。緑丘の姿勢を「好戦的」と非難し、さらに「掣肘を加えるのです」と言い切った。</p>
+          <p>王国側が相手国の行動を抑え込む意思を示していたことは明らかだ。今回の軍港占領は、こうした反発を背景にした実力行使とみるのが自然である。単なる領土の拡張ではなく、緑丘に対する報復と、今後の行動を牽制する狙いがうかがえる。</p>
+          <h3>工場奪還から農場取得へ　積み重なった対立</h3>
+          <p>両国の領土紛争には、長い経緯がある。</p>
+          <p>第114期、オリョルッルは緑丘領の工場（18,45）を占領した。この工場を第125期に緑丘が取り戻した。記録上は、緑丘がオリョルッル領内で工場建設を行い、土地の帰属が緑丘に移った形となっている。</p>
+          <p>翌第126期には、緑丘が農場（14,45）を取得した。同地は第120期にオリョルッル領の森だった場所で、第124期には王国自身が農場として整備していた。緑丘がこの土地で農場整備を行ったことで、農場の支配も公国側へ移った。</p>
+          <p>これに伴い、緑丘の領地は第124期の15区画から、第125期に16区画、第126期には17区画に拡大した。</p>
+          <p>そして第127期、今度はオリョルッルが緑丘の軍港（17,50）を占領した。公国領は16区画に減少し、二期続けて領土を増やしてきた緑丘が、今度は奪われる側となった。</p>
+          <p>ただし、今回占領された軍港は、かつてオリョルッルが保有していた工場や農場とは異なる地点にある。王国は失った土地を取り戻したのではなく、報復として別の軍事拠点を奪ったことになる。</p>
+          <h3>報復が報復を呼ぶ危険</h3>
+          <p>軍港は、軍艦の建造と運用を支える重要施設である。その喪失は緑丘にとって、単なる一つの区画の減少では済まない。王国が報復の対象に軍事拠点を選んだ意味は重い。</p>
+          <p>オリョルッル王国の人口は641,700人、兵力457,000人。一方、緑丘公国は人口20,300人、兵力76,000人で、働き手の不足は145,000人に達している。</p>
+          <p>王国は同じ週、中立地帯の山、森、荒地にも進出した。しかし、中立地の取得と、他国が保有する軍港の占領は決定的に異なる。後者は相手国の軍事的利益を直接損ない、対立を一層先鋭化させる行為だからだ。</p>
+          <p>緑丘が王国領の工場と農場を取得したことが、オリョルッルの反発を招いた。今度は王国が軍港を奪い、緑丘に新たな遺恨を残した。報復によって失地への不満を晴らそうとしても、相手国にさらなる報復の理由を与えるだけではないか。</p>
+          <p>交戦関係にない両国が、すでに互いの領土を奪い合っている。このまま強硬姿勢を競えば、領土紛争が本格的な武力衝突へ転じる危険は小さくない。</p>
+          <p>王国側が口にした「掣肘」は、軍港の占領という形で現実のものとなった。両国の関係は、もはや単なる国境上の摩擦では済まされない段階に入っている。</p>
         </div>
       </div>
       <div class="cell span-5 yoko ruled-left">
+        <table class="data">
+          <caption>緑丘の領地</caption>
+          <tbody>
+            <tr><td>第124期</td><td class="num">15</td></tr>
+            <tr><td>第125期</td><td class="num">16</td></tr>
+            <tr><td>第126期</td><td class="num">17</td></tr>
+            <tr><td>第127期</td><td class="num">16</td></tr>
+          </tbody>
+        </table>
+        <table class="data">
+          <caption>両国</caption>
+          <thead><tr><th></th><th class="num">人口</th><th class="num">兵力</th></tr></thead>
+          <tbody>
+            <tr><td>オリョルッル</td><td class="num">641,700</td><td class="num">457,000</td></tr>
+            <tr><td>緑丘</td><td class="num">20,300</td><td class="num">76,000</td></tr>
+          </tbody>
+        </table>
+        <p class="noindent">緑丘の働き手の不足は145,000人。両国は交戦していない。</p>
         <table class="data">
           <caption>火災の犠牲</caption>
           <tbody>
@@ -898,16 +935,8 @@ b.sea { color: #1f5f7a; font-weight: 800; }
             <tr><td>合計</td><td class="num">26,700人</td></tr>
           </tbody>
         </table>
-        <table class="data">
-          <caption>着いた人</caption>
-          <tbody>
-            <tr><td>なのですから金野へ</td><td class="num">18,600人</td></tr>
-            <tr><td>灰岩から蒼森へ</td><td class="num">13,300人</td></tr>
-          </tbody>
-        </table>
       </div>
-    </div>
-    <div class="ad-row">
+          <div class="ad-row">
       <div class="ad banner">
         <span class="ad-label">広告</span>
         <img src="../images/127-夕刊/121-ad-inn.jpg" alt="宿の玄関と提灯">
@@ -925,7 +954,54 @@ b.sea { color: #1f5f7a; font-weight: 800; }
 <!-- ========== 6面 ========== -->
 <section class="page">
   <div class="sheet">
-    <div class="sheet-top"><span class="tag">経済</span>相場と国庫<span class="pageno">6</span></div>
+    <div class="sheet-top"><span class="tag">社会</span>火災と移民<span class="pageno">6</span></div>
+    <div class="sheet-body">
+<div class="cell span-12">
+        <div class="v">
+          <h3>各地で大火、26,700人死亡</h3>
+          <p class="v-sub">青海、なのです、あろあろで惨事　都市防災の立ち遅れ浮き彫り</p>
+          <figure class="photo">
+            <img class="fitphoto" src="../images/127-夕刊/127-fire.jpg" alt="石造りの街で、炎の上がる窓と桶を運ぶ人々">
+            <figcaption>炎の上がる石の街。情景図。</figcaption>
+          </figure>
+          <p>青海共和国、なのです主義人民共和国、あろあろ国で火災が相次ぎ、五つの都市・町で計26,700人が死亡した。</p>
+          <p>青海共和国では二つの都市でそれぞれ9,900人、5,000人が死亡した。なのです主義人民共和国の二つの町では各2,900人、あろあろ国の都市でも6,000人が犠牲となった。</p>
+          <p>テキスタン共和国では工場が火災に見舞われ、建物が壊滅した。</p>
+          <p>戦禍による死者が相次ぐ世界で、都市火災によっても一週間に数万人もの命が失われた事実は重い。戦争への備えに比べ、都市に暮らす住民を火災から守る取り組みは十分なのか。</p>
+          <p>大都市への人口集中が進めば、一度の火災がもたらす人的被害も拡大しかねない。焼失した工場の再建とともに、住民の生命を守る防災体制の強化は、各国に共通する急務である。</p>
+          <p>復興の成否は建物の数だけでは測れない。犠牲者を出した街で、残された人々が再び安心して暮らせるかどうかが問われている。</p>
+          <h3>金野・蒼森に移民31,900人</h3>
+          <p class="v-sub">働き口求め国境越える　人口増加が受け入れ地に変化</p>
+          <figure class="photo">
+            <img class="fitphoto" src="../images/127-夕刊/127-road.jpg" alt="荷を背負い、門のある町へ向かう人々">
+            <figcaption>荷を背負い、町の門へ向かう人々。情景図。</figcaption>
+          </figure>
+          <p>なのです主義人民共和国から金野伯爵領へ、仕事を求める18,600人が移住した。金野はこれを受け入れ、人口は77,600人となった。</p>
+          <p>灰岩王国から蒼森辺境伯領へも13,300人が移住し、蒼森の人口は66,300人となっている。</p>
+          <p>二つの地域が受け入れた移民は合わせて31,900人に上る。人口の移動は、送り出す国と受け入れる国の双方の経済に影響を及ぼす。受け入れ先では働き手の増加が生産活動を支える一方、住居や生活物資に対する需要も増すことになる。</p>
+          <p>人口が増えれば国が豊かになるとは限らない。新たに迎えた人々に十分な職と生活の基盤を用意できるかどうかが重要だ。</p>
+          <p>一方、住民が流出する国にとっては、貴重な働き手を失うことにもつながる。人口を引き留めるには、移住を制限するよりも、人々が自国にとどまりたいと考えるだけの仕事と生活環境を整えることが肝要であろう。</p>
+          <p>各地で続く人口移動は、国の豊かさが単なる領土の広さや軍勢の数だけでは決まらないことを物語っている。</p>
+          <h3>狐っ娘の尻尾教団、軍拡なお止まらず</h3>
+          <p class="v-sub">人口95,300人に兵力176,500人　働き手不足77,700人でも徴兵続行</p>
+          <p>狐っ娘の尻尾教団は、複数の町で新たな徴兵を実施した。教団の人口は95,300人に対し、兵力は176,500人。住民人口を大幅に上回る軍勢を擁しながら、なお兵の増強を続けている。</p>
+          <p>教団は現在、他国と戦争をしていない。平時から十分な軍事力を確保することには、他国の攻撃を思いとどまらせる抑止効果も期待できよう。しかし、その軍勢があまりに巨大になれば、周辺諸国の警戒を招き、かえって緊張を高めるおそれがある。</p>
+          <p>さらに懸念されるのが、教団国内の深刻な人手不足だ。働き手の不足は77,700人に達している。産業を支える人員が足りない状況で、軍事力の拡大ばかりを優先する政策は、国民生活との均衡を欠いてはいないか。</p>
+          <p>軍を維持するには、食料、資金、物資、補給施設が欠かせない。兵力が増えれば、それを支える経済基盤も強化しなければならない。徴兵が直ちに労働力不足を拡大させるとは限らないとしても、巨大な軍事力を維持する国家が民生の立て直しを後回しにすることはできまい。</p>
+          <p>そもそも軍隊は国を守るために存在する。守るべき住民の暮らしが立ち行かなくなれば、いかに兵力を増やしても国力の充実とは言えない。</p>
+          <p>戦争をしていない教団が、人口を大きく上回る軍勢をなお増強する理由は何なのか。そして、その軍勢を養いながら国内の働き手不足をどう解消していくのか。</p>
+          <p>大軍を持つことと、強い国家を築くことは同義ではない。軍備の増強が国家の繁栄に結びつくか、それとも民生を圧迫する重荷となるか。教団の進む道は、今後の政策にかかっている。</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 7面 ========== -->
+<section class="page">
+  <div class="sheet">
+    <div class="sheet-top"><span class="tag">経済</span>相場と国庫<span class="pageno">7</span></div>
     <div class="sheet-body">
       <div class="cell span-7">
         <h2 class="v-headline">黒潮・残党、民間食料在庫ゼロ　<br>国の備蓄は別に保有</h2>
@@ -997,10 +1073,10 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   </div>
 </section>
 
-<!-- ========== 7面 ========== -->
+<!-- ========== 8面 ========== -->
 <section class="page">
   <div class="sheet">
-    <div class="sheet-top"><span class="tag">気象</span>空と海<span class="pageno">7</span></div>
+    <div class="sheet-top"><span class="tag">気象</span>空と海<span class="pageno">8</span></div>
     <div class="sheet-body">
       <div class="cell span-12">
         <h2 class="v-headline">北端の雪は42区画のまま　<br>天都は晴れ、オリョルッルは雨</h2>
@@ -1039,10 +1115,10 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   </div>
 </section>
 
-<!-- ========== 8面 ========== -->
+<!-- ========== 9面 ========== -->
 <section class="page">
   <div class="sheet">
-    <div class="sheet-top"><span class="tag">入門</span>第19回<span class="pageno">8</span></div>
+    <div class="sheet-top"><span class="tag">入門</span>第19回<span class="pageno">9</span></div>
     <div class="sheet-body">
       <div class="cell span-12">
         <h2 class="v-headline">軍艦を造るには、軍港と海域を確認</h2>
@@ -1096,10 +1172,10 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   </div>
 </section>
 
-<!-- ========== 9面 ========== -->
+<!-- ========== 10面 ========== -->
 <section class="page">
   <div class="sheet">
-    <div class="sheet-top"><span class="tag">国特集</span>胡椒<span class="pageno">9</span></div>
+    <div class="sheet-top"><span class="tag">国特集</span>胡椒<span class="pageno">10</span></div>
     <div class="sheet-body">
       <div class="cell span-7">
         <h2 class="v-headline">働き手不足、人口に迫る<br>胡椒帝国の市場に集う人々</h2>
@@ -1148,15 +1224,15 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   </div>
 </section>
 
-<!-- ========== 10面 ========== -->
+<!-- ========== 11面 ========== -->
 <section class="page">
   <div class="sheet">
-    <div class="sheet-top"><span class="tag">文化</span>湖陽<span class="pageno">10</span></div>
+    <div class="sheet-top"><span class="tag">文化</span>湖陽<span class="pageno">11</span></div>
     <div class="sheet-body">
       <div class="cell span-7">
         <h2 class="v-headline">湖陽の桟橋に三人の弦楽<br>舟の櫂の音も重なる一夜</h2>
         <p class="v-sub">提灯が譜面を照らす　湖畔の小さな演奏会</p>
-        <figure class="photo">
+        <figure class="photo cap-photo">
           <img src="../images/127-夕刊/127-lake.jpg" alt="湖に張り出した桟橋で、弦楽器を弾く三人">
           <figcaption>湖陽の桟橋。提灯の下で、三人の弦楽。情景図。</figcaption>
         </figure>
@@ -1203,10 +1279,10 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   </div>
 </section>
 
-<!-- ========== 11面 ========== -->
+<!-- ========== 12面 ========== -->
 <section class="page">
   <div class="sheet">
-    <div class="sheet-top"><span class="tag">布告</span>海と港<span class="pageno">11</span></div>
+    <div class="sheet-top"><span class="tag">布告</span>海と港<span class="pageno">12</span></div>
     <div class="sheet-body">
       <div class="cell span-7">
         <h2 class="v-headline">海の荷と港の決まりが改まった　<br>契約の船は往復し、浅瀬は焦土でも海のまま</h2>
