@@ -629,6 +629,39 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   figure.cap-photo img { max-height: 48mm; width: auto; object-fit: contain; }
   .page:nth-of-type(5) .photo img.fitphoto { max-height: 36mm; }
 }
+
+/* 第128期・入門講座：乗船から上陸までの手順 */
+.boarding-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+  margin: 4px 0 6px;
+  font-family: var(--gothic);
+  line-height: 1.4;
+}
+.boarding-flow .boarding-step {
+  min-width: 0;
+  border: 1px solid var(--rule);
+  background: var(--paper-ad);
+  padding: 7px 8px;
+  break-inside: avoid;
+}
+.boarding-flow .boarding-step b {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.boarding-flow .boarding-step span {
+  display: block;
+  font-size: 11px;
+}
+@media screen and (max-width: 700px) {
+  .boarding-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media print {
+  .boarding-flow { break-inside: avoid; }
+}
+
 </style>
 </head>
 <body>
@@ -1069,14 +1102,53 @@ b.sea { color: #1f5f7a; font-weight: 800; }
     <div class="sheet-top"><span class="tag">入門</span>第20回<span class="pageno">7</span></div>
     <div class="sheet-body">
       <div class="cell span-12">
-        <h2 class="v-headline">第20回　船に乗り、岸に降りる　<br>砲と上陸は別の動き</h2>
-        <p class="v-sub">前号は軍港と艦の建造　今号のフィルノアは艦砲</p>
-        <div class="v">
-          <p class="lead noindent"><span class="dateline">【入門】</span>前号は、軍港の隣の海か浅瀬に軍艦を造る話だった。今号は、その艦に兵が乗り、陸へ降りる動きを扱う。</p>
-          <p>乗船は、岸にいる部隊が船へ移ること。上陸は、その船から陸の区画へ降りて戦うことである。艦の砲は、兵を降ろさなくても街や岸の部隊に届く。砲撃は海上から目標を撃つ。兵が陸へ降りることとは、別の動きだ。</p>
-          <p>今号、カペレナの巡洋艦は（21,19）から黒潮のフィルノア（19,18）へ砲を放ち、街の人口を200人減らした。戦艦も、南西の森にいる第32軍空兵へ艦砲を向けた。いずれも艦砲である。黒潮の駆逐艦は魚雷を放った。フィルノアの人口を減らしたのは、巡洋艦の艦砲である。</p>
-          <p>砲が届くことと、兵が降りて土地を押さえることは、別の段階である。次回は、農場と食料。</p>
+        <h2 class="v-headline">第20回　船に乗り、岸に降りる　<br>陸軍の海上輸送、上陸には制限も</h2>
+        <p class="v-sub">浅瀬にも兵を降ろせる　船上では占領・攻撃できず</p>
+        <div class="boarding-flow" aria-label="陸軍の海上輸送。乗船準備、乗船、海上輸送、上陸、陸上進軍の順">
+          <div class="boarding-step"><b>① 乗船準備</b><span>自国の艦艇と部隊を隣接させる</span></div>
+          <div class="boarding-step"><b>② 乗船</b><span>命令で兵を乗せる。船上では攻撃・占領せず</span></div>
+          <div class="boarding-step"><b>③ 海上輸送</b><span>艦艇を目的地へ向かわせる。撃沈に注意</span></div>
+          <div class="boarding-step"><b>④ 上陸</b><span>隣接する陸地・浅瀬へ降ろす。その週は移動せず</span></div>
+          <div class="boarding-step"><b>⑤ 陸上進軍</b><span>地形・領土・交戦の条件に従って進む</span></div>
         </div>
+      </div>
+      <div class="cell span-7">
+        <div class="v">
+          <p class="lead noindent"><span class="dateline">【入門講座】</span>前号は軍港の建設と軍艦の造り方を扱った。今号は、軍艦を使って陸軍を海の向こうへ運ぶ方法を紹介する。海を隔てた土地へ兵を送り込むには、乗船、航行、上陸の順に軍を動かす。</p>
+          <h3>乗船は艦艇の隣から</h3>
+          <p>陸軍を船に乗せるには、まず自国の艦艇と部隊を隣り合わせにする。艦艇から見た六つの方向のいずれかに自国の部隊がいれば、乗船を命じられる。</p>
+          <p>兵は通常の進軍によって船へ乗り込むことはできない。乗船には専用の命令が必要となる。</p>
+          <p>首都や現代都市にいる部隊も、隣接する自国の船へ乗船できる。一方、防壁の中にいる部隊は船へ移れない。防壁からの乗船と、防壁への上陸はいずれも認められていない。</p>
+          <p>乗船を終えた部隊は、艦艇とともに海を渡る。ただし、船上の兵は陸上の戦闘に加わらない。敵の土地を占領することも、攻撃や反撃を行うこともできない。</p>
+          <p>また、輸送中の艦艇が撃沈されれば、乗っていた部隊も失われる。敵の艦隊や沿岸の防衛施設を避け、安全な航路を確保することが欠かせない。</p>
+          <h3>浅瀬への上陸も可能</h3>
+          <p>上陸は、部隊を乗せた艦艇から、隣接する区画へ兵を降ろすことである。上陸先には部隊がいないことが条件となり、地形や領土の状況によっては降りられない場所もある。</p>
+          <p>上陸先は陸地に限らない。浅瀬であれば、歩兵、山岳兵、砲兵、装甲兵も船から降りることができる。</p>
+          <p>ただし、浅瀬に降りたこれらの部隊は、その場所からさらに浅瀬を渡ったり、深い海へ進んだりすることはできない。次に進む先は隣の陸地か、再び乗り込む船となる。海兵と空兵は、これまでどおり海や浅瀬を移動できる。</p>
+          <p>深い海、海底基地、機雷のある区画、船のいる区画には上陸できない。敵の領土へ進む際には、通常の交戦関係や地形による制限も受ける。</p>
+          <p>上陸した部隊は、その週には移動しない。陸への進撃は、上陸を終えてからの行動となる。敵地へ兵を送る際は、上陸できる岸だけでなく、その先の進路や敵軍の配置まで考えて航路を決める必要がある。</p>
+        </div>
+      </div>
+      <div class="cell span-5 yoko ruled-left">
+        <h2 class="v-title">乗船・上陸の主な条件</h2>
+        <table class="data">
+          <tbody>
+            <tr><td>乗船</td><td>自国の艦艇に隣接する自国部隊を、専用命令で載せる</td></tr>
+            <tr><td>乗船できない場所</td><td>防壁</td></tr>
+            <tr><td>上陸</td><td>隣接し、部隊がいない陸地・浅瀬などの区画</td></tr>
+            <tr><td>降りられない場所</td><td>深い海、海底基地、機雷、船のある区画、防壁</td></tr>
+            <tr><td>浅瀬に降りた歩兵など</td><td>次は隣の陸地へ進むか船へ戻る</td></tr>
+            <tr><td>上陸した週</td><td>部隊は移動しない</td></tr>
+            <tr><td>船上の部隊</td><td>占領・攻撃・反撃を行わない</td></tr>
+            <tr><td>艦艇の撃沈</td><td>搭乗部隊も失われる</td></tr>
+          </tbody>
+        </table>
+        <h2 class="v-title">フィルノアの被害は艦砲によるもの</h2>
+        <p>今号、カペレナ王国の巡洋艦は（21,19）から黒潮自治国の現代都市フィルノア（19,18）を砲撃した。市街の人口は2,600人から2,400人に減少し、200人が犠牲となった。</p>
+        <p>これは陸軍の上陸による被害ではない。艦艇が海上から砲弾を撃ち込んだものである。カペレナの戦艦も、南西の森にいる黒潮第32軍空兵へ艦砲を向けた。</p>
+        <p>艦砲射撃では、兵を岸へ降ろさずに都市や部隊を攻撃できる。一方、土地を占領するには陸軍の行動が必要となる。</p>
+        <p>海軍の砲撃で敵の防御を崩し、その後に陸軍を送り込む。艦隊と陸軍を組み合わせた作戦では、それぞれの役割を分けて考えることが重要となる。</p>
+        <p class="noindent"><strong>次回は、農場と食料。</strong></p>
       </div>
     </div>
     <div class="ad-row">
