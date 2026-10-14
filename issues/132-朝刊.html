@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>トレーディア新聞 第132期 朝刊</title>
+<style>
+/* トレーディア新聞 ── 横書きの紙面 */
+
+:root {
+  --paper: #f4ecd8;
+  --paper-ad: #fffdf7;
+  --ink: #2b2b2b;
+  --ink-soft: #555;
+  --accent: #8c2d19;
+  --rule: #2b2b2b;
+  --rule-soft: #b9ad92;
+  --mincho: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", "MS PMincho", serif;
+  --gothic: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Meiryo", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 24px 12px;
+  background: #5a5248;
+  color: var(--ink);
+  font-family: var(--mincho);
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+
+.paper {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 22px 28px 28px;
+  background: var(--paper);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, .45);
+}
+
+img { max-width: 100%; display: block; }
+img.fitmap {
+  max-height: 760px;
+  width: auto;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+img.fitmap.mainmap { max-height: 620px; }
+img.fitmap.seamap { max-height: 620px; }
+img.fitmap.battle { width: 100%; max-width: 100%; height: auto; max-height: none; }
+.mill {
+  display: grid;
+  grid-template-columns: 1.1fr auto 1fr auto 1.3fr;
+  gap: 8px 10px;
+  align-items: center;
+  margin: 4px 0 14px;
+}
+.mill .step {
+  border: 1px solid var(--rule);
+  padding: 8px 10px;
+  text-align: center;
+  background: var(--paper);
+}
+.mill .step b { display: block; font-size: 15px; }
+.mill .arr { text-align: center; font-weight: 800; font-size: 18px; }
+.wx-board.cols2 { grid-template-columns: 1fr 1fr; }
+.wx-board {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  margin: 0 0 10px;
+}
+.wx-card {
+  border: 1px solid var(--rule-soft);
+  border-radius: 8px;
+  background: var(--paper-ad);
+  text-align: left;
+  padding: 4px 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+.wx-card svg { width: 22px; height: 22px; margin: 0; display: block; flex: none; }
+.wx-card .wx-name {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 12.5px;
+  letter-spacing: 0;
+  margin: 0;
+  text-indent: 0;
+  line-height: 1.2;
+}
+.wx-card .wx-state {
+  font-family: var(--gothic);
+  color: var(--ink-soft);
+  font-size: 11.5px;
+  margin: 0;
+  text-indent: 0;
+  line-height: 1.2;
+}
+hr { border: 0; border-top: 1px solid var(--rule); margin: 10px 0; }
+p { margin: 0 0 .55em; text-align: justify; text-indent: 1em; }
+p.noindent, .lead, figcaption, .brief p, .byline, .ad p, .toc li, .schedule li { text-indent: 0; }
+
+.masthead {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: 8px;
+  border-top: 4px solid var(--rule);
+  border-bottom: 4px solid var(--rule);
+  padding: 8px 0 10px;
+  position: relative;
+}
+.masthead::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 2px;
+  border-bottom: 1px solid var(--rule);
+}
+.masthead .title {
+  font-weight: 900;
+  font-size: 56px;
+  letter-spacing: .14em;
+  line-height: 1;
+  text-align: center;
+}
+.masthead .title br.narrow { display: none; }
+.masthead .title small {
+  display: block;
+  font-family: var(--gothic);
+  font-size: 12px;
+  letter-spacing: .5em;
+  margin-top: 6px;
+  font-weight: 600;
+}
+.masthead .issue, .masthead .date {
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.masthead .date { text-align: right; }
+.masthead .edition {
+  display: inline-block;
+  font-weight: 800;
+  color: #fff;
+  background: var(--accent);
+  padding: 2px 10px;
+  margin-bottom: 3px;
+  letter-spacing: .2em;
+}
+
+.ticker {
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  border-bottom: 2px solid var(--rule);
+  padding: 4px 0;
+  margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+.ticker b { color: var(--accent); margin-right: 1em; }
+.ticker > span + span::before { content: "／"; color: var(--rule-soft); margin: 0 .7em; }
+
+.page { margin-bottom: 8px; padding: 12px 0 14px; }
+.page + .page { border-top: 3px double var(--rule); }
+
+.page-name, .sheet-top {
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: .28em;
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.page-name .tag, .sheet-top .tag {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 2px 10px;
+  letter-spacing: .2em;
+}
+.page-name .pageno, .sheet-top .pageno {
+  margin-left: auto;
+  letter-spacing: .05em;
+  color: var(--ink-soft);
+}
+
+.grid, .sheet-body {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px 18px;
+  align-items: start;
+}
+.grid > *, .sheet-body > * { grid-column: span 12; min-width: 0; }
+.span-3, .cell.span-3 { grid-column: span 3 !important; }
+.span-4, .cell.span-4 { grid-column: span 4 !important; }
+.span-5, .cell.span-5 { grid-column: span 5 !important; }
+.span-6, .cell.span-6 { grid-column: span 6 !important; }
+.span-7, .cell.span-7 { grid-column: span 7 !important; }
+.span-8, .cell.span-8 { grid-column: span 8 !important; }
+.span-12, .cell.span-12 { grid-column: 1 / -1 !important; }
+
+/* 旧縦書き用のクラスも横書きとして扱う */
+.sheet { background: transparent; border: 0; height: auto; overflow: visible; box-shadow: none; display: block; }
+.sheet-body { direction: ltr; }
+.sheet-body.front,
+.sheet-body.cols-2,
+.sheet-body.cols-3,
+.sheet-body.cols-3-rail {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px 18px;
+  height: auto;
+}
+.sheet-body.front > .rail { grid-column: span 4; }
+.sheet-body.front > .story { grid-column: span 8; }
+.sheet-body.front > .head-band { grid-column: span 12; }
+.sheet-body.cols-2 > * { grid-column: span 6; }
+.sheet-body.cols-3 > * { grid-column: span 4; }
+.sheet-body.cols-3-rail > *:nth-child(1) { grid-column: span 5; }
+.sheet-body.cols-3-rail > *:nth-child(2) { grid-column: span 4; }
+.sheet-body.cols-3-rail > *:nth-child(3) { grid-column: span 3; }
+
+.cell { border: 0; padding: 0; overflow: visible; display: block; }
+.cell.stack { display: block; }
+.cell.fig { display: block; }
+.split-v { display: block; }
+.split-v > * + * { border-top: 1px solid var(--rule-soft); margin-top: 10px; padding-top: 10px; }
+
+.ruled-left { border-left: 1px solid var(--rule); padding-left: 16px; }
+.ruled-right { border-right: 1px solid var(--rule); padding-right: 16px; }
+
+.cols-2, .v .cols-2 { columns: 2; column-gap: 18px; column-rule: 1px solid var(--rule-soft); }
+.cols-3 { columns: 3; column-gap: 16px; column-rule: 1px solid var(--rule-soft); }
+
+.kicker, .v-kicker {
+  writing-mode: horizontal-tb;
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: .1em;
+  margin: 0 0 2px;
+}
+
+.headline, .v-headline, .v-title, .head-band .v-headline {
+  writing-mode: horizontal-tb;
+  font-family: var(--gothic);
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 1.3;
+  margin: 0 0 6px;
+  letter-spacing: .02em;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+.headline.xl, .front .v-headline { font-size: 36px; }
+@media (max-width: 680px) {
+  .front h1.v-headline {
+    font-size: clamp(18px, 5.1vw, 34px);
+    white-space: nowrap;
+  }
+}
+.headline.lg { font-size: 24px; }
+.v-title { font-size: 22px; font-weight: 800; }
+@media (max-width: 900px) {
+  h2.v-headline.two-line { font-size: 21px; }
+}
+
+.subhead, .v-sub {
+  writing-mode: horizontal-tb;
+  font-family: var(--gothic);
+  font-weight: 700;
+  font-size: 15.5px;
+  line-height: 1.4;
+  margin: 0 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+  height: auto;
+  overflow: visible;
+}
+
+.v, .head-band {
+  writing-mode: horizontal-tb;
+  height: auto;
+  overflow: visible;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+  display: block;
+}
+.head-band { margin-bottom: 8px; }
+
+article h2, .yoko h2 {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1.3;
+  margin: 0 0 8px;
+}
+article h3, .v h3 {
+  font-family: var(--gothic);
+  font-weight: 700;
+  font-size: 14px;
+  margin: .7em 0 .25em;
+  padding-left: 7px;
+  border-left: 3px solid var(--ink);
+  border-block-start: 0;
+  padding-block-start: 0;
+}
+.lead { font-weight: 700; font-size: 15px; }
+.lead .dateline, .dateline { font-family: var(--gothic); font-weight: 800; }
+
+figure, .photo {
+  writing-mode: horizontal-tb;
+  margin: 0 0 10px;
+  max-height: none;
+}
+.photo img, figure img {
+  border: 1px solid var(--rule);
+  width: 100%;
+  max-height: none;
+  object-fit: initial;
+}
+.photo img.fitphoto {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+}
+.photo img.fitmap.mainmap,
+.photo img.fitmap.seamap,
+figure img.fitmap.mainmap,
+figure img.fitmap.seamap {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+figcaption {
+  font-family: var(--gothic);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  margin-top: 3px;
+  line-height: 1.4;
+}
+figcaption::before { content: "▲"; margin-right: .15em; }
+figure.float-right { float: right; width: 42%; margin: 0 0 8px 14px; }
+figure.float-left { float: left; width: 42%; margin: 0 14px 8px 0; }
+
+.box {
+  writing-mode: horizontal-tb;
+  border: 1px solid var(--ink);
+  padding: 10px 12px;
+  background: rgba(255,255,255,.25);
+  margin-bottom: 10px;
+  width: auto;
+  display: block;
+}
+.column-title {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 12px;
+  background: var(--ink);
+  color: var(--paper);
+  display: inline-block;
+  padding: 1px 8px;
+  margin-bottom: 5px;
+  letter-spacing: .12em;
+}
+.byline {
+  font-family: var(--gothic);
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+.byline b { color: var(--ink); }
+.poem {
+  writing-mode: horizontal-tb;
+  white-space: pre-line;
+  text-indent: 0;
+  line-height: 2;
+  font-size: 14.5px;
+  height: auto;
+  overflow: visible;
+  text-align: left;
+}
+
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  margin: 4px 0 10px;
+  display: table;
+}
+table.data caption { text-align: left; font-weight: 700; margin-bottom: 3px; }
+table.data th, table.data td { padding: 3px 6px; border-bottom: 1px solid var(--rule-soft); }
+table.data thead th {
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  text-align: left;
+  background: rgba(0,0,0,.04);
+}
+table.data td.num, table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.data tr.hl td { background: rgba(140,45,25,.08); font-weight: 700; }
+
+.toc, .schedule {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  width: auto;
+  display: block;
+}
+.toc li, .schedule li {
+  padding: 4px 0;
+  border-bottom: 1px dotted var(--rule-soft);
+  display: flex;
+  gap: 8px;
+}
+.toc .when, .schedule .when { font-weight: 700; min-width: 4.5em; }
+
+.brief .item { margin-bottom: 6px; }
+.brief .item b { font-family: var(--gothic); }
+.brief .item b::before { content: "◆"; color: var(--accent); margin-right: .15em; }
+
+.ad-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 2px solid var(--rule);
+  writing-mode: horizontal-tb;
+  direction: ltr;
+  height: auto;
+  overflow: visible;
+}
+.ad {
+  border: 2px solid var(--ink);
+  background: var(--paper-ad);
+  padding: 8px;
+  font-family: var(--gothic);
+  position: relative;
+  min-height: 110px;
+  line-height: 1.45;
+}
+.ad .ad-label {
+  position: absolute;
+  top: -1px;
+  right: 6px;
+  font-size: 9px;
+  letter-spacing: .2em;
+  background: var(--paper-ad);
+  padding: 0 4px;
+  color: var(--ink-soft);
+}
+.ad h4 {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: .05em;
+}
+.ad p { margin: 0; font-size: 11.5px; text-align: center; }
+.ad img { display: block; border: 0; margin: 0 auto 4px; max-height: 84px; max-width: 100%; width: auto; }
+.ad.wide { grid-column: span 2; }
+.ad.banner { grid-column: span 4; display: grid; grid-template-columns: 220px 1fr; gap: 14px; align-items: center; min-height: 168px; }
+.ad.half { grid-column: span 2; display: grid; grid-template-columns: 128px 1fr; gap: 10px; align-items: center; min-height: 156px; }
+.ad.banner img, .ad.half img { max-height: 148px; width: 100%; height: 148px; object-fit: cover; margin: 0; }
+.ad.banner h4, .ad.half h4 { text-align: left; font-size: 22px; letter-spacing: .08em; margin: 0 0 2px; }
+.ad.half h4 { font-size: 18px; }
+.ad.banner p, .ad.half p { text-align: left; font-size: 13px; margin: 0 0 4px; }
+.ad .catch { font-weight: 800; font-size: 15px; }
+.ad.accent-border { border-color: var(--accent); }
+.ad .price { font-weight: 800; color: var(--accent); font-size: 12.5px; margin-top: 3px; text-align: center; }
+
+b.mark { color: var(--accent); font-weight: 800; }
+b.sea { color: #1f5f7a; font-weight: 800; }
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 0 0 10px;
+}
+.facts .fact {
+  background: #fffdf7;
+  border-top: 4px solid var(--accent);
+  padding: 8px 6px 6px;
+  text-align: center;
+}
+.facts .fact.sea { border-top-color: #1f5f7a; }
+.facts .fact .n {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.15;
+  color: var(--accent);
+}
+.facts .fact.sea .n { color: #1f5f7a; }
+.facts .fact .k {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .04em;
+  margin-bottom: 2px;
+}
+.facts .fact .l {
+  font-family: var(--gothic);
+  font-size: 11.5px;
+  line-height: 1.35;
+  margin-top: 2px;
+}
+.fact-head {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .14em;
+  margin: 0 0 6px;
+  text-indent: 0;
+  color: var(--accent);
+}
+.scale { margin: 2px 0 10px; }
+.scale-row {
+  display: grid;
+  grid-template-columns: 5.2em 1fr 2.4em;
+  gap: 6px;
+  align-items: center;
+  font-family: var(--gothic);
+  font-size: 12px;
+  margin: 3px 0;
+}
+.scale-bar { display: block; height: 12px; background: var(--accent); }
+.scale-bar.s0 { width: 8%; background: var(--rule-soft); }
+.scale-bar.s1 { width: 18%; }
+.scale-bar.s3 { width: 36%; }
+.scale-bar.s5 { width: 54%; }
+.scale-bar.s7 { width: 72%; }
+.scale-bar.s10 { width: 100%; background: #1f5f7a; }
+
+.colophon {
+  border-top: 4px solid var(--rule);
+  margin-top: 8px;
+  padding-top: 8px;
+  font-family: var(--gothic);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: none;
+}
+.colophon a { color: inherit; }
+
+.archive {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--gothic);
+}
+.archive li {
+  border-bottom: 1px solid var(--rule-soft);
+  padding: 10px 0;
+  display: grid;
+  grid-template-columns: 11em 1fr;
+  gap: 12px;
+}
+.archive a { color: var(--ink); font-weight: 700; text-decoration: none; }
+.archive a:hover { color: var(--accent); }
+
+@media (max-width: 900px) {
+  .paper { padding: 16px; }
+  .masthead { grid-template-columns: 1fr; text-align: center; }
+  .masthead .date { text-align: center; }
+  .masthead .title { font-size: 40px; }
+  .grid > *, .sheet-body > *,
+  .sheet-body.front > *,
+  .sheet-body.cols-2 > *,
+  .sheet-body.cols-3 > *,
+  .sheet-body.cols-3-rail > *,
+  .sheet-body > .cell,
+  .grid > .cell { grid-column: 1 / -1 !important; }
+  .ruled-left, .ruled-right { border: 0; padding: 0; }
+  .cols-2, .cols-3 { columns: 1; }
+  .ad-row { grid-template-columns: 1fr 1fr; }
+  .ad.banner, .ad.half { grid-column: span 2; grid-template-columns: 120px 1fr; }
+  .ad.banner img, .ad.half img { height: 110px; max-height: 110px; }
+  figure.float-left, figure.float-right { float: none; width: 100%; margin: 0 0 10px; }
+  .facts { grid-template-columns: 1fr; }
+  .mill { grid-template-columns: 1fr; }
+  .mill .arr { transform: rotate(90deg); }
+}
+@media (max-width: 420px) {
+  .masthead .title br.narrow { display: block; }
+}
+@media (max-width: 560px) {
+  .ad-row { grid-template-columns: minmax(0, 1fr); }
+  .ad.wide, .ad.banner, .ad.half { grid-column: 1 / -1; }
+  .ad.banner, .ad.half { grid-template-columns: 1fr; }
+  .ad.banner img, .ad.half img { height: 180px; max-height: 180px; }
+  .ticker { font-size: 12px; }
+  table.data { font-size: 12px; }
+}
+@page { size: A3 portrait; margin: 14mm; }
+@media print {
+  body { background: none; padding: 0; }
+  .paper { box-shadow: none; max-width: none; padding: 0; }
+  .page { break-before: page; margin: 0; padding: 8mm 0 0; border: 0; }
+  .page:first-of-type { break-before: auto; padding-top: 0; }
+  .page + .page { border: 0; }
+  h1, h2, h3, .v-headline, .v-sub { break-after: avoid; }
+  figure, .ad, .box, table, .wx-board, .ad-row { break-inside: avoid; }
+  img { break-inside: avoid; }
+  img.fitmap.battle { max-height: 168mm; width: auto; max-width: 100%; }
+  img.fitmap.mainmap { max-height: 85mm; }
+  img.fitmap.seamap { max-height: 85mm; }
+  .photo img.fitphoto,
+  figure.cap-photo img { max-height: 48mm; width: auto; object-fit: contain; }
+  .page:nth-of-type(5) .photo img.fitphoto { max-height: 36mm; }
+  .boarding-flow { break-inside: avoid; }
+}
+
+/* 第128期・入門講座：乗船から上陸までの手順 */
+.boarding-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+  margin: 4px 0 6px;
+  font-family: var(--gothic);
+  line-height: 1.4;
+}
+.boarding-flow .boarding-step {
+  min-width: 0;
+  border: 1px solid var(--rule);
+  background: var(--paper-ad);
+  padding: 7px 8px;
+  break-inside: avoid;
+}
+.boarding-flow .boarding-step b {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.boarding-flow .boarding-step span {
+  display: block;
+  font-size: 11px;
+}
+@media screen and (max-width: 700px) {
+  .boarding-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+</style>
+</head>
+<body>
+<div class="paper">
+
+<header class="masthead">
+  <div class="issue">
+    <span class="edition">朝刊</span><br>
+    第132期<br>
+    トレーディア新聞社<br>
+    定価　無料
+  </div>
+  <div class="title">トレーディア<br class="narrow">新聞<small>THE TREDIA SHIMBUN</small></div>
+  <div class="date">
+    トレーディア暦2年10月第1週<br>
+    秋季<br>
+    本日10面
+  </div>
+</header>
+<div class="ticker">
+  <span><b>主な記事</b></span>
+  <span>ネルヴェナの人口が0に</span>
+  <span>戦果1,100人対1,200人</span>
+  <span>緑丘の軍港が移る</span>
+  <span>火災29,200人</span>
+  <span>雪は40区画</span>
+  <span>藍岬</span>
+</div>
+
+<!-- ========== 1面 ========== -->
+<section class="page">
+  <div class="sheet">
+    <div class="sheet-top"><span class="tag">総合</span>ネルヴェナ<span class="pageno">1</span></div>
+    <div class="sheet-body front">
+      <div class="story">
+        <h1 class="v-headline">ネルヴェナ、人がいない<br>艦砲で最後の100人</h1>
+        <p class="v-sub">砲はフィルノアへ向いていた　町は黒潮領のまま</p>
+        <figure class="photo">
+          <img class="fitphoto" src="../images/132-朝刊/132-town.jpg" alt="雨の岸壁と、屋根の落ちた町並み">
+          <figcaption>雨のネルヴェナ。艦砲の着弾のあと、通りに人の声はない。町は黒潮領のままである。</figcaption>
+        </figure>
+        <div class="v">
+          <p class="lead noindent"><span class="dateline">【総合部】</span>カペレナ王国の戦艦と巡洋艦が、黒潮自治国のフィルノアへ艦砲を向けた。着弾したのは隣の町ネルヴェナで、100人が死亡し、人口は0になった。町の名は残り、旗は黒潮のままである。首都も黒潮が保持している。</p>
+          <h3>雨の戸は閉まったまま</h3>
+          <p>ネルヴェナは雨だった。岸壁の荷はシートをかけたまま朝を迎え、店の戸は内側からかかった。「砲の音は海の向こうだった。落ちたのは、この通りだ」。残っていた商人は、濡れた石を踏んで坂を上がった。</p>
+          <p>同じ週、黒潮の住民はその場所の平地を開拓した。人がいなくなった通りの脇で、鍬が入った。フィルノアの現代都市は、砲口の先にありながら、今期の着弾を受けていない。</p>
+          <h3>王国の声明と、残った旗</h3>
+          <p>カペレナ王国は「黒潮臨時首都の防衛軍壊滅、北部既に8割制圧、抵抗軍は計画都市に疎開か」と声明を出した。8割は王国の言葉である。首都に立つ旗は黒潮のものだ。</p>
+          <p>陸上の戦果はカペレナ1,100人、黒潮1,200人。これまでの戦果は144,900人、95,500人。黒潮の兵站基地はカペレナ領になり、予備兵1,000人が移った。中立だった山も王国領になった。陸と海の詳報は2面。</p>
+          <h3>残党の兵站、緑丘の軍港</h3>
+          <p>なのです主義人民共和国は旧シンジケート連邦政府残党の兵站基地を占領し、予備兵1,000人を奪った。今期の戦果はなのです1,800人、残党400人。首都プライムは残党が保持している。3面。</p>
+          <p>火災で29,200人が死亡した。仕事を求めて国を移った人は、その数に入らない。4面。緑丘公国の軍港はオリョルッル王国領になった。黒潮はオリョルッルへ宣戦し、開戦は第137期。5面。</p>
+          <div class="box editorial">
+            <div class="column-title">本紙論説　空になった通りを戦果に数えるな</div>
+            <p>ネルヴェナで死亡したのは100人である。人口は0になった。王国が北部の制圧を語る週に、隣町の戸は閉まり、雨が石を叩いている。旗が残ることと、朝に人の声があることは、同じ事実ではない。</p>
+            <p>砲口が向いたフィルノアと、弾の落ちたネルヴェナは別の町である。戦果の表は、空になった通りの戸の数を代われない。</p>
+          </div>
+        </div>
+      </div>
+      <aside class="rail">
+        <table class="data">
+          <caption>ネルヴェナ</caption>
+          <tbody>
+            <tr><td>着弾</td><td>艦砲</td></tr>
+            <tr><td>死亡</td><td>100人</td></tr>
+            <tr><td>人口</td><td>0人</td></tr>
+            <tr><td>領有</td><td>黒潮</td></tr>
+            <tr><td>黒潮の首都</td><td>保持</td></tr>
+          </tbody>
+        </table>
+        <table class="data">
+          <caption>今期の戦果（相手に与えた損害）</caption>
+          <tbody>
+            <tr><td>カペレナ</td><td class="num">1,100人</td></tr>
+            <tr><td>黒潮</td><td class="num">1,200人</td></tr>
+            <tr><td>なのです</td><td class="num">1,800人</td></tr>
+            <tr><td>残党</td><td class="num">400人</td></tr>
+          </tbody>
+        </table>
+        <div class="column-title">今号の紙面</div>
+        <ol class="toc">
+          <li><span class="when">1面</span>ネルヴェナに人がいない</li>
+          <li><span class="when">2面</span>カペレナと黒潮</li>
+          <li><span class="when">3面</span>残党の兵站</li>
+          <li><span class="when">4面</span>火災と到着した人々</li>
+          <li><span class="when">5面</span>軍港と宣戦と相場</li>
+          <li><span class="when">6面</span>雪と被弾した商船</li>
+          <li><span class="when">7面</span>入門講座・輸出上限</li>
+          <li><span class="when">8面</span>藍岬</li>
+          <li><span class="when">9面</span>ピーヘンの読書会</li>
+          <li><span class="when">10面</span>桃谷の段の駆け</li>
+        </ol>
+      </aside>
+    </div>
+    <div class="ad-row">
+      <div class="ad banner">
+        <span class="ad-label">広告</span>
+        <img src="../images/132-朝刊/121-ad-coffee.jpg" alt="湯気の立つ碗">
+        <div>
+          <h4>雨の朝</h4>
+          <p class="catch">戸を開ける前に、一杯。</p>
+          <p>豆は粗めに挽く。</p>
+          <p class="price">岸壁の店</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 2面 ========== -->
+<section class="page">
+  <div class="sheet">
+    <div class="sheet-top"><span class="tag">戦況</span>黒潮戦線<span class="pageno">2</span></div>
+    <div class="sheet-body">
+      <div class="cell span-12">
+        <h2 class="v-headline">兵站が落ち、山が王国領に<br>黒潮の歩兵は山岳兵と撃ち合った</h2>
+        <p class="v-sub">戦果はカペレナ1,100人、黒潮1,200人　これまでの戦果144,900人対95,500人</p>
+        <figure class="photo">
+          <img class="fitmap battle" src="../images/132-朝刊/132-battle-01.jpg" alt="カペレナと黒潮の戦場">
+          <figcaption>カペレナ王国と黒潮自治国の戦場。艦砲の着弾はネルヴェナ、兵站はカペレナ領になった。</figcaption>
+        </figure>
+      </div>
+      <div class="cell span-7">
+        <div class="v">
+          <p class="lead noindent"><span class="dateline">【軍事部】</span>カペレナ王国軍は黒潮自治国軍に1,100人の損害を与え、黒潮軍は王国軍に1,200人の損害を与えた。兵站基地は王国領へ移り、予備兵1,000人が王国の手に渡った。</p>
+          <h3>山岳兵と歩兵</h3>
+          <p>王国の山岳兵が黒潮の歩兵を撃ち、700人の損害を与え、反撃で400人を失った。黒潮の歩兵は同じ山岳兵へ撃ち返し、800人の損害を与え、反撃で400人を失った。</p>
+          <p>森では黒潮の部隊が全滅した。同じ週、その森に新しい部隊が置かれた。</p>
+          <h3>砲口はフィルノア、弾はネルヴェナ</h3>
+          <p>戦艦と巡洋艦はフィルノアへ砲を向けた。着弾はネルヴェナで、100人が死亡し、人口は0になった。町は黒潮領のまま、住民は平地を開拓した。</p>
+          <p>黒潮の駆逐艦は、王国領になった兵站の森へ艦砲射撃を行った。</p>
+          <h3>中立の山と、残った首都</h3>
+          <p>中立だった山はカペレナ領になった。黒潮の領地は19区画から18区画、王国は90区画から92区画である。首都の旗は黒潮のまま、今期の空は晴れだった。</p>
+          <p>黒潮の兵力は62,500人から59,600人、王国は144,500人から145,300人。黒潮の食料は861,800トンから833,900トンである。</p>
+          <div class="box editorial">
+            <div class="column-title">戦況論説　兵站の箱と、空の町</div>
+            <p>今期の損害は黒潮の方が多い。1,200人対1,100人。それでも予備兵1,000人の箱は王国へ移り、中立の山に王国の旗が立った。数の多い週と、足場を失う週は重なる。</p>
+            <p>ネルヴェナの100人は、この表の外で人口が0になった人々である。歩兵の損害と、町の戸の閉まりを、一つの勝利の語でまとめない。</p>
+          </div>
+        </div>
+      </div>
+      <div class="cell span-5 yoko ruled-left">
+        <table class="data">
+          <caption>今期、相手に与えた損害</caption>
+          <thead><tr><th></th><th class="num">今期</th><th class="num">これまでの戦果</th></tr></thead>
+          <tbody>
+            <tr><td>カペレナ</td><td class="num">1,100人</td><td class="num">144,900人</td></tr>
+            <tr><td>黒潮</td><td class="num">1,200人</td><td class="num">95,500人</td></tr>
+          </tbody>
+        </table>
+        <table class="data">
+          <caption>領有と兵力</caption>
+          <tbody>
+            <tr><td>兵站</td><td>黒潮からカペレナへ</td></tr>
+            <tr><td>予備兵</td><td class="num">1,000人</td></tr>
+            <tr><td>中立の山</td><td>カペレナ領</td></tr>
+            <tr><td>黒潮の兵力</td><td class="num">59,600人</td></tr>
+            <tr><td>カペレナの兵力</td><td class="num">145,300人</td></tr>
+            <tr><td>首都</td><td>黒潮が保持</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="ad-row">
+      <div class="ad banner">
+        <span class="ad-label">広告</span>
+        <img src="../images/132-朝刊/121-ad-steamer.jpg" alt="湯気を立てる鉄瓶">
+        <div>
+          <h4>船室の湯</h4>
+          <p class="catch">着岸まで、鉄瓶。</p>
+          <p>杯は棚の上。</p>
+          <p class="price">港の船室</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 3面 ========== -->
+<section class="page">
+  <div class="sheet">
+    <div class="sheet-top"><span class="tag">戦況</span>残党戦線<span class="pageno">3</span></div>
+    <div class="sheet-body">
+      <div class="cell span-12">
+        <h2 class="v-headline">残党の兵站、またなのです領へ<br>予備兵1,000人　プライムは残る</h2>
+        <p class="v-sub">戦果はなのです1,800人、残党400人　これまでの戦果約106,700人対約43,200人</p>
+        <figure class="photo">
+          <img class="fitmap battle" src="../images/132-朝刊/132-battle-03.jpg" alt="なのですと残党の戦場">
+          <figcaption>なのですとシンジケート連邦の戦場。占領された兵站はなのです領になった。</figcaption>
+        </figure>
+      </div>
+      <div class="cell span-7">
+        <div class="v">
+          <p class="lead noindent"><span class="dateline">【軍事部】</span>なのです主義人民共和国軍が残党の兵站基地を占領し、予備兵1,000人を奪った。首都プライムは残党の手にある。残党の領地は5区画から4区画、なのですの領地は299区画から301区画へ増えた。</p>
+          <h3>山岳兵と装甲兵</h3>
+          <p>残党の空兵がなのですの装甲兵に100人の損害を与え、反撃で500人を失った。なのですの山岳兵は残党の砲兵に400人の損害を与え、反撃で200人を失った。なのですの装甲兵は残党の空兵に900人の損害を与え、反撃で100人を失った。</p>
+          <p>今期の戦果はなのです1,800人、残党400人。これまでの戦果は約106,700人、約43,200人である。</p>
+          <h3>空になった予備の箱</h3>
+          <p>兵站のテントをなのですの兵が開き、残っていた箱を数えた。予備兵1,000人はなのですの側へ移った。「砲の音より、箱が空になる方が早い」。プライムの近くで補給を待つ兵士は、次の弾より次の人を数えていた。</p>
+          <p>なのですは究極繁栄賞を受けた。</p>
+          <div class="box editorial">
+            <div class="column-title">軍事論説　首都の旗と、箱の中身</div>
+            <p>プライムの旗は残党のものである。その周囲で、予備兵の箱がもう一つ移った。領地は4区画。旗を守る兵と、旗の後ろで人を送り出す箱は、同じ週に別の手へ渡る。</p>
+            <p>1,800人対400人は、今期の撃ち合いの数である。箱の1,000人は、その表に足さない。足場の話として別に置く。</p>
+          </div>
+        </div>
+      </div>
+      <div class="cell span-5 yoko ruled-left">
+        <table class="data">
+          <caption>今期、相手に与えた損害</caption>
+          <thead><tr><th></th><th class="num">今期</th><th class="num">これまでの戦果</th></tr></thead>
+          <tbody>
+            <tr><td>なのです</td><td class="num">1,800人</td><td class="num">約106,700人</td></tr>
+            <tr><td>残党</td><td class="num">400人</td><td class="num">約43,200人</td></tr>
+          </tbody>
+        </table>
+        <table class="data">
+          <caption>兵站</caption>
+          <tbody>
+            <tr><td>以前の領有</td><td>シンジケート連邦</td></tr>
+            <tr><td>今期の領有</td><td>なのです</td></tr>
+            <tr><td>予備兵</td><td class="num">1,000人</td></tr>
+            <tr><td>残党の首都</td><td>プライム、保持</td></tr>
+            <tr><td>残党の領地</td><td class="num">4区画</td></tr>
+            <tr><td>なのですの領地</td><td class="num">301区画</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="ad-row">
+      <div class="ad banner">
+        <span class="ad-label">広告</span>
+        <img src="../images/132-朝刊/121-ad-lamp.jpg" alt="机の上のランプ">
+        <div>
+          <h4>夜の机</h4>
+          <p class="catch">帳面は、灯の下で開く。</p>
+          <p>油は小さな缶。</p>
+          <p class="price">電都・坂下</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 4面 ========== -->
+<section class="page">
+  <div class="sheet">
+    <div class="sheet-top"><span class="tag">社会</span>火災と人の移動<span class="pageno">4</span></div>
+    <div class="sheet-body">
+      <div class="cell span-7">
+        <h2 class="v-headline">火災で29,200人死亡<br>桶は夜を越えて並んだ</h2>
+        <p class="v-sub">なのです14,300人、チェス14,900人　仕事で移った人は別</p>
+        <figure class="photo">
+          <img class="fitphoto" src="../images/132-朝刊/132-fire.jpg" alt="燃える家に桶を運ぶ人々">
+          <figcaption>夜の町で、桶の列が燃える家へ向かう。</figcaption>
+        </figure>
+        <div class="v">
+          <p class="lead noindent"><span class="dateline">【社会部】</span>火災で29,200人が死亡した。なのです主義人民共和国で14,300人、チェス＝シロバキア共和国で14,900人である。</p>
+          <h3>なのですの町</h3>
+          <p>なのですでは町で4,900人、2,500人、3,800人、3,100人が火で命を落とした。桶を運ぶ列は、燃える壁の前で夜を越えた。「水が届く前に、屋根が落ちた」。煤のついた手で桶を渡した男は、次の家の窓を見ていた。</p>
+          <h3>チェスの都市と町</h3>
+          <p>チェスでは都市で5,700人、町で4,800人と4,400人が死亡した。領地は217区画から219区画になり、森と露天の鉱脈がチェス領に入った。火のあった町とは別の土地である。</p>
+          <h3>仕事を求めて着いた人</h3>
+          <p>紅峰公国から泰平天国へ11,000人、灰岩王国からオラニウム連邦へ10,200人、チェスから胡椒帝国へ22,400人が、仕事を求めて着き、受け入れられた。移った人数は、火災の死亡には入らない。</p>
+          <p>クジラのいる区画は中立のままである。教団からオリョルッルへの鋼鉄600トンは、まだ引き渡されていない。</p>
+          <div class="box editorial">
+            <div class="column-title">社説　桶の列と、着いた荷物</div>
+            <p>29,200人は、火で死亡した人の数である。11,000人、10,200人、22,400人は、仕事を求めて着いた人の数である。同じ週の人の動きを、一つの悲しみにまとめない。</p>
+            <p>桶を渡す手と、新しい町で荷物を下ろす手は、別の朝を迎えている。復興の材を後回しにした町では、次の夜も桶が先に出る。</p>
+          </div>
+        </div>
+      </div>
+      <div class="cell span-5 yoko ruled-left">
+        <table class="data">
+          <caption>火災の死亡</caption>
+          <tbody>
+            <tr><td>なのですの町</td><td class="num">4,900人</td></tr>
+            <tr><td>なのですの町</td><td class="num">2,500人</td></tr>
+            <tr><td>なのですの町</td><td class="num">3,800人</td></tr>
+            <tr><td>なのですの町</td><td class="num">3,100人</td></tr>
+            <tr><td>チェスの都市</td><td class="num">5,700人</td></tr>
+            <tr><td>チェスの町</td><td class="num">4,800人</td></tr>
+            <tr><td>チェスの町</td><td class="num">4,400人</td></tr>
+            <tr><td>合計</td><td class="num">29,200人</td></tr>
+          </tbody>
+        </table>
+        <table class="data">
+          <caption>仕事で着いた人</caption>
+          <tbody>
+            <tr><td>紅峰から泰平</td><td class="num">11,000人</td></tr>
+            <tr><td>灰岩からオラニウム</td><td class="num">10,200人</td></tr>
+            <tr><td>チェスから胡椒</td><td class="num">22,400人</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="ad-row">
+      <div class="ad banner">
+        <span class="ad-label">広告</span>
+        <img src="../images/132-朝刊/121-ad-timber.jpg" alt="積まれた材木">
+        <div>
+          <h4>焼け跡の材</h4>
+          <p class="catch">乾いた板を、先に置く。</p>
+          <p>釘は布の袋。</p>
+          <p class="price">町の材木屋</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 5面 ========== -->
+<section class="page">
+  <div class="sheet">
+    <div class="sheet-top"><span class="tag">経済</span>軍港と相場<span class="pageno">5</span></div>
+    <div class="sheet-body">
+      <div class="cell span-7">
+        <h2 class="v-headline">緑丘の軍港、オリョルッル領に<br>黒潮は第137期の開戦を告げた</h2>
+        <p class="v-sub">弾薬は91.53から90.20へ　工業品は64.49から63.82へ</p>
+        <div class="v">
+          <p class="lead noindent"><span class="dateline">【経済部】</span>緑丘公国の軍港はオリョルッル王国領になった。王国と緑丘の開戦は第135期で、今期の撃ち合いはない。軍港の旗は、開戦の週より先に変わった。緑丘の領地は16区画から15区画、オリョルッルは298区画から309区画である。中立の森と荒地も王国領に入った。</p>
+          <h3>控えている開戦</h3>
+          <p>黒潮自治国はオリョルッル王国に宣戦を布告した。開戦は第137期。今期の交戦はない。青海共和国との開戦は第136期のまま、泰平天国とアルガリスト帝国の開戦は第133期に迫っている。どちらも今期の戦いはない。</p>
+          <h3>弾薬は下げ、工業品も下げた</h3>
+          <p>弾薬の世界相場は前期91.53から90.20へ下がった。工業品は64.49から63.82へ下がった。木材3.20、鋼鉄12、石油7.2、燃料6.8、石材5.6、鉱石4.8は変わらない。</p>
+          <h3>国庫</h3>
+          <p>カペレナ王国は4,521億円から4,536億円、チェスは11,297億円から12,491億円、オリョルッルは12,029億円から12,753億円となった。なのですは6,972億円から6,385億円、黒潮は11,173億円から11,188億円である。</p>
+          <h3>売り出しと貿易</h3>
+          <p>銀嶺侯国は弾薬6を495で、アルガリスト帝国は石油82を539で、紅峰公国は燃料88を538で売りに出した。青海と白波は工業品8を493で、黄砂同盟は石油82を535で、アルガリストと緑丘は食料600を626で出品している。売り出しであり、売れた数ではない。</p>
+          <p>民間の貿易量はあろあろ国4,353、なのです3,501、青海2,548。前期まで2位だった青海は3位、なのですが2位に入った。</p>
+          <h3>落盤</h3>
+          <p>チェスの海底油田で蓄積255、翠湖自治州の海底油田で425、カペレナの採石場で106が落盤で失われた。段階はそれぞれ4から3、4から3、5から4である。</p>
+          <div class="box editorial">
+            <div class="column-title">経済論説　旗が先に着いた軍港</div>
+            <p>緑丘の軍港は、開戦の第135期を待たずにオリョルッル領になった。撃ち合いのない週に、港の旗は入れ替わる。船を出す岸壁は、宣戦の日付より早く仕事を変える。</p>
+            <p>オリョルッルの前には、第135期の緑丘、第136期の青海、第137期の黒潮が控えている。今期の国庫は12,753億円。開戦の前に、軍港を一つ受け取った週である。</p>
+          </div>
+        </div>
+      </div>
+      <div class="cell span-5 yoko ruled-left">
+        <table class="data">
+          <caption>相場</caption>
+          <tbody>
+            <tr><td>弾薬</td><td class="num">91.53→90.20</td></tr>
+            <tr><td>工業品</td><td class="num">64.49→63.82</td></tr>
+            <tr><td>木材</td><td class="num">3.20</td></tr>
+            <tr><td>鋼鉄</td><td class="num">12</td></tr>
+            <tr><td>石油</td><td class="num">7.2</td></tr>
+            <tr><td>燃料</td><td class="num">6.8</td></tr>
+          </tbody>
+        </table>
+        <table class="data">
+          <caption>開戦の予定</caption>
+          <tbody>
+            <tr><td>泰平とアルガ</td><td>第133期</td></tr>
+            <tr><td>オリョルッルと緑丘</td><td>第135期</td></tr>
+            <tr><td>青海とオリョルッル</td><td>第136期</td></tr>
+            <tr><td>黒潮とオリョルッル</td><td>第137期</td></tr>
+          </tbody>
+        </table>
+        <table class="data">
+          <caption>貿易量</caption>
+          <tbody>
+            <tr><td>あろあろ</td><td class="num">4,353</td></tr>
+            <tr><td>なのです</td><td class="num">3,501</td></tr>
+            <tr><td>青海</td><td class="num">2,548</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="ad-row">
+      <div class="ad banner">
+        <span class="ad-label">広告</span>
+        <img src="../images/132-朝刊/121-ad-rope.jpg" alt="巻いたロープ">
+        <div>
+          <h4>軍港の綱</h4>
+          <p class="catch">旗が変わる前に、結び直す。</p>
+          <p>麻は乾いた束。</p>
+          <p class="price">岸壁</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 6面 ========== -->
+<section class="page">
+  <div class="sheet">
+    <div class="sheet-top"><span class="tag">気象</span>空と海<span class="pageno">6</span></div>
+    <div class="sheet-body">
+      <div class="cell span-12">
+        <h2 class="v-headline">雪は40区画のまま<br>白波の商船が被弾し、黒煙を残した</h2>
+        <p class="v-sub">外洋航海は青海488　商船の耐久値は2　沈んではいない</p>
+        <figure class="photo">
+          <img class="fitmap" src="../images/132-朝刊/132-weather.png" alt="第132期の天気図">
+          <figcaption>第132期の空。雪は北の端、40区画。前期と同じ帯である。</figcaption>
+        </figure>
+      </div>
+      <div class="cell span-7">
+        <div class="v">
+          <p class="lead noindent"><span class="dateline">【気象部】</span>雪の区域は前期と同じ40区画だった。晴れは3,897から3,691へ、曇りは3,739から3,966へ、雨は417から396へ動いた。雷は7区画のままである。</p>
+          <h3>北の端は動かない</h3>
+          <p>雪は北の端の40区画にとどまった。軒の薪は、前期に積んだ高さを保っている。「減った雪を、もう一度数えない。束を足す」。荷車の男は、新しい薪を古い山の上に置いた。</p>
+          <h3>首都の空</h3>
+          <p>黒潮の首都、電都、チェス、天都、モンタルジェント、ブロースコーグ、シネモルスク、旧エスペランサの町は晴れ。カペナグラード、教団の首都、シャンドール、青海の首都は曇り。オリョルッルと丹城は雨だった。ネルヴェナも雨である。</p>
+          <h3>商船の黒煙</h3>
+          <p>南の海で、中立の駆逐艦が魚雷を放った。白波王国の商船が被弾し、黒煙を噴いた。沈んではいない。被弾後の耐久値は2である。</p>
+          <p>別の中立の駆逐艦は、南の浅瀬へ魚雷を放った。緑丘公国の駆逐艦も、浅瀬へ魚雷を放った。</p>
+          <p>外洋航海の記録は青海488、黒潮254、緑丘56。海流図は水の向きを描き、国境は描いていない。</p>
+          <figure class="photo">
+            <img class="fitmap" src="../images/132-朝刊/132-sea.png" alt="第132期の海流図">
+            <figcaption>第132期の海流。外洋を航行した距離の記録は、青海488、黒潮254、緑丘56。</figcaption>
+          </figure>
+          <div class="box editorial">
+            <div class="column-title">気象小論　煙の残った商船</div>
+            <p>白波の商船は沈んでいない。耐久値は2。黒煙は甲板に残った。南の浅瀬へ放たれた魚雷は、商船の被弾とは別の航跡である。</p>
+            <p>雪が40区画のままの週に、港では薪を足し、南の海では煙の残る船が岸を探している。</p>
+          </div>
+        </div>
+      </div>
+      <div class="cell span-5 yoko ruled-left">
+        <table class="data">
+          <caption>空の区画</caption>
+          <tbody>
+            <tr><td>晴れ</td><td class="num">3,691</td></tr>
+            <tr><td>曇り</td><td class="num">3,966</td></tr>
+            <tr><td>雨</td><td class="num">396</td></tr>
+            <tr><td>雪</td><td class="num">40</td></tr>
+            <tr><td>雷</td><td class="num">7</td></tr>
+          </tbody>
+        </table>
+        <table class="data">
+          <caption>白波の商船</caption>
+          <tbody>
+            <tr><td>攻撃</td><td>中立の駆逐艦の魚雷</td></tr>
+            <tr><td>状態</td><td>黒煙、沈んでいない</td></tr>
+            <tr><td>耐久値</td><td class="num">2</td></tr>
+          </tbody>
+        </table>
+        <table class="data">
+          <caption>外洋航海</caption>
+          <tbody>
+            <tr><td>青海</td><td class="num">488</td></tr>
+            <tr><td>黒潮</td><td class="num">254</td></tr>
+            <tr><td>緑丘</td><td class="num">56</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="ad-row">
+      <div class="ad banner">
+        <span class="ad-label">広告</span>
+        <img src="../images/132-朝刊/121-ad-inn.jpg" alt="宿の扉">
+        <div>
+          <h4>着岸の宿</h4>
+          <p class="catch">煙の臭いのまま、部屋を取る。</p>
+          <p>湯は港の方から。</p>
+          <p class="price">白波・川岸</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 7面 ========== -->
+<section class="page">
+  <div class="sheet">
+    <div class="sheet-top"><span class="tag">入門</span>第24回<span class="pageno">7</span></div>
+    <div class="sheet-body">
+      <div class="cell span-7">
+        <h2 class="v-headline">国庫から民間へ、何を回すか<br>輸出上限の3つの選び方</h2>
+        <p class="v-sub">余りを回す、量を決める、回さない　家計と長い約束</p>
+        <div class="v">
+          <p class="lead noindent"><span class="dateline">【入門講座】</span>港が開いていても、国庫の品が民間へ出なければ、商人の棚は空になる。第24回は、民間への輸出上限と、その先の取引をたどる。前期の港と商船の続きである。</p>
+          <h3>3つの選び方</h3>
+          <p>政府が民間へ出す量は、3つから選ぶ。余りを回す。決めた量を回す。回さない。回さない選び方では、品は国庫に残る。民間の売り物は足りなくなる。</p>
+          <p>国庫と民間は別の財布である。上限は、その境目に置いた扉の開き方だ。</p>
+          <table class="data">
+            <caption>民間への輸出上限</caption>
+            <tbody>
+              <tr><td>余りを回す</td><td>国庫に余った分を民間へ出す</td></tr>
+              <tr><td>決めた量を回す</td><td>政府が量を定める</td></tr>
+              <tr><td>回さない</td><td>国庫に残す。民間の棚は細る</td></tr>
+            </tbody>
+          </table>
+          <h3>国庫が買い戻す</h3>
+          <p>買い戻しは毎期、自動で行われる。人の指揮する国は、手元に残す量までを既定とし、必要に合わせる選び方もできる。必要に合わせるときは、食料以外を消費の6期分、食料を20期分に満たないところで補う。弾薬は、平時の3期分と、危険なときの6期分も比べる。使ってよい予算は、国庫の1割と、1,000億円を残したあとの額の、小さい方までである。</p>
+          <h3>家計と、民間の金</h3>
+          <p>家計向けの販売は、都市に備わる市場と、市場の施設で動く。工業品、食料、燃料の売れ方は需要で変わる。家計が払った代金で、国庫の金は減らない。</p>
+          <p>預け入れ、引き出し、借り入れは民間が自動で行う。国からは操作しない。自動で預ける現金の上限は10,000億円。元手の下限は2,000億円である。</p>
+          <h3>長い供給の約束</h3>
+          <p>足りない国と余っている国の間で、民間が長い供給の約束を自動で結ぶ。戦争、禁輸、港の閉鎖で、その約束は止まる。</p>
+          <p>今期の貿易量はあろあろ国4,353、なのです3,501、青海2,548。棚に品が並ぶには、港のほかに、この上限が開いていることが要る。</p>
+          <div class="box editorial">
+            <div class="column-title">本欄の提言　扉を閉じた国庫は、港の賑わいにならない</div>
+            <p>輸出上限を閉じれば、品は国庫の倉で眠る。港の荷役が広くても、商人の手に渡る袋がなければ、岸壁は静かなままである。余りを回すか、量を決めるか、回さないか。3つは、倉の扉の開き方である。</p>
+            <p>家計が払った金は国庫へ戻らない。長い約束は、戦争と禁輸と港の閉鎖で止まる。政府が握るのは扉であり、船の舵ではない。</p>
+          </div>
+          <p>政府どうしの新しい契約がいま結べなくても、上限が開いていれば民間の取引は動く。</p>
+          <p class="noindent"><strong>次回は、軍艦の建造。</strong></p>
+        </div>
+      </div>
+      <div class="cell span-5 yoko ruled-left">
+        <h2 class="v-title">品の流れ</h2>
+        <p>国庫から、輸出上限を通って、民間の在庫へ。そこから家計と、他国の民間へ渡る。足りなければ、国庫が民間から買い戻す。</p>
+        <table class="data">
+          <caption>流れ</caption>
+          <tbody>
+            <tr><td>1</td><td>国庫</td></tr>
+            <tr><td>2</td><td>輸出上限</td></tr>
+            <tr><td>3</td><td>民間の在庫</td></tr>
+            <tr><td>4</td><td>家計、他国の民間</td></tr>
+          </tbody>
+        </table>
+        <table class="data">
+          <caption>今期の貿易量</caption>
+          <tbody>
+            <tr><td>1位</td><td>あろあろ 4,353</td></tr>
+            <tr><td>2位</td><td>なのです 3,501</td></tr>
+            <tr><td>3位</td><td>青海 2,548</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="ad-row">
+      <div class="ad banner">
+        <span class="ad-label">広告</span>
+        <img src="../images/132-朝刊/121-ad-scale.jpg" alt="真鍮の秤">
+        <div>
+          <h4>倉の秤</h4>
+          <p class="catch">出す量は、扉の前で量る。</p>
+          <p>分銅は布に包む。</p>
+          <p class="price">港の倉</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 8面 ========== -->
+<section class="page">
+  <div class="sheet">
+    <div class="sheet-top"><span class="tag">国特集</span>藍岬<span class="pageno">8</span></div>
+    <div class="sheet-body">
+      <div class="cell span-7">
+        <h2 class="v-headline">岬の風で、藍を裏返す<br>藍岬共和国連邦シネモルスク</h2>
+        <p class="v-sub">「藍色の岬に集う共和国の連邦」　染屋と塩の舟</p>
+        <figure class="photo">
+          <img class="fitphoto" src="../images/132-朝刊/132-cape.jpg" alt="岬の染屋で布を藍に浸す職人">
+          <figcaption>シネモルスクの岬。染屋が布を藍に浸し、風で乾かしている。</figcaption>
+        </figure>
+        <div class="v">
+          <p class="lead noindent"><span class="dateline">【国特集】</span>藍岬共和国連邦は「藍色の岬に集う共和国の連邦」と掲げる。首都シネモルスクは今期晴れで、崖の上の染屋が布を風に渡していた。</p>
+          <h3>一度では染まらない</h3>
+          <p>染屋の男は、桶から布を上げ、竿へ渡して裏返した。「藍は一度では染まらない。風が乾くまで、布を裏返す」。桶の縁には、乾いた藍が爪の形で残っていた。</p>
+          <p>客が「今日中に濃くしてくれ」と言うと、男は竿の布を指した。「風がまだ表しか乾かしていない。裏を急げば、色がまだらになる」。</p>
+          <h3>塩を積んで戻る舟</h3>
+          <p>崖の下の舟は、朝に空で出て、昼に塩の袋を積んで戻った。染屋は塩を布の下に置き、風で飛ばないよう角を結んだ。「塩が無いと、藍が布に残らない」。舟の男は、次の潮でまた出ると言って櫂を置いた。</p>
+          <h3>人口75,500人の連邦</h3>
+          <p>人口75,500人、兵力20,000人、国庫6,236億円、食料備蓄678,900トン、領地17区画。対外戦争はしていない。夕方、竿の布を畳む音が、崖の風より先に町へ降りた。</p>
+          <div class="box editorial">
+            <div class="column-title">地方評　風が乾くまで待つ仕事</div>
+            <p>シネモルスクの藍は、桶の中だけでは終わらない。風が表を乾かし、職人が裏を返す。急がせた客に、男はまだらの色を見せた。</p>
+            <p>戦争をしていない週の岬で、塩の舟が昼に戻る。布を畳む音が、崖から町へ降りる。</p>
+          </div>
+        </div>
+      </div>
+      <div class="cell span-5 yoko ruled-left">
+        <table class="data">
+          <caption>藍岬共和国連邦</caption>
+          <tbody>
+            <tr><td>首都</td><td>シネモルスク</td></tr>
+            <tr><td>人口</td><td>75,500人</td></tr>
+            <tr><td>兵力</td><td>20,000人</td></tr>
+            <tr><td>国庫</td><td>6,236億円</td></tr>
+            <tr><td>国の食料備蓄</td><td>678,900トン</td></tr>
+            <tr><td>領地</td><td>17区画</td></tr>
+            <tr><td>首都の天候</td><td>晴れ</td></tr>
+            <tr><td>対外戦争</td><td>なし</td></tr>
+          </tbody>
+        </table>
+        <h2 class="v-title">小欄　布の畳み方</h2>
+        <p>シネモルスクの染屋は、風が表を乾かしてから裏を返し、夕方に竿から下ろして畳む。</p>
+        <p>「角を結ばないと、塩の袋ごと崖から飛ぶ」。</p>
+      </div>
+    </div>
+    <div class="ad-row">
+      <div class="ad banner">
+        <span class="ad-label">広告</span>
+        <img src="../images/132-朝刊/121-ad-indigo.jpg" alt="藍の布">
+        <div>
+          <h4>岬の藍</h4>
+          <p class="catch">裏を返してから、畳む。</p>
+          <p>塩は小さな袋。</p>
+          <p class="price">シネモルスク・染屋</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 9面 ========== -->
+<section class="page">
+  <div class="sheet">
+    <div class="sheet-top"><span class="tag">文化</span>オラニウム<span class="pageno">9</span></div>
+    <div class="sheet-body">
+      <div class="cell span-7">
+        <h2 class="v-headline">一夜だけ繋いだ舟は、誰の舟か<br>『埠頭の頁』を読む</h2>
+        <p class="v-sub">ピーヘンの読書会　詩「頁の塩」</p>
+        <figure class="photo">
+          <img class="fitphoto" src="../images/132-朝刊/132-read.jpg" alt="灯の下で本を囲む人々">
+          <figcaption>ピーヘンの読書会。埠頭の帳面をめぐって、夜まで頁を開いている。</figcaption>
+        </figure>
+        <div class="v">
+          <p class="lead noindent"><span class="dateline">【文化部】</span>オラニウム連邦の首都ピーヘンで、短編『埠頭の頁』が読まれている。作者は無署名。娘が帳面に書いた舟の一行が、朝には綱の無い場所を指していた、という話だ。</p>
+          <h3>朝には綱が無い</h3>
+          <p>主人公の娘は、埠頭に繋いである舟を一行ずつ帳面へ写す。翌朝、一行多い。父と岸へ出ると、その行の場所に綱はなく、水だけが杭を叩いていた。舟は隣の町のもので、一夜だけ風を避けて繋がれていた。</p>
+          <p>父は娘を責めず、消してよい行だと杭を叩いた。娘は頁の端を折り、一行を消した。</p>
+          <h3>読書会は夜まで残る</h3>
+          <p>読書会では、一夜の舟を町の舟に数えるかが分かれた。「繋いだ夜は、この町の杭を使った」と言う人と、「朝にいない舟は、帳面に残さない」と言う人がいる。</p>
+          <p>埠頭の番人は「綱の擦れを見ろ。一夜の擦れと、冬を越した擦れは違う」と話した。</p>
+          <h3>詩「頁の塩」</h3>
+          <p class="poem">杭に残った塩を<br>指で払って<br>頁を開く</p>
+          <p class="poem">一夜の綱は<br>朝の水が<br>先に解く</p>
+          <p class="poem">消した行のあと<br>インクが<br>まだ海のにおい</p>
+          <p class="poem">灯を落とす前に<br>次の舟の<br>杭を空ける</p>
+          <p class="noindent"><strong>次回は、朱川共和国。</strong></p>
+          <div class="box editorial">
+            <div class="column-title">文芸時評　消した行が、杭を残す</div>
+            <p>『埠頭の頁』の娘が消したのは、町の舟ではない。一夜だけ風を避けた隣町の舟である。父は責めず、杭を叩いて、消してよい行だと示した。</p>
+            <p>読書会が夜まで残ったのは、数の正しさより、誰の杭を使ったかだった。番人は綱の擦れを見ろと言う。帳面を閉じたあとに、塩のついた杭が残る。</p>
+          </div>
+        </div>
+      </div>
+      <div class="cell span-5 yoko ruled-left">
+        <table class="data">
+          <caption>オラニウム連邦</caption>
+          <tbody>
+            <tr><td>首都</td><td>ピーヘン</td></tr>
+            <tr><td>人口</td><td>198,000人</td></tr>
+            <tr><td>兵力</td><td>37,500人</td></tr>
+            <tr><td>国庫</td><td>5,888億円</td></tr>
+            <tr><td>国の食料備蓄</td><td>995,900トン</td></tr>
+            <tr><td>領地</td><td>41区画</td></tr>
+            <tr><td>対外戦争</td><td>なし</td></tr>
+          </tbody>
+        </table>
+        <table class="data">
+          <caption>今週の一冊</caption>
+          <tbody>
+            <tr><td>書名</td><td>『埠頭の頁』</td></tr>
+            <tr><td>著者</td><td>無署名</td></tr>
+            <tr><td>舞台</td><td>ピーヘンの埠頭</td></tr>
+            <tr><td>内容</td><td>一夜だけ繋いだ舟の一行を、娘が朝に消す</td></tr>
+            <tr><td>主題</td><td>町の舟と、風を避けた舟の見分け</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="ad-row">
+      <div class="ad banner">
+        <span class="ad-label">広告</span>
+        <img src="../images/132-朝刊/121-ad-boat.jpg" alt="岸につながれた小舟">
+        <div>
+          <h4>一夜の杭</h4>
+          <p class="catch">朝に解く綱は、細く結ぶ。</p>
+          <p>櫂は一本で足りる。</p>
+          <p class="price">ピーヘン・埠頭</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 10面 ========== -->
+<section class="page">
+  <div class="sheet">
+    <div class="sheet-top"><span class="tag">スポーツ</span>桃谷<span class="pageno">10</span></div>
+    <div class="sheet-body">
+      <div class="cell span-7">
+        <h2 class="v-headline">桃の籠をこぼさず、段を上がれ<br>ナンサプの秋の駆け</h2>
+        <p class="v-sub">段々畑の競走　今年の勝者は若い摘み手</p>
+        <figure class="photo">
+          <img class="fitphoto" src="../images/132-朝刊/132-peach.jpg" alt="桃の籠を持って石段を駆ける二人">
+          <figcaption>ナンサプの段々畑。桃の籠を持って、石段を上がる。</figcaption>
+        </figure>
+        <div class="v">
+          <p class="lead noindent"><span class="dateline">【ナンサプ発】</span>桃谷連邦共和国の首都ナンサプでは、収穫の忙しい週に「段の駆け」が開かれた。桃を入れた籠を持ち、段々畑の石段を下から上まで走る。籠の桃をこぼした者は、着いても順位に入らない。</p>
+          <h3>段を飛ばさない</h3>
+          <p>今年の勝者は、昨年2位だった若い摘み手だ。一段ずつ足を置き、籠を胸の前で固定したまま上り切った。「段を飛ばすと、籠の桃が先に着く。それは負けだ」。汗を拭いた男の籠には、傷のない桃が残っていた。</p>
+          <p>沿道の摘み手は、落ちた桃をその場で籠へ戻さず、競走が終わるまで石段の端に置いた。終わってから、傷んだ実と傷のない実を分けた。</p>
+          <h3>上まで着いた桃</h3>
+          <p>勝者の籠は、坂の上の秤に載った。速さだけでなく、中の桃が幾つ残ったかで順位が決まる。ナンサプの競走は、収穫の手つきをそのまま勝負にしている。</p>
+          <div class="box editorial">
+            <div class="column-title">スポーツ評　こぼした桃は、着順に入らない</div>
+            <p>段の駆けは、速いだけの足を勝たせない。一段を飛ばして籠が先に着いた走者は、石段の途中で桃をこぼした。勝者は昨年2位の摘み手で、一段ずつ上がり、傷のない実を上まで運んだ。</p>
+            <p>秤に載るのは、人の着順の前に、籠の中の桃である。収穫の週の勝負は、実を残した手に戻る。</p>
+          </div>
+        </div>
+      </div>
+      <div class="cell span-5 yoko ruled-left">
+        <table class="data">
+          <caption>段の駆け</caption>
+          <tbody>
+            <tr><td>場所</td><td>ナンサプの段々畑</td></tr>
+            <tr><td>運び方</td><td>桃を入れた籠</td></tr>
+            <tr><td>コース</td><td>石段を下から上へ</td></tr>
+            <tr><td>失格</td><td>桃をこぼす</td></tr>
+            <tr><td>勝者</td><td>若い摘み手（昨年2位）</td></tr>
+          </tbody>
+        </table>
+        <table class="data">
+          <caption>桃谷連邦共和国</caption>
+          <tbody>
+            <tr><td>首都</td><td>ナンサプ</td></tr>
+            <tr><td>人口</td><td>83,000人</td></tr>
+            <tr><td>対外戦争</td><td>なし</td></tr>
+          </tbody>
+        </table>
+        <h2 class="v-title">小欄　こぼれた実</h2>
+        <p>競走のあいだ、落ちた桃は石段の端に置く。終わってから、傷んだ実と傷のない実を分ける。</p>
+      </div>
+    </div>
+    <div class="ad-row">
+      <div class="ad banner">
+        <span class="ad-label">広告</span>
+        <img src="../images/132-朝刊/121-ad-stew.jpg" alt="鍋の煮込み">
+        <div>
+          <h4>坂の上の鍋</h4>
+          <p class="catch">傷んだ実は、鍋へ。</p>
+          <p>皮は厚く剥く。</p>
+          <p class="price">ナンサプ・段の上</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+</body>
+</html>
