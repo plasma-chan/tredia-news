@@ -50,6 +50,12 @@ img.fitmap {
 img.fitmap.mainmap { max-height: 620px; }
 img.fitmap.seamap { max-height: 620px; }
 img.fitmap.battle { width: 100%; max-width: 100%; height: auto; max-height: none; }
+img.fitmap.battle.compact {
+  width: auto;
+  max-width: min(100%, 960px);
+  margin-left: auto;
+  margin-right: auto;
+}
 .mill {
   display: grid;
   grid-template-columns: 1.1fr auto 1fr auto 1.3fr;
@@ -623,6 +629,7 @@ b.sea { color: #1f5f7a; font-weight: 800; }
   figure, .ad, .box, table, .wx-board, .ad-row { break-inside: avoid; }
   img { break-inside: avoid; }
   img.fitmap.battle { max-height: 168mm; width: auto; max-width: 100%; }
+  img.fitmap.battle.compact { max-height: 148mm; max-width: min(100%, 960px); }
   img.fitmap.mainmap { max-height: 85mm; }
   img.fitmap.seamap { max-height: 85mm; }
   .photo img.fitphoto,
@@ -799,7 +806,7 @@ b.sea { color: #1f5f7a; font-weight: 800; }
         <h2 class="v-headline">黒潮、善戦も兵站基地失う<br>投降兵1,000人、昨日の祖国を敵に</h2>
         <p class="v-sub">今期戦果は黒潮1,200人、カペレナ1,100人　領土18区画に縮小</p>
         <figure class="photo">
-          <img class="fitmap battle" src="../images/132-朝刊/132-battle-01.jpg" alt="カペレナと黒潮の戦場">
+          <img class="fitmap battle compact" src="../images/132-朝刊/132-battle-01.jpg" alt="カペレナと黒潮の戦場">
           <figcaption>カペレナ王国と黒潮自治国の戦場。艦砲の着弾はネルヴェナ、兵站はカペレナ領になった。</figcaption>
         </figure>
       </div>
@@ -879,7 +886,7 @@ b.sea { color: #1f5f7a; font-weight: 800; }
         <h2 class="v-headline">残党、兵站基地また陥落<br>首都プライム孤立深まる</h2>
         <p class="v-sub">2期続けて予備兵1,000人喪失　領土4区画に縮小　戦果1,800人対400人</p>
         <figure class="photo">
-          <img class="fitmap battle" src="../images/132-朝刊/132-battle-03.jpg" alt="なのですと残党の戦場">
+          <img class="fitmap battle compact" src="../images/132-朝刊/132-battle-03.jpg" alt="なのですと残党の戦場">
           <figcaption>なのです軍が残党の兵站基地を占領。残党の領地は4区画となったが、首都プライムはなお保持している。</figcaption>
         </figure>
       </div>
