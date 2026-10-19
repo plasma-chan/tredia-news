@@ -315,12 +315,29 @@ article h3, .v h3 {
   font-family: var(--gothic);
   font-weight: 700;
   font-size: 14px;
-  margin: .7em 0 .25em;
-  padding-left: 7px;
+  line-height: 1.4;
+  margin: .85em 0 .3em;
+  padding-left: 8px;
   border-left: 3px solid var(--ink);
   border-block-start: 0;
   padding-block-start: 0;
 }
+.v h2.story-heading {
+  writing-mode: horizontal-tb;
+  font-family: var(--gothic);
+  font-size: 19px;
+  line-height: 1.32;
+  font-weight: 900;
+  letter-spacing: .01em;
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+  margin: 1.25em 0 .48em;
+  padding: .36em 0 .25em;
+  break-after: avoid;
+}
+.front .v h2.story-heading { font-size: 21px; }
+.v h2.story-heading + p,
+.v h3 + p { break-before: avoid; }
 .lead { font-weight: 700; font-size: 15px; }
 .lead .dateline, .dateline { font-family: var(--gothic); font-weight: 800; }
 
@@ -359,8 +376,11 @@ figcaption {
   line-height: 1.4;
 }
 figcaption::before { content: "▲"; margin-right: .15em; }
-figure.float-right { float: right; width: 42%; margin: 0 0 8px 14px; }
-figure.float-left { float: left; width: 42%; margin: 0 14px 8px 0; }
+figure.float-right { float: right; display: table; width: auto; max-width: 42%; margin: 0 0 8px 12px; }
+figure.float-left { float: left; display: table; width: auto; max-width: 42%; margin: 0 12px 8px 0; }
+figure.float-left figcaption,
+figure.float-right figcaption { display: table-caption; caption-side: bottom; }
+.v h2, .v h3 { clear: both; }
 
 .box {
   writing-mode: horizontal-tb;
@@ -666,32 +686,6 @@ b.sea { color: #1f5f7a; font-weight: 800; }
 @media screen and (max-width: 700px) {
   .boarding-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-
-/* 記事の階層：面の主見出し > 独立記事 > 記事内小見出し */
-.v h2.story-heading {
-  writing-mode: horizontal-tb;
-  font-family: var(--gothic);
-  font-size: 19px;
-  line-height: 1.32;
-  font-weight: 900;
-  letter-spacing: .01em;
-  border-top: 2px solid var(--ink);
-  border-bottom: 1px solid var(--rule);
-  margin: 1.25em 0 .48em;
-  padding: .36em 0 .25em;
-  break-after: avoid;
-}
-.front .v h2.story-heading { font-size: 21px; }
-.v h3 {
-  font-size: 14px;
-  line-height: 1.4;
-  border-left: 3px solid var(--ink);
-  margin: .85em 0 .3em;
-  padding-left: 8px;
-  break-after: avoid;
-}
-.v h2.story-heading + p,
-.v h3 + p { break-before: avoid; }
 </style>
 </head>
 <body>
