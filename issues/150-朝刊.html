@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>トレーディア新聞 第150期 朝刊</title>
+<style>
+/* トレーディア新聞 ── 横書きの紙面 */
+
+:root {
+  --paper: #f4ecd8;
+  --paper-ad: #fffdf7;
+  --ink: #2b2b2b;
+  --ink-soft: #555;
+  --accent: #8c2d19;
+  --rule: #2b2b2b;
+  --rule-soft: #b9ad92;
+  --mincho: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", "MS PMincho", serif;
+  --gothic: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Meiryo", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 24px 12px;
+  background: #5a5248;
+  color: var(--ink);
+  font-family: var(--mincho);
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+
+.paper {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 22px 28px 28px;
+  background: var(--paper);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, .45);
+}
+
+img { max-width: 100%; display: block; }
+img.fitmap {
+  max-height: 760px;
+  width: auto;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+img.fitmap.mainmap { max-height: 620px; }
+img.fitmap.seamap { max-height: 620px; }
+img.fitmap.battle { width: 100%; max-width: 100%; height: auto; max-height: none; }
+img.fitmap.battle.compact {
+  width: auto;
+  max-width: min(100%, 960px);
+  max-height: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.mill {
+  display: grid;
+  grid-template-columns: 1.1fr auto 1fr auto 1.3fr;
+  gap: 8px 10px;
+  align-items: center;
+  margin: 4px 0 14px;
+}
+.mill .step {
+  border: 1px solid var(--rule);
+  padding: 8px 10px;
+  text-align: center;
+  background: var(--paper);
+}
+.mill .step b { display: block; font-size: 15px; }
+.mill .arr { text-align: center; font-weight: 800; font-size: 18px; }
+.wx-board.cols2 { grid-template-columns: 1fr 1fr; }
+.wx-board {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  margin: 0 0 10px;
+}
+.wx-card {
+  border: 1px solid var(--rule-soft);
+  border-radius: 8px;
+  background: var(--paper-ad);
+  text-align: left;
+  padding: 4px 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+.wx-card svg { width: 22px; height: 22px; margin: 0; display: block; flex: none; }
+.wx-card .wx-name {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 12.5px;
+  letter-spacing: 0;
+  margin: 0;
+  text-indent: 0;
+  line-height: 1.2;
+}
+.wx-card .wx-state {
+  font-family: var(--gothic);
+  color: var(--ink-soft);
+  font-size: 11.5px;
+  margin: 0;
+  text-indent: 0;
+  line-height: 1.2;
+}
+hr { border: 0; border-top: 1px solid var(--rule); margin: 10px 0; }
+p { margin: 0 0 .55em; text-align: justify; text-indent: 1em; }
+p.noindent, .lead, figcaption, .brief p, .byline, .ad p, .toc li, .schedule li { text-indent: 0; }
+
+.masthead {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: 8px;
+  border-top: 4px solid var(--rule);
+  border-bottom: 4px solid var(--rule);
+  padding: 8px 0 10px;
+  position: relative;
+}
+.masthead::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 2px;
+  border-bottom: 1px solid var(--rule);
+}
+.masthead .title {
+  font-weight: 900;
+  font-size: 56px;
+  letter-spacing: .14em;
+  line-height: 1;
+  text-align: center;
+}
+.masthead .title br.narrow { display: none; }
+.masthead .title small {
+  display: block;
+  font-family: var(--gothic);
+  font-size: 12px;
+  letter-spacing: .5em;
+  margin-top: 6px;
+  font-weight: 600;
+}
+.masthead .issue, .masthead .date {
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.masthead .date { text-align: right; }
+.masthead .edition {
+  display: inline-block;
+  font-weight: 800;
+  color: #fff;
+  background: var(--accent);
+  padding: 2px 10px;
+  margin-bottom: 3px;
+  letter-spacing: .2em;
+}
+
+.ticker {
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  border-bottom: 2px solid var(--rule);
+  padding: 4px 0;
+  margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+.ticker b { color: var(--accent); margin-right: 1em; }
+.ticker > span + span::before { content: "／"; color: var(--rule-soft); margin: 0 .7em; }
+
+.page { margin-bottom: 8px; padding: 12px 0 14px; }
+.page + .page { border-top: 3px double var(--rule); }
+
+.page-name, .sheet-top {
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: .28em;
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.page-name .tag, .sheet-top .tag {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 2px 10px;
+  letter-spacing: .2em;
+}
+.page-name .pageno, .sheet-top .pageno {
+  margin-left: auto;
+  letter-spacing: .05em;
+  color: var(--ink-soft);
+}
+
+.grid, .sheet-body {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px 18px;
+  align-items: start;
+}
+.grid > *, .sheet-body > * { grid-column: span 12; min-width: 0; }
+.span-3, .cell.span-3 { grid-column: span 3 !important; }
+.span-4, .cell.span-4 { grid-column: span 4 !important; }
+.span-5, .cell.span-5 { grid-column: span 5 !important; }
+.span-6, .cell.span-6 { grid-column: span 6 !important; }
+.span-7, .cell.span-7 { grid-column: span 7 !important; }
+.span-8, .cell.span-8 { grid-column: span 8 !important; }
+.span-12, .cell.span-12 { grid-column: 1 / -1 !important; }
+
+/* 旧縦書き用のクラスも横書きとして扱う */
+.sheet { background: transparent; border: 0; height: auto; overflow: visible; box-shadow: none; display: block; }
+.sheet-body { direction: ltr; }
+.sheet-body.front,
+.sheet-body.cols-2,
+.sheet-body.cols-3,
+.sheet-body.cols-3-rail {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px 18px;
+  height: auto;
+}
+.sheet-body.front > .rail { grid-column: span 4; }
+.sheet-body.front > .story { grid-column: span 8; }
+.sheet-body.front > .head-band { grid-column: span 12; }
+.sheet-body.cols-2 > * { grid-column: span 6; }
+.sheet-body.cols-3 > * { grid-column: span 4; }
+.sheet-body.cols-3-rail > *:nth-child(1) { grid-column: span 5; }
+.sheet-body.cols-3-rail > *:nth-child(2) { grid-column: span 4; }
+.sheet-body.cols-3-rail > *:nth-child(3) { grid-column: span 3; }
+
+.cell { border: 0; padding: 0; overflow: visible; display: block; }
+.cell.stack { display: block; }
+.cell.fig { display: block; }
+.split-v { display: block; }
+.split-v > * + * { border-top: 1px solid var(--rule-soft); margin-top: 10px; padding-top: 10px; }
+
+.ruled-left { border-left: 1px solid var(--rule); padding-left: 16px; }
+.ruled-right { border-right: 1px solid var(--rule); padding-right: 16px; }
+
+.cols-2, .v .cols-2 { columns: 2; column-gap: 18px; column-rule: 1px solid var(--rule-soft); }
+.cols-3 { columns: 3; column-gap: 16px; column-rule: 1px solid var(--rule-soft); }
+
+.kicker, .v-kicker {
+  writing-mode: horizontal-tb;
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: .1em;
+  margin: 0 0 2px;
+}
+
+.headline, .v-headline, .v-title, .head-band .v-headline {
+  writing-mode: horizontal-tb;
+  font-family: var(--gothic);
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 1.3;
+  margin: 0 0 6px;
+  letter-spacing: .02em;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+.headline.xl, .front .v-headline { font-size: 36px; }
+@media (max-width: 680px) {
+  .front h1.v-headline {
+    font-size: clamp(18px, 5.1vw, 34px);
+    white-space: nowrap;
+  }
+}
+.headline.lg { font-size: 24px; }
+.v-title { font-size: 22px; font-weight: 800; }
+@media (max-width: 900px) {
+  h2.v-headline.two-line { font-size: 21px; }
+}
+
+.subhead, .v-sub {
+  writing-mode: horizontal-tb;
+  font-family: var(--gothic);
+  font-weight: 700;
+  font-size: 15.5px;
+  line-height: 1.4;
+  margin: 0 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+  height: auto;
+  overflow: visible;
+}
+
+.v, .head-band {
+  writing-mode: horizontal-tb;
+  height: auto;
+  overflow: visible;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+  display: block;
+}
+.head-band { margin-bottom: 8px; }
+
+article h2, .yoko h2 {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1.3;
+  margin: 0 0 8px;
+}
+article h3, .v h3 {
+  font-family: var(--gothic);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: .85em 0 .3em;
+  padding-left: 8px;
+  border-left: 3px solid var(--ink);
+  border-block-start: 0;
+  padding-block-start: 0;
+}
+.v h2.story-heading {
+  writing-mode: horizontal-tb;
+  font-family: var(--gothic);
+  font-size: 19px;
+  line-height: 1.32;
+  font-weight: 900;
+  letter-spacing: .01em;
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+  margin: 1.25em 0 .48em;
+  padding: .36em 0 .25em;
+  break-after: avoid;
+}
+.front .v h2.story-heading { font-size: 21px; }
+.v h2.story-heading + p,
+.v h3 + p { break-before: avoid; }
+.lead { font-weight: 700; font-size: 15px; }
+.lead .dateline, .dateline { font-family: var(--gothic); font-weight: 800; }
+
+figure, .photo {
+  writing-mode: horizontal-tb;
+  margin: 0 0 10px;
+  max-height: none;
+}
+.photo img, figure img {
+  border: 1px solid var(--rule);
+  width: 100%;
+  max-height: none;
+  object-fit: initial;
+}
+.photo img.fitphoto {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+}
+.photo img.fitmap.mainmap,
+.photo img.fitmap.seamap,
+figure img.fitmap.mainmap,
+figure img.fitmap.seamap {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+figcaption {
+  font-family: var(--gothic);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  margin-top: 3px;
+  line-height: 1.4;
+}
+figcaption::before { content: "▲"; margin-right: .15em; }
+figure.float-right { float: right; display: table; width: auto; max-width: 42%; margin: 0 0 8px 12px; }
+figure.float-left { float: left; display: table; width: auto; max-width: 42%; margin: 0 12px 8px 0; }
+figure.float-left figcaption,
+figure.float-right figcaption { display: table-caption; caption-side: bottom; }
+.v h2, .v h3 { clear: both; }
+
+.box {
+  writing-mode: horizontal-tb;
+  border: 1px solid var(--ink);
+  padding: 10px 12px;
+  background: rgba(255,255,255,.25);
+  margin-bottom: 10px;
+  width: auto;
+  display: block;
+}
+.column-title {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 12px;
+  background: var(--ink);
+  color: var(--paper);
+  display: inline-block;
+  padding: 1px 8px;
+  margin-bottom: 5px;
+  letter-spacing: .12em;
+}
+.byline {
+  font-family: var(--gothic);
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+.byline b { color: var(--ink); }
+.poem {
+  writing-mode: horizontal-tb;
+  white-space: pre-line;
+  text-indent: 0;
+  line-height: 2;
+  font-size: 14.5px;
+  height: auto;
+  overflow: visible;
+  text-align: left;
+}
+
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  margin: 4px 0 10px;
+  display: table;
+}
+table.data caption { text-align: left; font-weight: 700; margin-bottom: 3px; }
+table.data th, table.data td { padding: 3px 6px; border-bottom: 1px solid var(--rule-soft); }
+table.data thead th {
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  text-align: left;
+  background: rgba(0,0,0,.04);
+}
+table.data td.num, table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.data tr.hl td { background: rgba(140,45,25,.08); font-weight: 700; }
+
+.toc, .schedule {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  width: auto;
+  display: block;
+}
+.toc li, .schedule li {
+  padding: 4px 0;
+  border-bottom: 1px dotted var(--rule-soft);
+  display: flex;
+  gap: 8px;
+}
+.toc .when, .schedule .when { font-weight: 700; min-width: 4.5em; }
+
+.brief .item { margin-bottom: 6px; }
+.brief .item b { font-family: var(--gothic); }
+.brief .item b::before { content: "◆"; color: var(--accent); margin-right: .15em; }
+
+.ad-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 2px solid var(--rule);
+  writing-mode: horizontal-tb;
+  direction: ltr;
+  height: auto;
+  overflow: visible;
+}
+.ad {
+  border: 2px solid var(--ink);
+  background: var(--paper-ad);
+  padding: 8px;
+  font-family: var(--gothic);
+  position: relative;
+  min-height: 110px;
+  line-height: 1.45;
+}
+.ad .ad-label {
+  position: absolute;
+  top: -1px;
+  right: 6px;
+  font-size: 9px;
+  letter-spacing: .2em;
+  background: var(--paper-ad);
+  padding: 0 4px;
+  color: var(--ink-soft);
+}
+.ad h4 {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: .05em;
+}
+.ad p { margin: 0; font-size: 11.5px; text-align: center; }
+.ad img { display: block; border: 0; margin: 0 auto 4px; max-height: 84px; max-width: 100%; width: auto; }
+.ad.wide { grid-column: span 2; }
+.ad.banner { grid-column: span 4; display: grid; grid-template-columns: 220px 1fr; gap: 14px; align-items: center; min-height: 168px; }
+.ad.half { grid-column: span 2; display: grid; grid-template-columns: 128px 1fr; gap: 10px; align-items: center; min-height: 156px; }
+.ad.banner img, .ad.half img { max-height: 148px; width: 100%; height: 148px; object-fit: cover; margin: 0; }
+.ad.banner h4, .ad.half h4 { text-align: left; font-size: 22px; letter-spacing: .08em; margin: 0 0 2px; }
+.ad.half h4 { font-size: 18px; }
+.ad.banner p, .ad.half p { text-align: left; font-size: 13px; margin: 0 0 4px; }
+.ad .catch { font-weight: 800; font-size: 15px; }
+.ad.accent-border { border-color: var(--accent); }
+.ad .price { font-weight: 800; color: var(--accent); font-size: 12.5px; margin-top: 3px; text-align: center; }
+
+b.mark { color: var(--accent); font-weight: 800; }
+b.sea { color: #1f5f7a; font-weight: 800; }
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 0 0 10px;
+}
+.facts .fact {
+  background: #fffdf7;
+  border-top: 4px solid var(--accent);
+  padding: 8px 6px 6px;
+  text-align: center;
+}
+.facts .fact.sea { border-top-color: #1f5f7a; }
+.facts .fact .n {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.15;
+  color: var(--accent);
+}
+.facts .fact.sea .n { color: #1f5f7a; }
+.facts .fact .k {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .04em;
+  margin-bottom: 2px;
+}
+.facts .fact .l {
+  font-family: var(--gothic);
+  font-size: 11.5px;
+  line-height: 1.35;
+  margin-top: 2px;
+}
+.fact-head {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .14em;
+  margin: 0 0 6px;
+  text-indent: 0;
+  color: var(--accent);
+}
+.scale { margin: 2px 0 10px; }
+.scale-row {
+  display: grid;
+  grid-template-columns: 5.2em 1fr 2.4em;
+  gap: 6px;
+  align-items: center;
+  font-family: var(--gothic);
+  font-size: 12px;
+  margin: 3px 0;
+}
+.scale-bar { display: block; height: 12px; background: var(--accent); }
+.scale-bar.s0 { width: 8%; background: var(--rule-soft); }
+.scale-bar.s1 { width: 18%; }
+.scale-bar.s3 { width: 36%; }
+.scale-bar.s5 { width: 54%; }
+.scale-bar.s7 { width: 72%; }
+.scale-bar.s10 { width: 100%; background: #1f5f7a; }
+
+.colophon {
+  border-top: 4px solid var(--rule);
+  margin-top: 8px;
+  padding-top: 8px;
+  font-family: var(--gothic);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: none;
+}
+.colophon a { color: inherit; }
+
+.archive {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--gothic);
+}
+.archive li {
+  border-bottom: 1px solid var(--rule-soft);
+  padding: 10px 0;
+  display: grid;
+  grid-template-columns: 11em 1fr;
+  gap: 12px;
+}
+.archive a { color: var(--ink); font-weight: 700; text-decoration: none; }
+.archive a:hover { color: var(--accent); }
+
+@media (max-width: 900px) {
+  .paper { padding: 16px; }
+  .masthead { grid-template-columns: 1fr; text-align: center; }
+  .masthead .date { text-align: center; }
+  .masthead .title { font-size: 40px; }
+  .grid > *, .sheet-body > *,
+  .sheet-body.front > *,
+  .sheet-body.cols-2 > *,
+  .sheet-body.cols-3 > *,
+  .sheet-body.cols-3-rail > *,
+  .sheet-body > .cell,
+  .grid > .cell { grid-column: 1 / -1 !important; }
+  .ruled-left, .ruled-right { border: 0; padding: 0; }
+  .cols-2, .cols-3 { columns: 1; }
+  .ad-row { grid-template-columns: 1fr 1fr; }
+  .ad.banner, .ad.half { grid-column: span 2; grid-template-columns: 120px 1fr; }
+  .ad.banner img, .ad.half img { height: 110px; max-height: 110px; }
+  figure.float-left, figure.float-right { float: none; width: 100%; margin: 0 0 10px; }
+  .facts { grid-template-columns: 1fr; }
+  .mill { grid-template-columns: 1fr; }
+  .mill .arr { transform: rotate(90deg); }
+}
+@media (max-width: 420px) {
+  .masthead .title br.narrow { display: block; }
+}
+@media (max-width: 560px) {
+  .ad-row { grid-template-columns: minmax(0, 1fr); }
+  .ad.wide, .ad.banner, .ad.half { grid-column: 1 / -1; }
+  .ad.banner, .ad.half { grid-template-columns: 1fr; }
+  .ad.banner img, .ad.half img { height: 180px; max-height: 180px; }
+  .ticker { font-size: 12px; }
+  table.data { font-size: 12px; }
+}
+@page { size: A3 portrait; margin: 14mm; }
+@media print {
+  body { background: none; padding: 0; }
+  .paper { box-shadow: none; max-width: none; padding: 0; }
+  .page { break-before: page; margin: 0; padding: 8mm 0 0; border: 0; }
+  .page:first-of-type { break-before: auto; padding-top: 0; }
+  .page + .page { border: 0; }
+  h1, h2, h3, .v-headline, .v-sub { break-after: avoid; }
+  figure, .ad, .box, table, .wx-board, .ad-row { break-inside: avoid; }
+  img { break-inside: avoid; }
+  img.fitmap.battle { max-height: 168mm; width: auto; max-width: 100%; }
+  img.fitmap.battle.compact { max-height: 148mm; max-width: min(100%, 960px); }
+  img.fitmap.mainmap { max-height: 85mm; }
+  img.fitmap.seamap { max-height: 85mm; }
+  .photo img.fitphoto,
+  figure.cap-photo img { max-height: 48mm; width: auto; object-fit: contain; }
+  .page:nth-of-type(5) .photo img.fitphoto { max-height: 36mm; }
+  .boarding-flow { break-inside: avoid; }
+}
+
+/* 第128期・入門講座：乗船から上陸までの手順 */
+.boarding-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+  margin: 4px 0 6px;
+  font-family: var(--gothic);
+  line-height: 1.4;
+}
+.boarding-flow .boarding-step {
+  min-width: 0;
+  border: 1px solid var(--rule);
+  background: var(--paper-ad);
+  padding: 7px 8px;
+  break-inside: avoid;
+}
+.boarding-flow .boarding-step b {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.boarding-flow .boarding-step span {
+  display: block;
+  font-size: 11px;
+}
+@media screen and (max-width: 700px) {
+  .boarding-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+</style>
+</head>
+<body>
+<div class="paper">
+<header class="masthead">
+  <div class="issue"><span class="edition">朝刊</span><br>第150期<br>トレーディア新聞社<br>定価　無料</div>
+  <div class="title">トレーディア<br class="narrow">新聞<small>THE TREDIA SHIMBUN</small></div>
+  <div class="date">トレーディア暦3年2月第3週<br>冬季<br>本日10面</div>
+</header>
+<div class="ticker">
+  <span><b>主な記事</b></span><span>泰平、帝都の目前へ　帝国の損害10万6千</span><span>帝国、対人ミサイルで抵抗</span>
+  <span>藍岬がオラニウムに開戦　二正面に</span><span>カペレナ、黒潮の町を再び奪う</span><span>冬の火災は半減</span>
+</div>
+
+<!-- 1面 総合 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">総合</span>帝都の目前に迫る泰平　オラニウムは二正面へ<span class="pageno">1</span></div>
+<div class="sheet-body front">
+<div class="story"><div class="v">
+<h1 class="v-headline">泰平、帝都アルガリストの目前に迫る<br>帝国は対人ミサイルで自国領の敵兵を叩く</h1>
+<p class="v-sub">帝国の損害は累計10万6千人　オラニウムには藍岬が開戦し、二つの前線を抱えた</p>
+<figure class="photo"><img class="fitphoto" src="../images/150-朝刊/150-front.jpg" alt="雪の尾根に伏せる兵と、谷向こうに立ち上がる土煙。遠くに帝都の城壁"><figcaption>帝都アルガリストの目前、泰平の山岳兵が尾根に伏せるなか、帝国の対人ミサイルが自国領の丘に土煙を上げた。守る側が自らの土地へ火を放つ、追い詰められた冬の戦場。</figcaption></figure>
+<p class="lead noindent"><span class="dateline">【総合部】</span>第150期、セントラ大陸東部で泰平天国がアルガリスト帝国の帝都のすぐ目前まで兵を進めた。帝国がこの冬に出した損害は累計10万6千人に達し、追い詰められた帝国は、泰平兵が立つ自国領の山へ対人ミサイルを撃ち込むという苦肉の抵抗に出た。都そのものは今期も帝国の手に残ったが、守りはいよいよ帝都の城壁際まで後退した。詳報は2面。</p>
+<p>泰平は帝都の東に残る帝国領の山を占領し、都を囲む輪をさらに縮めた。これに対し帝国は、その山に取りついた泰平兵へ向けて対人ミサイルを発射し、多数を負傷させた。対人ミサイルは建物を壊さず人のみを狙う兵器で、自国の土地に撃ち込んででも敵兵を削ろうという、守る側の必死の一手である。</p>
+<h2 class="story-heading">藍岬がオラニウムに開戦、二正面に</h2>
+<p>ノルステア大陸北部では、藍岬共和国連邦がオラニウム連邦へ正式に開戦した。オラニウムはすでに朱川共和国と交戦しており、ここに藍岬が加わって二つの前線を抱えることになった。さらに第151期には桃谷連邦共和国の開戦も控える。オラニウムは今期、朱川の首都丹城の町へ再びミサイルを撃ち込み、人口を削った。攻める一方で、背後に敵が増えていく。詳報は3面。</p>
+<h2 class="story-heading">カペレナ、黒潮の町を再び奪う</h2>
+<p>アカピ大陸北西岸では、カペレナ王国が黒潮自治国の町を占領し、食糧4万7,800トンを徴発した。黒潮は前期に移民と徴兵で人口を倍近くに戻したばかりだったが、今期はこの町の喪失で再び人口を減らした。黒潮がこの戦いで受けた損害は、累計で20万人に迫っている。詳報は4面。社会面では、冬の火災が前期の半分以下、6か所2万5,500人にとどまった。詳報は5面。</p>
+</div></div>
+<aside class="rail">
+<table class="data"><caption>第150期の主な出来事</caption><tbody>
+<tr><td>帝都の目前</td><td>泰平が帝国領の山を占領、都を包囲</td></tr>
+<tr><td>帝国の損害</td><td class="num">累計10万6,100人に</td></tr>
+<tr><td>対人ミサイル</td><td>帝国が自国領の泰平兵へ発射</td></tr>
+<tr><td>新たな開戦</td><td>藍岬がオラニウムに開戦（二正面）</td></tr>
+<tr><td>黒潮の町</td><td class="num">カペレナが占領・食糧4万7,800トン徴発</td></tr>
+<tr><td>首都の陥落</td><td>なし</td></tr>
+<tr><td>火災</td><td class="num">6か所・2万5,500人（前期の半分以下）</td></tr>
+</tbody></table>
+<div class="index-box"><div class="column-title">今号の紙面</div><ul>
+<li><span class="when">2面</span>帝都アルガリストと対人ミサイル</li>
+<li><span class="when">3面</span>藍岬開戦・オラニウム二正面</li>
+<li><span class="when">4面</span>西岸の町と北の丘</li>
+<li><span class="when">5面</span>火災半減と人の移動</li>
+<li><span class="when">6面</span>弾薬、四期続けて続落</li>
+<li><span class="when">7面</span>冬の天気図と第151期の天気予報</li>
+<li><span class="when">8面</span>国特集　藍岬共和国連邦</li>
+<li><span class="when">9面</span>文化　冬の湯治と雪見の宿</li>
+<li><span class="when">10面</span>入門　停戦と講和・短信</li>
+</ul></div>
+<div class="box"><div class="column-title">本紙の見方</div>
+<p>自国の土地へミサイルを撃つ帝国、二正面に踏み込むオラニウム。今期は、追い詰められた側も攻める側も、無理のある一手に手を伸ばした。前線の消耗は、判断の余裕を各国から奪いつつある。停戦の打診は積み上がるのに、戦線はむしろ増えた。</p></div>
+</aside></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/150-朝刊/121-ad-rope.jpg" alt="巻かれた綱"><div><h4>東岸埠頭荷役組</h4><p class="catch">冬の海路へ、錨綱と帆布を点検。</p><p>麻綱・滑車・防水帆布。寒中の荷役も承ります。</p><p class="price">オリョルッル東港</p></div></div></div>
+</div></section>
+
+<!-- 2面 戦況 アルガリスト -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">戦況</span>帝都アルガリストと対人ミサイル・軍事評論<span class="pageno">2</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">泰平、帝都東の山を占領して包囲を狭める<br>帝国は自国領へ対人ミサイルを撃ち込んだ</h2>
+<p class="v-sub">帝国の損害は累計10万6千人へ　徴兵で兵は増やしたが、守る土地は帝都際まで縮んだ</p>
+<figure class="photo"><img class="fitmap battle compact" src="../images/150-朝刊/150-algalist-wide.jpg" alt="帝都アルガリスト戦線を港側と都側に分けた戦況図"><figcaption>帝都アルガリスト戦線。左の港側は泰平領の港と兵站跡。右の都側では泰平の砲兵・山岳兵が帝国第2軍を打ち、帝都東の山を占領した。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【軍事部】</span>泰平天国は第150期、アルガリスト帝国の帝都をめぐる攻防をさらに押し進め、帝都の東に残っていた帝国領の山を占領した。帝都を囲む泰平の輪は、いよいよ城壁のすぐ際まで縮まった。砲兵と山岳兵が帝都北東の帝国第2軍へ攻撃を重ね、今期は帝国へ3,800人の損害を与えた。帝国の反撃は200人にとどまった。帝国がこの冬に出した損害は、累計で10万6,100人に達している。</p>
+<h3>自国領へ放たれた対人ミサイル</h3>
+<p>追い詰められた帝国は、今期、異例の一手に出た。泰平兵が占領した自国領の山へ向けて、対人ミサイルを発射したのである。対人ミサイルは建物や地形を壊さず、そこにいる人のみを狙う兵器で、着弾地では多数の泰平兵が負傷した。自国の土地であっても、そこに敵兵が立つなら火を放つ――守る側が土地を捨ててでも敵を削ろうとする、追い詰められた国の判断だった。</p>
+<p>帝国は徴兵を重ね、兵力を前期の1万5,200人から2万1,000人へ増やした。隣国の白波からは6,000人の移民も渡った。人と兵をかき集めてはいるが、守るべき土地は帝都周辺の一握りまで縮んでいる。兵を増やしても、立つ土地がなければ守りは成り立たない。</p>
+<h3>帝国政府「都の土を、一寸たりとも渡さぬ」</h3>
+<p>帝国政府は帝都の城館から声明を出した。「自国の山に火を放ったことを、臆病とそしる者もあろう。だが我らに残された土地はわずかだ。その一寸たりとも、むざむざ敵に渡すわけにはいかぬ。対人の火をもってしても、都の前を守り抜く」。土地を捨てる覚悟を語る声明は、帝国がもはや後がないことを、かえって浮き彫りにした。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>帝都アルガリスト戦線の今期</caption><tbody>
+<tr><td>帝都東の山</td><td>泰平が占領</td></tr>
+<tr><td>泰平の攻撃</td><td class="num">帝国へ3,800人</td></tr>
+<tr><td>帝国の反撃</td><td class="num">200人</td></tr>
+<tr><td>対人ミサイル</td><td>帝国が自国領の泰平兵へ発射</td></tr>
+<tr><td>累計の損害</td><td class="num">泰平2万6,500／帝国10万6,100</td></tr>
+<tr><td>帝国の国力</td><td class="num">人口2万4,600・兵力2万1,000</td></tr>
+</tbody></table>
+<div class="box"><div class="column-title">軍事評論　南條史彦「自国に火を放つということ」</div>
+<p>帝国が自国領の山へ対人ミサイルを撃った。この一手の意味は重い。土地を守るための戦争で、守るべき土地そのものへ火を放ったのだ。対人ミサイルが地形を壊さぬとはいえ、そこに暮らす余地はもう考えられていない。帝国にとって、残る土地は「守る場所」から「敵を削る舞台」へと意味を変えつつある。</p>
+<p>兵力は徴兵で増えた。だが立つ土地がなければ、兵は守りに使えない。人口2万4,000の国が兵2万1,000を抱える歪さは、国を挙げて戦う覚悟の表れであると同時に、民生を戦争が呑み込んだ姿でもある。次期、泰平が城門に取りつけば、この長い抗戦も終わる。帝国の火は、その前の最後のあがきである。</p></div>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/150-朝刊/121-ad-timber.jpg" alt="積まれた木材"><div><h4>セントラ城下材木座</h4><p class="catch">城館の補修材、冬のうちに。</p><p>梁・板・杭。石造の仮庁舎の内装にも。</p><p class="price">アルガリスト港通り</p></div></div></div>
+</div></section>
+
+<!-- 3面 戦況 オラニウム二正面 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">戦況・国際</span>藍岬開戦　オラニウムは二正面へ<span class="pageno">3</span></div>
+<div class="sheet-body cols-2">
+<div class="cell"><div class="v">
+<h2 class="v-headline">藍岬がオラニウムに開戦<br>朱川と合わせ、二つの前線を抱える</h2>
+<p class="v-sub">第151期には桃谷の開戦も控える　朱川の町へは再びミサイル</p>
+<figure class="photo"><img class="fitphoto" src="../images/150-朝刊/150-oranium-diplo.jpg" alt="雪の港町ピーヘンの会議場で、東西二方向の地図を前に腕を組む連邦の文官"><figcaption>連邦の都ピーヘンでは、西の朱川と東の藍岬、二つの方角を示した地図を前に、文官らが長い評議を重ねたという。</figcaption></figure>
+<p class="lead noindent"><span class="dateline">【国際部】</span>第150期、藍岬共和国連邦がオラニウム連邦へ正式に開戦した。前期に宣戦を予告していたものが、今期そのとおり戦端を開いた形である。オラニウムはすでに朱川共和国と交戦しており、ここに藍岬が加わって、東西二つの前線を同時に抱えることになった。さらに第151期には桃谷連邦共和国の開戦も予告されている。来期には三正面となる見通しだ。</p>
+<p>藍岬は人口12万3,200人、兵力3万人の中堅国で、連邦軍の盟主を務める。これまで大きな戦火の外にいた国が、無所属のオラニウムへ矛を向けた。その背景は8面の国特集で詳しく追う。開戦したばかりで、今期はまだ両国の地上戦の記録はない。戦線が実際に動くのは次期以降となる。</p>
+<h3>朱川の町へ、再びミサイル</h3>
+<p>一方、オラニウムは西の朱川に対し、今期も攻めの手を緩めなかった。首都丹城の町へPPミサイルを撃ち込み、人口2,500人を失わせた。残ったのは1,000人である。さらに近くの兵站基地にもミサイルが命中し、一帯が壊滅した。朱川は地上での反撃に出る余力がなく、今期は両国とも地上戦の損害を記録していない。だが、ミサイルによる市街の損耗だけが静かに進んでいる。</p>
+<div class="box"><div class="column-title">国際論説　二正面に踏み込む危うさ</div>
+<p>一つの前線で朱川の首都を落とせぬまま、オラニウムは背後に藍岬という二つめの敵を迎えた。来期には桃谷も加わる。攻める国が複数の前線を抱えるのは、兵力を分散させ、どこも決めきれない消耗を招く最も危うい形である。ミサイルで朱川の町を削る一方、東では新たな守りを築かねばならない。おどけた表明を続けるオラニウムだが、地図の上の重さは増すばかりだ。</p>
+</div>
+</div></div>
+<div class="cell yoko ruled-left"><div class="v">
+<figure class="photo"><img class="fitmap" src="../images/150-朝刊/150-oranium-fronts-chart.png" alt="オラニウムが抱える戦線の数の推移。150期に二正面、151期に三正面予定"><figcaption>オラニウムが抱える戦線の数。今期、藍岬の開戦で二正面となり、次期は桃谷の開戦で三正面となる見通し。</figcaption></figure>
+<h2 class="story-heading">朱川、ミサイルに耐える小国</h2>
+<p>朱川共和国は人口2万100人の小国である。前期までにオラニウムのミサイルで現代都市や町を次々と失い、それでも首都丹城を守り抜いてきた。今期もまた町をミサイルで削られたが、都そのものは陥ちていない。地上戦の記録がないのは、朱川に打って出る兵の余裕がなく、守りに徹しているためとみられる。</p>
+<p>壊せても奪えない――オラニウムのミサイルは朱川の市街を削り続けるが、首都は依然として朱川の旗を掲げる。非対称の火力を持つ国が、小国の一つの都を落とせぬまま、背後に二つの新たな敵を迎えた。この構図が、今後の戦局をどう動かすか。</p>
+<table class="data"><caption>オラニウムをめぐる戦線</caption><tbody>
+<tr class="hl"><td>対 朱川</td><td>継続（今期ミサイルで町を削る）</td></tr>
+<tr class="hl"><td>対 藍岬</td><td>今期開戦（地上戦はこれから）</td></tr>
+<tr><td>対 桃谷</td><td>第151期に開戦予定</td></tr>
+<tr><td>朱川の町</td><td class="num">ミサイルで人口2,500人減</td></tr>
+<tr><td>朱川の首都丹城</td><td>保持</td></tr>
+</tbody></table>
+<div class="box"><div class="column-title">停戦の現況　打診は積み上がるのに</div>
+<p>今期も各地で停戦の打診が続くが、戦線はむしろ増えた。帝国と泰平は停戦の猶予が切れて交戦に戻り、カペレナと黒潮も同様だ。オラニウムには新たに藍岬が加わった。打診の紙は、戦いを止める力をほとんど持っていない。</p>
+</div>
+</div></div>
+</div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/150-朝刊/121-ad-lamp.jpg" alt="真鍮の卓上ランプ"><div><h4>ピーヘン 港の宿</h4><p class="catch">報せの絶えぬ夜も、温かな寝床を。</p><p>素泊まり・夕食付き。使者・隊商のご投宿承ります。</p><p class="price">オラニウム・ピーヘン港</p></div></div></div>
+</div></section>
+
+<!-- 4面 戦況 西岸・北の丘 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">戦況</span>西岸の町と北の丘　二つの前線<span class="pageno">4</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">カペレナ、黒潮の町を再び奪う<br>黒潮の損害は20万人に迫る</h2>
+<p class="v-sub">食糧4万7,800トンを徴発　北の丘ではオリョルッルが黄砂を圧倒し続ける</p>
+<figure class="photo"><img class="fitmap battle compact" src="../images/150-朝刊/150-north-wide.jpg" alt="西岸と北の丘を横並びにした戦況図"><figcaption>左は西岸。首都アルヴェナを抱える黒潮とカペレナが削り合い、カペレナが黒潮の町を占領して食糧を徴発した。右は北の丘。オリョルッルの砲兵と歩兵が黄砂の陣へ攻撃を集め続けている。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【軍事部】</span>アカピ大陸北西岸では、カペレナ王国が黒潮自治国の町を占領し、蓄えられていた食糧4万7,800トンを徴発した。黒潮は前期、移民と徴兵で人口を1万5,400人から2万8,900人へほぼ倍に戻したばかりだったが、今期はこの町の喪失と戦闘の損害で、人口を再び1万8,900人へ減らした。せっかく吹き返した息を、また押し戻された形である。</p>
+<p>戦闘は複数の地点で入り乱れた。カペレナの残党征伐軍と北方別動隊が黒潮の各隊へ攻めかかり、今期は黒潮へ3,900人の損害を与えた。黒潮も反撃し、カペレナへ1,900人を返した。だが、この長い戦いで黒潮が受けた損害は累計19万9,800人に達し、20万人の大台が目前に迫っている。小国が払い続ける代償は、想像を絶する規模になっている。</p>
+<h3>北の丘、オリョルッルの砲火やまず</h3>
+<p>アカピ大陸東部の北の丘では、オリョルッル王国が黄砂同盟への攻勢を続けた。今期、オリョルッルは黄砂へ3,900人の損害を与え、黄砂の反撃は600人。累計ではオリョルッル6,700人に対し、黄砂は2万2,100人に達した。黄砂は前期に停戦の猶予へ入ったが、オリョルッルの砲火は止まず、丘での一方的な消耗が続いている。国力で大きく勝るオリョルッルに対し、黄砂の守勢を覆す手は見えない。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>西岸（カペレナ対黒潮）</caption><tbody>
+<tr><td>黒潮の町</td><td>カペレナが占領・食糧4万7,800トン徴発</td></tr>
+<tr><td>今期の損害</td><td class="num">カペ→黒潮3,900／黒潮→カペ1,900</td></tr>
+<tr class="hl"><td>黒潮の累計損害</td><td class="num">19万9,800人（20万目前）</td></tr>
+<tr><td>黒潮の人口</td><td class="num">2万8,900→1万8,900に減</td></tr>
+</tbody></table>
+<table class="data"><caption>北の丘（オリョルッル対黄砂）</caption><tbody>
+<tr><td>今期の損害</td><td class="num">オリョルッル→黄砂3,900／黄砂→600</td></tr>
+<tr><td>累計の損害</td><td class="num">オリョルッル6,700／黄砂2万2,100</td></tr>
+</tbody></table>
+<div class="box"><div class="column-title">戦況解説　20万という代償</div>
+<p>黒潮が払った累計損害は、まもなく20万人に届く。人口2万に満たない国が、その十倍の損害に耐えてきた計算だ。前期に移民で息を吹き返したのも束の間、今期また町を奪われ、人口は押し戻された。谷の守りは粘り強いが、傷の深さは尋常でない。</p>
+<p>北の丘の黄砂も同じ構図にある。停戦の猶予に入ってなお、オリョルッルの砲火は止まない。国力で劣る側が、一方的に削られ続ける。停戦とは双方が矛を収めてこそ成るものだが、攻める側が手を止めない限り、守る側の猶予は紙の上の約束にすぎない。</p></div>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/150-朝刊/121-ad-net.jpg" alt="干された網"><div><h4>北湾漁網工房</h4><p class="catch">破れた網を夜明けまでに。</p><p>定置網・曳き網・浮子。艦砲の届かぬ内海の漁へ。</p><p class="price">クレセグラード港通り</p></div></div></div>
+</div></section>
+
+<!-- 5面 社会 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">社会</span>冬の火災は半減、人は国境を越える<span class="pageno">5</span></div>
+<div class="sheet-body cols-2">
+<div class="cell"><div class="v">
+<h2 class="v-headline">火災は6か所2万5,500人、前期の半分以下<br>乾いた晴天がゆるみ、火の勢いが落ちた</h2>
+<p class="v-sub">なのです・白波・銀嶺・カペレナ・チェスで　大規模な同時多発はおさまる</p>
+<figure class="photo"><img class="fitphoto" src="../images/150-朝刊/150-fire.jpg" alt="雪のちらつく通りで、鎮火した焼け跡を片づける住民"><figcaption>雪のちらつく通りで、住民が鎮火した焼け跡を片づける。今期は火の勢いがやや落ち着いた。</figcaption></figure>
+<p class="lead noindent"><span class="dateline">【社会部】</span>第150期の火災は、6か所の都市と町で合わせて2万5,500人の犠牲にとどまった。6万5,700人に上った前期の半分以下である。前期に火災が集中したチェス＝シロバキアでは今期は一か所におさまり、各地で同時多発した大規模な延焼は見られなかった。冬の乾いた晴天がやや和らぎ、火の回りが鈍ったことが背景にあるとみられる。</p>
+<p>今期の被害は、なのですの町と都市で合わせて8,600人、白波の都市で5,100人、銀嶺侯国の町で4,500人、カペレナの町で3,800人、チェスの町で3,500人。前線から遠い町が中心で、戦火とは別の形で冬が暮らしを削る構図は変わらない。焼け跡では、雪の中で建て直しの作業が始まっている。</p>
+<p>火災が減ったとはいえ、油断は禁物だ。冬はまだ半ばであり、乾いた晴天が戻れば火はまた勢いを増す。各国の町では、井戸の凍結を防ぎ、消火の水を絶やさぬ備えが続く。</p>
+<table class="data"><caption>第150期の火災（計2万5,500人）</caption><tbody>
+<tr><td>なのです・2か所</td><td class="num">8,600人</td></tr>
+<tr><td>白波・都市</td><td class="num">5,100人</td></tr>
+<tr><td>銀嶺・町</td><td class="num">4,500人</td></tr>
+<tr><td>カペレナ・町</td><td class="num">3,800人</td></tr>
+<tr><td>チェス・町</td><td class="num">3,500人</td></tr>
+</tbody></table>
+</div></div>
+<div class="cell yoko ruled-left"><div class="v">
+<h2 class="v-headline">二つの国へ、仕事を求め1万7,700人<br>白波→帝国6,000人、紅峰→あろあろ1万1,700人</h2>
+<p class="v-sub">戦火の帝国へも人は渡る　受け入れる側は人口の穴を埋める</p>
+<figure class="photo"><img class="fitmap" src="../images/150-朝刊/150-fire-chart.png" alt="第150期の国別火災犠牲を示した棒グラフ。前期から半減"><figcaption>第150期の火災犠牲。前期にチェスで突出した被害は、今期はおさまった。</figcaption></figure>
+<p class="lead noindent"><span class="dateline">【社会部】</span>今期は、白波王国からアルガリスト帝国へ6,000人、紅峰公国からあろあろ国へ1万1,700人が、仕事を求めて移り住んだ。</p>
+<p>注目されるのは、白波から帝国への移民である。帝国は泰平に帝都を包囲され、累計10万人を超える損害に沈む敗色濃い国だ。そこへ6,000人が渡った。前期の紅峰からの移民に続く帝国への人の流れだが、前線の消耗の前では、人口の補充はほとんど追いつかない。移り住んだ人々が、戦火の都でどんな暮らしを築くのか、案じられる。</p>
+<p>一方、紅峰からあろあろへの1万1,700人は、戦火の外にある国どうしの移動である。版図の広いあろあろは、この受け入れで人口をさらに増やした。送り出す側と受け入れる側で、同じ移動が別の意味を持つ構図は、今期も変わらない。</p>
+<div class="box"><div class="column-title">社会論説　敗色の国へ渡る人々</div>
+<p>白波から帝国へ、仕事を求めて6,000人が渡った。帝都を囲まれ、自国に火を放つほど追い詰められた国へ、なぜ人は向かうのか。移民の判断は、戦況の見出しとは別の論理で動く。賃金、住まい、縁故――人の暮らしは、国の勝敗だけで測れない。だが迎える帝国に、新住民を養う余力がどれだけ残っているかは、心もとない。戦時の人口移動は、送り手と受け手の双方に、重い問いを突きつける。</p></div>
+</div></div>
+</div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/150-朝刊/121-ad-bread.jpg" alt="焼きたての丸パン"><div><h4>アロランド 朝の窯</h4><p class="catch">新しい隣人にも、焼きたてを一つ。</p><p>丸パン・干し果実入り。移り住んだ方にも温かい一斤を。</p><p class="price">あろあろ・アロランド職人街</p></div></div></div>
+</div></section>
+
+<!-- 6面 経済 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">経済</span>冬の市況　弾薬四期続落・交易・資源<span class="pageno">6</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">弾薬、四期続けて値を下げる<br>前線は激化するのに、軍需相場は冷える一方</h2>
+<p class="v-sub">弾薬は73.32へ　交易量はなのですがさらに伸び、狐っ娘が三位に浮上</p>
+<figure class="photo"><img class="fitmap" src="../images/150-朝刊/150-market-chart.png" alt="弾薬・工業品の相場推移。弾薬は四期続けて下落"><figcaption>弾薬・工業品の相場推移。前線は激化するのに、軍需相場は四期続けて下げている。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【経済部】</span>第150期の世界相場は、弾薬が73.32となり、四期続けて値を下げた。帝都攻防、対人ミサイル、朱川へのミサイルと、前線はむしろ激しさを増しているのに、戦争に直結する弾薬の相場は下げ止まらない。工業品も56.44とわずかに下げ、木材も小幅安。燃料・石油・鉱石・鋼鉄・石材の主要資源は前期と変わらなかった。都市の決着を避けた消耗戦が続き、短期の大量消費を市場が見込みにくいことが、相場の重さの背景にあるとみられる。</p>
+<h3>交易はなのですが独走、狐っ娘が三位へ</h3>
+<p>国家間の交易量は、なのですが2万6,806でさらに量を伸ばし、独走を続けた。カペレナ1万6,884が二位、今期は狐っ娘の尻尾教団が1万5,505で三位に浮上した。前線で戦い続けるカペレナが二位を保ち、戦火の外で開発に専念する狐っ娘が三位に食い込む。戦う国も商う国も、それぞれの形で交易の動脈を保っている。なのですの独走ぶりは、海路の安全を国の生命線とする同国の姿勢を映している。</p>
+<h3>各地で落盤、地下の富は目減り</h3>
+<p>資源の現場では、今期も各地の鉱山・油田で落盤が相次いだ。テキスタン、狐っ娘、泰平などで採掘の段階が下がり、蓄えが目減りした。掘り進めるほど坑道は深くなり、崩落の危険も増す。冬の凍結も坑道を痛める。地下の富は、掘る手を休めればたちまち目減りする性質のものだ。前線の消耗と並んで、地下でも静かな損耗が続いている。</p>
+<h3>軍港への転換、相次ぐ</h3>
+<p>海では、金野伯爵領と黒潮自治国が養殖場を取り払って軍港を建てた。前期の朱川に続く動きで、守勢に立つ国や前線に近い国が、食の備えを削って海の守りを固める傾向が続いている。魚を育てる場を船を守る場へ替える選択は、戦時の冬に各国が迫られる苦い判断である。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left"><div class="v">
+<table class="data"><caption>主要商品の相場</caption><tbody>
+<tr class="hl"><td>弾薬</td><td class="num">75.83→73.32</td></tr>
+<tr class="hl"><td>工業品</td><td class="num">56.76→56.44</td></tr>
+<tr><td>燃料・石油・鉱石</td><td class="num">6.8／7.2／4.8（横ばい）</td></tr>
+<tr><td>鋼鉄・石材・木材</td><td class="num">12／5.6／3.23</td></tr>
+</tbody></table>
+<table class="data"><caption>交易量の順位</caption><tbody>
+<tr><td>なのです</td><td class="num">2万6,806</td></tr>
+<tr><td>カペレナ</td><td class="num">1万6,884</td></tr>
+<tr><td>狐っ娘の尻尾教団</td><td class="num">1万5,505</td></tr>
+</tbody></table>
+<table class="data"><caption>今期の資源・海事</caption><tbody>
+<tr><td>落盤</td><td>テキスタン・狐っ娘・泰平ほか</td></tr>
+<tr><td>軍港転換</td><td>金野・黒潮が養殖場を軍港へ</td></tr>
+<tr><td>造船</td><td>シンジケート・藍岬も起工</td></tr>
+</tbody></table>
+<div class="box"><div class="column-title">経済論説　四期続いた弾薬安の意味</div>
+<p>弾薬が四期続けて下げた。前線はいよいよ激しく、ミサイルまで飛び交うのに、である。普通の理屈なら軍需は上がる。それが逆に動くのは、市場が「この戦争は短期では終わらず、かといって大会戦で一気に弾を使い切ることもない」と読んでいるからだろう。帝都は囲まれても落ちず、朱川は削られても陥ちない。決着なき消耗の長期化を、相場は冷静に織り込んでいる。戦況の激しさと、相場の冷たさ。その乖離こそ、この冬の戦争の性格を物語っている。</p></div>
+</div></div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/150-朝刊/121-ad-scale.jpg" alt="皿秤と分銅"><div><h4>電都 検量所</h4><p class="catch">冬の商い、量で勝つ。</p><p>穀物・工業品の大口取引、海路の護送手配まで。</p><p class="price">なのです・電都の交易区</p></div></div></div>
+</div></section>
+
+<!-- 7面 気象・海事 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">気象・海事</span>冬の空と第151期の天気予報<span class="pageno">7</span></div>
+<div class="sheet-body">
+<div class="cell span-12"><div class="v">
+<h2 class="v-headline">冬の空、曇りが広がる　黄砂は雨<br>海では四国が新たに船を起こす</h2>
+<p class="v-sub">晴れはノルステア大陸の東寄り　金野・黒潮・藍岬・シンジケートが造船</p>
+</div></div>
+<div class="cell span-6">
+<figure class="photo"><img class="fitmap mainmap" src="../images/150-朝刊/150-weather.png" alt="第150期の世界の天気図"><figcaption>第150期の世界の天気図。冬季のため台風警戒地域は表示していない。曇りが広く覆い、北方の黄砂は雨。</figcaption></figure>
+</div>
+<div class="cell span-6">
+<figure class="photo"><img class="fitmap mainmap" src="../images/150-朝刊/150-weather-forecast.png" alt="第151期の天気予報（予想）"><figcaption>第151期の天気予報（予想）。第149期から第150期の雨・雪域の動きを延長した。確定予報ではない。</figcaption></figure>
+</div>
+<div class="cell span-12"><div class="v">
+<p class="lead noindent"><span class="dateline">【気象・海事部】</span>第150期の各地の空は、曇りが広く覆った。晴れ間が広がったのはオラニウムのピーヘン、藍岬のシネモルスク、あろあろのアロランドなど、ノルステア大陸の東寄りに限られた。北方の黄砂同盟ネルシアは今期も雨。前期に各地で続いた乾いた晴天がやや湿りを帯びたことが、社会面で火災が半減した一因とみられる。天気と火災は、こうして静かに連動している。</p>
+<table class="data"><caption>世界の天候　第150期（前期比）</caption><tbody>
+<tr><td>晴れ</td><td class="num">2,570→2,677（+107）</td></tr>
+<tr><td>曇り</td><td class="num">4,510→4,476（−34）</td></tr>
+<tr><td>雨</td><td class="num">873→830（−43）</td></tr>
+<tr><td>雪</td><td class="num">133→105（−28）</td></tr>
+<tr><td>雷</td><td class="num">14→12（−2）</td></tr>
+</tbody></table>
+<h3>第151期の天気予報　曇り基調で雨域はゆるやかに移る</h3>
+<p>本紙の見通しでは、次期も曇りを基調に、雨域がゆるやかに移る見込みである。確定した予報ではない。乾いた晴天が広く戻れば、火災の危険が再び高まる点に注意したい。</p>
+<h3>四国が造船、軍港への転換続く</h3>
+<p>今期、金野伯爵領、黒潮自治国、藍岬共和国連邦、シンジケート連邦の四国が新たに船を起こした。このうち金野は、養殖場を取り払って軍港の建設に充て、建造費のうち20億円を造った国の民間へ戻した。前期の朱川に続く軍港への転換である。開戦したばかりの藍岬も船を起こしており、オラニウムとの海の戦いに備える構えがうかがえる。冬の海は、戦いの支度で静かに慌ただしい。</p>
+<table class="data"><caption>今期の造船（4件）</caption><tbody>
+<tr><td>金野伯爵領</td><td>養殖場を軍港へ・20億円返還</td></tr>
+<tr><td>黒潮自治国</td><td>谷の湾で起工</td></tr>
+<tr><td>藍岬共和国連邦</td><td>開戦に備え起工</td></tr>
+<tr><td>シンジケート連邦</td><td>南西の沿岸で起工</td></tr>
+</tbody></table>
+<div class="box"><div class="column-title">海事メモ　湿った空と、火の勢い</div>
+<p>今期、火災犠牲が半減した背景には、空の湿りがある。前期に広く晴れたセントラ大陸・ロンギード大陸の乾いた空が、今期はやや曇りがちとなり、火の回りが鈍った。天気図の晴れの区画が東へ寄ったぶん、延焼の多発地も狭まった。空模様は、戦況とは別の形で、各地の暮らしの明暗を分けている。</p></div>
+</div></div>
+</div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/150-朝刊/121-ad-boat.jpg" alt="川の渡し舟"><div><h4>晴灣 乾物問屋</h4><p class="catch">冬の海の恵み、干して蓄える。</p><p>干し魚・海藻・貝柱。軍港の普請で沖が騒がしい日も、港には魚が揚がります。</p><p class="price">橙原・晴灣の浜通り</p></div></div></div>
+</div></section>
+
+<!-- 8面 国特集 藍岬 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">国特集</span>藍岬共和国連邦　藍の岬に集う国をゆく<span class="pageno">8</span></div>
+<div class="sheet-body">
+<div class="cell span-7"><div class="v">
+<h2 class="v-headline">藍色の岬に立つ都シネモルスク<br>戦火の外にあった連邦が、なぜ矛を執ったのか</h2>
+<p class="v-sub">人口12万3,200人、連邦軍の盟主　晴れの多い東岸の海洋国家</p>
+<figure class="photo"><img class="fitphoto" src="../images/150-朝刊/150-aimisaki-town.jpg" alt="藍色の海に突き出た岬の上に築かれた都。石造の灯台と、湾に並ぶ船"><figcaption>藍岬の都シネモルスクは、藍色の海に突き出た岬の上に築かれている。石造の灯台が湾を見下ろし、冬も晴れの日が多い。</figcaption></figure>
+<p class="lead noindent"><span class="dateline">【シネモルスク特派員】</span>藍岬共和国連邦の都シネモルスクは、ノルステア大陸東岸の、藍色の海に突き出た岬の上に開けている。人口12万3,200人、兵力3万人。連邦軍の盟主を務める、東岸の海洋国家である。晴れの多いこの土地は、長く大きな戦火の外にあり、交易と漁で穏やかに栄えてきた。</p>
+<p>その藍岬が、今期オラニウム連邦へ開戦した。これまで矛を交えずにきた国が、なぜ戦端を開いたのか。藍岬は連邦軍の盟主であり、同じ連邦軍に属する桃谷連邦共和国も第151期にオラニウムへの開戦を予告している。二国が相次いでオラニウムへ矛を向ける動きは、連邦としての意思を帯びている。無所属のオラニウムが朱川へミサイル攻撃を重ねるのを、連邦軍が看過できなくなった――そう読む向きが、外交筋には多い。</p>
+<h3>岬の市場、交易で栄えた穏やかな国</h3>
+<p>シネモルスクの市場は、岬のふもとの湾に面して開かれる。晴れた日には遠い大陸からの船が入り、藍染めの布や干した海産、東岸でとれる鉱石が並ぶ。藍岬の名は、この土地の藍染めの産地であることに由来するという。長く戦火を知らなかった市場には、まだ戦時の緊張は薄い。だが開戦の報せは、港の商人たちにも静かな影を落とし始めている。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left"><div class="v">
+<h2 class="story-heading">開戦の報せ、市井の受け止め</h2>
+<p>「戦など、よその国の話だと思っていた」と、岬の染物屋の女将は言う。「それが、気づけばうちの国が攻める側になっていた。盟主の国だから仕方ないのかもしれないが、海の向こうで人が死ぬのは、やはり心が痛む」。藍岬はこれまで、戦火の外で交易に専念してきた国である。開戦は、市井の人々にとってなお実感の薄い出来事だが、港に増えた軍船の数が、戦の近づきを静かに告げている。</p>
+<figure class="photo"><img class="fitphoto" src="../images/150-朝刊/150-aimisaki-port.jpg" alt="岬の湾に新たに起工された軍船の船体と、藍染めの布を干す浜"><figcaption>岬の湾では新たな軍船が起工され、傍らの浜には藍染めの布が冬の風にはためく。戦と暮らしが、同じ湾に同居する。</figcaption></figure>
+<h3>連邦軍の盟主として</h3>
+<p>藍岬は連邦軍五か国の盟主である。だが連邦軍の総兵力は五陣営のなかで下から二番目で、決して大きくはない。盟主みずからオラニウムへ開戦したのは、陣営の結束を示す狙いもあろうが、国力で見れば無理のある一手でもある。オラニウムは朱川戦で消耗しているとはいえ、ミサイルという非対称の火力を持つ。藍岬の3万の兵が、海を越えてどこまで戦えるか。開戦したばかりの今、戦線の行方はまだ見えない。</p>
+<table class="data"><caption>藍岬共和国連邦のいま</caption><tbody>
+<tr><td>都</td><td>シネモルスク（岬の上の港都）</td></tr>
+<tr><td>人口・兵力</td><td class="num">12万3,200／3万</td></tr>
+<tr><td>立場</td><td>連邦軍の盟主</td></tr>
+<tr><td>名乗り</td><td>藍色の岬に集う共和国の連邦</td></tr>
+<tr><td>今期の動き</td><td>オラニウムに開戦・軍船を起工</td></tr>
+</tbody></table>
+</div></div>
+</div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/150-朝刊/121-ad-indigo.jpg" alt="藍染めの帆布"><div><h4>シネモルスク 岬の船大工</h4><p class="catch">藍の海へ出す船体、冬のうちに。</p><p>造船用の梁材・帆柱。開戦に備えるご用命、承ります。</p><p class="price">藍岬・シネモルスク湾</p></div></div></div>
+</div></section>
+
+<!-- 9面 文化・遊び -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">文化</span>冬の湯治と、雪見の宿<span class="pageno">9</span></div>
+<div class="sheet-body cols-2">
+<div class="cell"><div class="v">
+<h2 class="v-headline">山あいの湯けむり、諸島の湯治場<br>戦に疲れた体を、熱い湯がほどく</h2>
+<p class="v-sub">火山の恵みの温泉　各地に湧く湯が、冬の人々を温める</p>
+<figure class="photo"><img class="fitphoto" src="../images/150-朝刊/150-bunka-onsen.jpg" alt="雪の積もった山あいの露天風呂。湯けむりの中で湯に浸かる人々"><figcaption>雪の積もった山あいの湯治場。立ちのぼる湯けむりの中で、人々が熱い湯に体をほどく。</figcaption></figure>
+<p class="lead noindent"><span class="dateline">【文化部】</span>火山の多い諸島には、各地に温泉が湧く。冬の深まるこの季節、山あいの湯治場は、体を温め疲れを癒やす人々でにぎわう。農閑期の百姓、海の荒れで漁に出られぬ漁師、そして戦に疲れた兵まで、湯けむりの立つ宿に身を寄せる。「湯に浸かれば、戦の報せも束の間忘れられる」と、ある湯治場の主は言う。</p>
+<p>湯の性質は土地ごとに異なる。火山帯に近いあろあろの湯治場は熱く濃い硫黄の湯で知られ、傷や皮膚の病に効くとして兵の保養に使われる。内陸の狐っ娘の尻尾教団には、ぬるめの湯に長く浸かる「寝湯」の風習があり、もふもふの毛織物を頭に巻いて湯に入る愛らしい光景が名物だという。泰平の山間では、湯上がりに地酒を一杯やるのが習わしだ。</p>
+<h3>記者の湯めぐり帖　あろあろ「硫黄谷の湯」</h3>
+<div class="byline"><b>文化部記者が、あろあろの火山帯に湧く湯治場を訪ねた。</b></div>
+<p>雪道を登った先に、白い湯けむりが見えた。硫黄谷の湯は、岩肌から湧く熱い湯を、丸太を組んだ湯船に引いている。湯に浸かると、冷えきった体の芯から熱が戻る。隣に浸かった老人は、遠い前線から保養に来た元兵だという。「ここでは、どこの国の者も、みな裸で同じ湯に浸かる。戦のことなど、湯の中では誰も口にせんよ」。湯けむりの向こうに、雪をかぶった峰が静かにそびえていた。</p>
+</div></div>
+<div class="cell yoko ruled-left"><div class="v">
+<h2 class="v-headline">雪見の宿で、長い夜をもてなす<br>囲炉裏端の膳と、窓辺の雪景色</h2>
+<p class="v-sub">湯治と並んで賑わう冬の宿　雪を眺めながらの一献が、旅人をもてなす</p>
+<figure class="photo"><img class="fitphoto" src="../images/150-朝刊/150-bunka-yado.jpg" alt="雪の降る窓辺に面した囲炉裏端で、膳を囲む旅人たち"><figcaption>雪見の宿の囲炉裏端。窓の外に雪が降りしきるなか、旅人たちが温かな膳を囲む。</figcaption></figure>
+<p class="lead noindent"><span class="dateline">【文化部】</span>湯治場と並んで冬に賑わうのが、雪見を売りにした宿である。窓辺に面した囲炉裏端で、降りしきる雪を眺めながら、その土地の膳を味わう。白波の河港の宿では川魚の塩焼きと熱い汁物、黒潮の谷の湯宿では谷水の湯と川魚の膳が、旅人をもてなす。戦時にあっても、いや戦時だからこそ、人は束の間の安らぎを求めて宿を訪れる。</p>
+<p>宿のもてなしには、土地の心が映る。前線に近いカペレナの宿では、兵や避難民を温かく迎える「開けっ放しの宿」の風習があり、宿代の払えぬ者にも一椀の汁を出すという。戦の近い土地ほど、人の情けが宿のもてなしににじむ。雪見の宿は、冷えた体だけでなく、すさんだ心も温める場所なのだ。</p>
+<div class="box"><div class="column-title">湯だより　諸島の冬の湯</div>
+<p><b>あろあろ・硫黄谷の湯</b>　濃い硫黄の熱い湯。傷と疲れに効く。兵の保養に。</p>
+<p><b>狐っ娘・寝湯</b>　ぬるめの湯に長く浸かる。毛織物を頭に巻くのが流儀。</p>
+<p><b>黒潮・谷水の湯</b>　谷あいの湯宿。川魚の膳とともに。</p>
+</div>
+</div></div>
+</div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/150-朝刊/121-ad-stew.jpg" alt="根菜の煮込み"><div><h4>硫黄谷 湯治の宿</h4><p class="catch">戦に疲れた体を、熱い湯に。</p><p>硫黄の湯・雪見の膳。長逗留の湯治、保養のご相談承ります。</p><p class="price">あろあろ・硫黄谷</p></div></div></div>
+</div></section>
+
+<!-- 10面 入門・短信・次号 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">入門・短信</span>停戦と講和・短信・次号予告<span class="pageno">10</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">箱庭入門講座（第10回）　停戦と講和の仕組み<br>打診は4ターンで期限切れ、成立すれば12ターン不戦</h2>
+<p class="v-sub">打診は費用なし　成立後12ターンは宣戦できず、民間の軍需売買も止まる</p>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【攻略部】</span>今期は藍岬がオラニウムへ開戦し、各地で停戦の猶予が切れて交戦が再開した。戦争は始めるだけでなく、どう止めるかも国の運営を左右する。今回は停戦と講和の仕組みを整理する。</p>
+<h3>停戦打診は「申し込み」にすぎない</h3>
+<p>停戦打診（コマンド51）は、相手に停戦の意思を伝えるだけで、それ自体は戦争を止めない。打診は4ターンで期限切れとなり、相手が受けなければ効力を失う。さらに、撤回または期限切れから3ターンは、同じ相手へ再び打診できない。朱川や黒潮が何度も停戦を打診しながら攻撃を受け続けてきたのは、打診が「申し込み」であって「成立」ではないためだ。双方が合意して初めて、戦争は止まる。</p>
+<h3>成立すれば12ターンの不戦</h3>
+<p>停戦が成立すると、双方は12ターンの間、相手へ宣戦できなくなる。この不戦は、人の国への宣戦、陣営の加勢、包囲網の宣戦にも適用される。ただし、期間が終わっても戦争が自動で再開するわけではない。12ターンが過ぎれば、再び宣戦が可能になるだけだ。今期、帝国と泰平、カペレナと黒潮の交戦が再び激しくなったのは、停戦の猶予期間が切れたためである。</p>
+<h3>講和に支払いは要らない</h3>
+<p>停戦の成立に、資金や資源の支払いは必要ない。賠償や割譲といった条件もなく、ただ双方が矛を収めるだけである。その代わり、不戦期間中は元の敵どうしの民間の弾薬・燃料・鋼鉄の売り買いも止まる。戦争を止めることは、経済のつながりを一部断つことでもある。停戦は、タダで手に入るが、タダではない。</p>
+<div class="boarding-flow">
+<div class="boarding-step"><b>①打診する</b><span>停戦打診(コマンド51)。費用なし。相手に意思を伝えるだけ。</span></div>
+<div class="boarding-step"><b>②4ターンで期限</b><span>相手が受けねば失効。撤回・失効から3ターンは再打診不可。</span></div>
+<div class="boarding-step"><b>③双方合意で成立</b><span>受諾されて初めて戦争が止まる。支払い・割譲は不要。</span></div>
+<div class="boarding-step"><b>④12ターン不戦</b><span>成立後12ターンは宣戦不可。敵どうしの民間取引も停止。</span></div>
+</div>
+</div></div>
+<div class="cell span-5 yoko ruled-left"><div class="v">
+<table class="data"><caption>停戦のルール早見</caption><tbody>
+<tr><td>打診の費用</td><td class="num">なし</td></tr>
+<tr><td>打診の有効</td><td class="num">4ターン</td></tr>
+<tr><td>再打診の待ち</td><td class="num">3ターン</td></tr>
+<tr><td>成立後の不戦</td><td class="num">12ターン</td></tr>
+<tr><td>賠償・割譲</td><td>なし</td></tr>
+</tbody></table>
+
+<h2 class="story-heading">連載・小国の冬　黒潮、20万の代償</h2>
+<p>黒潮自治国がこの戦いで受けた損害は、累計19万9,800人。人口2万に満たぬ国が、その十倍の代償を払い続けている。前期に移民で息を吹き返しながら、今期また町を奪われ人口を戻された。停戦を何度打診しても、カペレナの手は止まらない。打診が成立しない限り、谷の消耗は終わらない。小国にとって、戦争を止める手立てが「相手の合意」頼みであることの重さが、ここに表れている。</p>
+
+<div class="box"><div class="column-title">短信</div>
+<p>◆<b>弾薬、四期続落</b>　世界相場は73.32まで下げた。前線の激化と逆行している。</p>
+<p>◆<b>狐っ娘が交易三位</b>　戦火の外で開発に専念する教団が、交易量で三位に浮上した。</p>
+<p>◆<b>軍港への転換続く</b>　金野・黒潮が養殖場を払って軍港を築いた。朱川に続く動き。</p>
+<p>◆<b>あろあろへ1万1,700人</b>　紅峰からの移民で、版図最大級のあろあろがさらに人口を増やした。</p>
+</div>
+<div class="box"><div class="column-title">次号の見どころ（第151期 夕刊）</div>
+<p><b>帝都アルガリスト、ついに城門か</b>　都の目前まで迫られた帝国は、城壁を守れるか。対人ミサイルの次の一手は。</p>
+<p><b>オラニウム、三正面へ</b>　第151期は桃谷の開戦が予告されている。朱川・藍岬と合わせ、連邦は三方に敵を抱えるか。</p>
+<p><b>黒潮、20万の損害を超えて</b>　累計損害が20万人の大台に乗るか。谷の守りはどこまで耐えるか。</p>
+</div>
+</div></div>
+</div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/150-朝刊/121-ad-coffee.jpg" alt="湯気の立つ紅茶"><div><h4>アルヴェナ 谷間の湯宿</h4><p class="catch">崖の国にも、温かな湯がある。</p><p>谷水の湯・川魚の膳。小さな港町の、小さな宿から。</p><p class="price">黒潮・アルヴェナの谷</p></div></div></div>
+</div></section>
+
+<footer class="colophon">
+  <span>トレーディア新聞社　第150期 朝刊</span>
+  <span>トレーディア暦3年2月第3週・冬季</span>
+  <span>各国政府・軍の発表をもとに編集</span>
+</footer>
+
+</div>
+</body>
+</html>
