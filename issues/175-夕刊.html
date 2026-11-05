@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>トレーディア新聞 第175期 夕刊</title>
+<style>
+/* トレーディア新聞 ── 横書きの紙面 */
+
+:root {
+  --paper: #f4ecd8;
+  --paper-ad: #fffdf7;
+  --ink: #2b2b2b;
+  --ink-soft: #555;
+  --accent: #8c2d19;
+  --rule: #2b2b2b;
+  --rule-soft: #b9ad92;
+  --mincho: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", "MS PMincho", serif;
+  --gothic: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Meiryo", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 24px 12px;
+  background: #5a5248;
+  color: var(--ink);
+  font-family: var(--mincho);
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+
+.paper {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 22px 28px 28px;
+  background: var(--paper);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, .45);
+}
+
+img { max-width: 100%; display: block; }
+img.fitmap {
+  max-height: 760px;
+  width: auto;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+img.fitmap.mainmap { max-height: 620px; }
+img.fitmap.seamap { max-height: 620px; }
+img.fitmap.battle { width: 100%; max-width: 100%; height: auto; max-height: none; }
+img.fitmap.battle.compact {
+  width: auto;
+  max-width: min(100%, 960px);
+  max-height: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.mill {
+  display: grid;
+  grid-template-columns: 1.1fr auto 1fr auto 1.3fr;
+  gap: 8px 10px;
+  align-items: center;
+  margin: 4px 0 14px;
+}
+.mill .step {
+  border: 1px solid var(--rule);
+  padding: 8px 10px;
+  text-align: center;
+  background: var(--paper);
+}
+.mill .step b { display: block; font-size: 15px; }
+.mill .arr { text-align: center; font-weight: 800; font-size: 18px; }
+.wx-board.cols2 { grid-template-columns: 1fr 1fr; }
+.wx-board {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  margin: 0 0 10px;
+}
+.wx-card {
+  border: 1px solid var(--rule-soft);
+  border-radius: 8px;
+  background: var(--paper-ad);
+  text-align: left;
+  padding: 4px 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+.wx-card svg { width: 22px; height: 22px; margin: 0; display: block; flex: none; }
+.wx-card .wx-name {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 12.5px;
+  letter-spacing: 0;
+  margin: 0;
+  text-indent: 0;
+  line-height: 1.2;
+}
+.wx-card .wx-state {
+  font-family: var(--gothic);
+  color: var(--ink-soft);
+  font-size: 11.5px;
+  margin: 0;
+  text-indent: 0;
+  line-height: 1.2;
+}
+hr { border: 0; border-top: 1px solid var(--rule); margin: 10px 0; }
+p { margin: 0 0 .55em; text-align: justify; text-indent: 1em; }
+p.noindent, .lead, figcaption, .brief p, .byline, .ad p, .toc li, .schedule li { text-indent: 0; }
+
+.masthead {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: 8px;
+  border-top: 4px solid var(--rule);
+  border-bottom: 4px solid var(--rule);
+  padding: 8px 0 10px;
+  position: relative;
+}
+.masthead::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 2px;
+  border-bottom: 1px solid var(--rule);
+}
+.masthead .title {
+  font-weight: 900;
+  font-size: 56px;
+  letter-spacing: .14em;
+  line-height: 1;
+  text-align: center;
+}
+.masthead .title br.narrow { display: none; }
+.masthead .title small {
+  display: block;
+  font-family: var(--gothic);
+  font-size: 12px;
+  letter-spacing: .5em;
+  margin-top: 6px;
+  font-weight: 600;
+}
+.masthead .issue, .masthead .date {
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.masthead .date { text-align: right; }
+.masthead .edition {
+  display: inline-block;
+  font-weight: 800;
+  color: #fff;
+  background: var(--accent);
+  padding: 2px 10px;
+  margin-bottom: 3px;
+  letter-spacing: .2em;
+}
+
+.ticker {
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  border-bottom: 2px solid var(--rule);
+  padding: 4px 0;
+  margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+.ticker b { color: var(--accent); margin-right: 1em; }
+.ticker > span + span::before { content: "／"; color: var(--rule-soft); margin: 0 .7em; }
+
+.page { margin-bottom: 8px; padding: 12px 0 14px; }
+.page + .page { border-top: 3px double var(--rule); }
+
+.page-name, .sheet-top {
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: .28em;
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.page-name .tag, .sheet-top .tag {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 2px 10px;
+  letter-spacing: .2em;
+}
+.page-name .pageno, .sheet-top .pageno {
+  margin-left: auto;
+  letter-spacing: .05em;
+  color: var(--ink-soft);
+}
+
+.grid, .sheet-body {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px 18px;
+  align-items: start;
+}
+.grid > *, .sheet-body > * { grid-column: span 12; min-width: 0; }
+.span-3, .cell.span-3 { grid-column: span 3 !important; }
+.span-4, .cell.span-4 { grid-column: span 4 !important; }
+.span-5, .cell.span-5 { grid-column: span 5 !important; }
+.span-6, .cell.span-6 { grid-column: span 6 !important; }
+.span-7, .cell.span-7 { grid-column: span 7 !important; }
+.span-8, .cell.span-8 { grid-column: span 8 !important; }
+.span-12, .cell.span-12 { grid-column: 1 / -1 !important; }
+
+/* 旧縦書き用のクラスも横書きとして扱う */
+.sheet { background: transparent; border: 0; height: auto; overflow: visible; box-shadow: none; display: block; }
+.sheet-body { direction: ltr; }
+.sheet-body.front,
+.sheet-body.cols-2,
+.sheet-body.cols-3,
+.sheet-body.cols-3-rail {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px 18px;
+  height: auto;
+}
+.sheet-body.front > .rail { grid-column: span 4; }
+.sheet-body.front > .story { grid-column: span 8; }
+.sheet-body.front > .head-band { grid-column: span 12; }
+.sheet-body.cols-2 > * { grid-column: span 6; }
+.sheet-body.cols-3 > * { grid-column: span 4; }
+.sheet-body.cols-3-rail > *:nth-child(1) { grid-column: span 5; }
+.sheet-body.cols-3-rail > *:nth-child(2) { grid-column: span 4; }
+.sheet-body.cols-3-rail > *:nth-child(3) { grid-column: span 3; }
+
+.cell { border: 0; padding: 0; overflow: visible; display: block; }
+.cell.stack { display: block; }
+.cell.fig { display: block; }
+.split-v { display: block; }
+.split-v > * + * { border-top: 1px solid var(--rule-soft); margin-top: 10px; padding-top: 10px; }
+
+.ruled-left { border-left: 1px solid var(--rule); padding-left: 16px; }
+.ruled-right { border-right: 1px solid var(--rule); padding-right: 16px; }
+
+.cols-2, .v .cols-2 { columns: 2; column-gap: 18px; column-rule: 1px solid var(--rule-soft); }
+.cols-3 { columns: 3; column-gap: 16px; column-rule: 1px solid var(--rule-soft); }
+
+.kicker, .v-kicker {
+  writing-mode: horizontal-tb;
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: .1em;
+  margin: 0 0 2px;
+}
+
+.headline, .v-headline, .v-title, .head-band .v-headline {
+  writing-mode: horizontal-tb;
+  font-family: var(--gothic);
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 1.3;
+  margin: 0 0 6px;
+  letter-spacing: .02em;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+.headline.xl, .front .v-headline { font-size: 36px; }
+@media (max-width: 680px) {
+  .front h1.v-headline {
+    font-size: clamp(18px, 5.1vw, 34px);
+    white-space: nowrap;
+  }
+}
+.headline.lg { font-size: 24px; }
+.v-title { font-size: 22px; font-weight: 800; }
+@media (max-width: 900px) {
+  h2.v-headline.two-line { font-size: 21px; }
+}
+
+.subhead, .v-sub {
+  writing-mode: horizontal-tb;
+  font-family: var(--gothic);
+  font-weight: 700;
+  font-size: 15.5px;
+  line-height: 1.4;
+  margin: 0 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+  height: auto;
+  overflow: visible;
+}
+
+.v, .head-band {
+  writing-mode: horizontal-tb;
+  height: auto;
+  overflow: visible;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+  display: block;
+}
+.head-band { margin-bottom: 8px; }
+
+article h2, .yoko h2 {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1.3;
+  margin: 0 0 8px;
+}
+article h3, .v h3 {
+  font-family: var(--gothic);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: .85em 0 .3em;
+  padding-left: 8px;
+  border-left: 3px solid var(--ink);
+  border-block-start: 0;
+  padding-block-start: 0;
+}
+.v h2.story-heading {
+  writing-mode: horizontal-tb;
+  font-family: var(--gothic);
+  font-size: 19px;
+  line-height: 1.32;
+  font-weight: 900;
+  letter-spacing: .01em;
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+  margin: 1.25em 0 .48em;
+  padding: .36em 0 .25em;
+  break-after: avoid;
+}
+.front .v h2.story-heading { font-size: 21px; }
+.v h2.story-heading + p,
+.v h3 + p { break-before: avoid; }
+.lead { font-weight: 700; font-size: 15px; }
+.lead .dateline, .dateline { font-family: var(--gothic); font-weight: 800; }
+
+figure, .photo {
+  writing-mode: horizontal-tb;
+  margin: 0 0 10px;
+  max-height: none;
+}
+.photo img, figure img {
+  border: 1px solid var(--rule);
+  width: 100%;
+  max-height: none;
+  object-fit: initial;
+}
+.photo img.fitphoto {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+}
+.photo img.fitmap.mainmap,
+.photo img.fitmap.seamap,
+figure img.fitmap.mainmap,
+figure img.fitmap.seamap {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+figcaption {
+  font-family: var(--gothic);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  margin-top: 3px;
+  line-height: 1.4;
+}
+figcaption::before { content: "▲"; margin-right: .15em; }
+figure.float-right { float: right; display: table; width: auto; max-width: 42%; margin: 0 0 8px 12px; }
+figure.float-left { float: left; display: table; width: auto; max-width: 42%; margin: 0 12px 8px 0; }
+figure.float-left figcaption,
+figure.float-right figcaption { display: table-caption; caption-side: bottom; }
+.v h2, .v h3 { clear: both; }
+
+.box {
+  writing-mode: horizontal-tb;
+  border: 1px solid var(--ink);
+  padding: 10px 12px;
+  background: rgba(255,255,255,.25);
+  margin-bottom: 10px;
+  width: auto;
+  display: block;
+}
+.column-title {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 12px;
+  background: var(--ink);
+  color: var(--paper);
+  display: inline-block;
+  padding: 1px 8px;
+  margin-bottom: 5px;
+  letter-spacing: .12em;
+}
+.byline {
+  font-family: var(--gothic);
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+.byline b { color: var(--ink); }
+.poem {
+  writing-mode: horizontal-tb;
+  white-space: pre-line;
+  text-indent: 0;
+  line-height: 2;
+  font-size: 14.5px;
+  height: auto;
+  overflow: visible;
+  text-align: left;
+}
+
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  margin: 4px 0 10px;
+  display: table;
+}
+table.data caption { text-align: left; font-weight: 700; margin-bottom: 3px; }
+table.data th, table.data td { padding: 3px 6px; border-bottom: 1px solid var(--rule-soft); }
+table.data thead th {
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  text-align: left;
+  background: rgba(0,0,0,.04);
+}
+table.data td.num, table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.data tr.hl td { background: rgba(140,45,25,.08); font-weight: 700; }
+
+.toc, .schedule {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  width: auto;
+  display: block;
+}
+.toc li, .schedule li {
+  padding: 4px 0;
+  border-bottom: 1px dotted var(--rule-soft);
+  display: flex;
+  gap: 8px;
+}
+.toc .when, .schedule .when { font-weight: 700; min-width: 4.5em; }
+
+.brief .item { margin-bottom: 6px; }
+.brief .item b { font-family: var(--gothic); }
+.brief .item b::before { content: "◆"; color: var(--accent); margin-right: .15em; }
+
+.ad-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 2px solid var(--rule);
+  writing-mode: horizontal-tb;
+  direction: ltr;
+  height: auto;
+  overflow: visible;
+}
+.ad {
+  border: 2px solid var(--ink);
+  background: var(--paper-ad);
+  padding: 8px;
+  font-family: var(--gothic);
+  position: relative;
+  min-height: 110px;
+  line-height: 1.45;
+}
+.ad .ad-label {
+  position: absolute;
+  top: -1px;
+  right: 6px;
+  font-size: 9px;
+  letter-spacing: .2em;
+  background: var(--paper-ad);
+  padding: 0 4px;
+  color: var(--ink-soft);
+}
+.ad h4 {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: .05em;
+}
+.ad p { margin: 0; font-size: 11.5px; text-align: center; }
+.ad img { display: block; border: 0; margin: 0 auto 4px; max-height: 84px; max-width: 100%; width: auto; }
+.ad.wide { grid-column: span 2; }
+.ad.banner { grid-column: span 4; display: grid; grid-template-columns: 220px 1fr; gap: 14px; align-items: center; min-height: 168px; }
+.ad.half { grid-column: span 2; display: grid; grid-template-columns: 128px 1fr; gap: 10px; align-items: center; min-height: 156px; }
+.ad.banner img, .ad.half img { max-height: 148px; width: 100%; height: 148px; object-fit: cover; margin: 0; }
+.ad.banner h4, .ad.half h4 { text-align: left; font-size: 22px; letter-spacing: .08em; margin: 0 0 2px; }
+.ad.half h4 { font-size: 18px; }
+.ad.banner p, .ad.half p { text-align: left; font-size: 13px; margin: 0 0 4px; }
+.ad .catch { font-weight: 800; font-size: 15px; }
+.ad.accent-border { border-color: var(--accent); }
+.ad .price { font-weight: 800; color: var(--accent); font-size: 12.5px; margin-top: 3px; text-align: center; }
+
+b.mark { color: var(--accent); font-weight: 800; }
+b.sea { color: #1f5f7a; font-weight: 800; }
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 0 0 10px;
+}
+.facts .fact {
+  background: #fffdf7;
+  border-top: 4px solid var(--accent);
+  padding: 8px 6px 6px;
+  text-align: center;
+}
+.facts .fact.sea { border-top-color: #1f5f7a; }
+.facts .fact .n {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.15;
+  color: var(--accent);
+}
+.facts .fact.sea .n { color: #1f5f7a; }
+.facts .fact .k {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .04em;
+  margin-bottom: 2px;
+}
+.facts .fact .l {
+  font-family: var(--gothic);
+  font-size: 11.5px;
+  line-height: 1.35;
+  margin-top: 2px;
+}
+.fact-head {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .14em;
+  margin: 0 0 6px;
+  text-indent: 0;
+  color: var(--accent);
+}
+.scale { margin: 2px 0 10px; }
+.scale-row {
+  display: grid;
+  grid-template-columns: 5.2em 1fr 2.4em;
+  gap: 6px;
+  align-items: center;
+  font-family: var(--gothic);
+  font-size: 12px;
+  margin: 3px 0;
+}
+.scale-bar { display: block; height: 12px; background: var(--accent); }
+.scale-bar.s0 { width: 8%; background: var(--rule-soft); }
+.scale-bar.s1 { width: 18%; }
+.scale-bar.s3 { width: 36%; }
+.scale-bar.s5 { width: 54%; }
+.scale-bar.s7 { width: 72%; }
+.scale-bar.s10 { width: 100%; background: #1f5f7a; }
+
+.colophon {
+  border-top: 4px solid var(--rule);
+  margin-top: 8px;
+  padding-top: 8px;
+  font-family: var(--gothic);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: none;
+}
+.colophon a { color: inherit; }
+
+.archive {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--gothic);
+}
+.archive li {
+  border-bottom: 1px solid var(--rule-soft);
+  padding: 10px 0;
+  display: grid;
+  grid-template-columns: 11em 1fr;
+  gap: 12px;
+}
+.archive a { color: var(--ink); font-weight: 700; text-decoration: none; }
+.archive a:hover { color: var(--accent); }
+
+@media (max-width: 900px) {
+  .paper { padding: 16px; }
+  .masthead { grid-template-columns: 1fr; text-align: center; }
+  .masthead .date { text-align: center; }
+  .masthead .title { font-size: 40px; }
+  .grid > *, .sheet-body > *,
+  .sheet-body.front > *,
+  .sheet-body.cols-2 > *,
+  .sheet-body.cols-3 > *,
+  .sheet-body.cols-3-rail > *,
+  .sheet-body > .cell,
+  .grid > .cell { grid-column: 1 / -1 !important; }
+  .ruled-left, .ruled-right { border: 0; padding: 0; }
+  .cols-2, .cols-3 { columns: 1; }
+  .ad-row { grid-template-columns: 1fr 1fr; }
+  .ad.banner, .ad.half { grid-column: span 2; grid-template-columns: 120px 1fr; }
+  .ad.banner img, .ad.half img { height: 110px; max-height: 110px; }
+  figure.float-left, figure.float-right { float: none; width: 100%; margin: 0 0 10px; }
+  .facts { grid-template-columns: 1fr; }
+  .mill { grid-template-columns: 1fr; }
+  .mill .arr { transform: rotate(90deg); }
+}
+@media (max-width: 420px) {
+  .masthead .title br.narrow { display: block; }
+}
+@media (max-width: 560px) {
+  .ad-row { grid-template-columns: minmax(0, 1fr); }
+  .ad.wide, .ad.banner, .ad.half { grid-column: 1 / -1; }
+  .ad.banner, .ad.half { grid-template-columns: 1fr; }
+  .ad.banner img, .ad.half img { height: 180px; max-height: 180px; }
+  .ticker { font-size: 12px; }
+  table.data { font-size: 12px; }
+}
+@page { size: A3 portrait; margin: 14mm; }
+@media print {
+  body { background: none; padding: 0; }
+  .paper { box-shadow: none; max-width: none; padding: 0; }
+  .page { break-before: page; margin: 0; padding: 8mm 0 0; border: 0; }
+  .page:first-of-type { break-before: auto; padding-top: 0; }
+  .page + .page { border: 0; }
+  h1, h2, h3, .v-headline, .v-sub { break-after: avoid; }
+  figure, .ad, .box, table, .wx-board, .ad-row { break-inside: avoid; }
+  img { break-inside: avoid; }
+  img.fitmap.battle { max-height: 168mm; width: auto; max-width: 100%; }
+  img.fitmap.battle.compact { max-height: 148mm; max-width: min(100%, 960px); }
+  img.fitmap.mainmap { max-height: 85mm; }
+  img.fitmap.seamap { max-height: 85mm; }
+  .photo img.fitphoto,
+  figure.cap-photo img { max-height: 48mm; width: auto; object-fit: contain; }
+  .page:nth-of-type(5) .photo img.fitphoto { max-height: 36mm; }
+  .boarding-flow { break-inside: avoid; }
+
+  /* 第155期夕刊: 各面をA3一枚に収める印刷専用調整 */
+  #issue-155 { font-size: 12px; line-height: 1.36; }
+  #issue-155 p { margin-bottom: .28em; }
+  #issue-155 .page { padding-top: 3mm; }
+  #issue-155 .page:first-of-type { padding-top: 0; }
+  #issue-155 .sheet-top { margin-bottom: 5px; }
+  #issue-155 .sheet-body,
+  #issue-155 .sheet-body.front { gap: 5px 12px; }
+  #issue-155 .v-headline,
+  #issue-155 .headline,
+  #issue-155 .v-title,
+  #issue-155 .head-band .v-headline { font-size: 22px; line-height: 1.15; margin-bottom: 3px; }
+  #issue-155 .front .v-headline { font-size: 29px; }
+  #issue-155 .v-sub,
+  #issue-155 .subhead { font-size: 12.5px; line-height: 1.22; margin-bottom: 4px; padding-bottom: 3px; }
+  #issue-155 .lead { font-size: 12px; }
+  #issue-155 .v h2.story-heading { font-size: 16px; margin-top: .7em; }
+  #issue-155 .v h3 { font-size: 12px; margin-top: .4em; }
+  #issue-155 figure,
+  #issue-155 .photo { margin-bottom: 4px; }
+  #issue-155 img.fitmap { max-height: 65mm; }
+  #issue-155 img.fitmap.battle.compact { max-height: 78mm; }
+  #issue-155 img.fitmap.mainmap,
+  #issue-155 img.fitmap.seamap { max-height: 55mm; }
+  #issue-155 .photo img.fitphoto { max-height: 34mm; }
+  #issue-155 figcaption { font-size: 9px; line-height: 1.18; }
+  #issue-155 .box { padding: 4px 6px; margin-bottom: 4px; }
+  #issue-155 .column-title { font-size: 10px; margin-bottom: 3px; }
+  #issue-155 table.data { font-size: 10px; margin-bottom: 4px; }
+  #issue-155 table.data th,
+  #issue-155 table.data td { padding: 1px 3px; }
+  #issue-155 .toc { font-size: 10px; }
+  #issue-155 .toc li { padding: 1px 0; }
+  #issue-155 .ad-row { margin-top: 5px; padding-top: 4px; }
+  #issue-155 .ad.banner { min-height: 76px; grid-template-columns: 110px 1fr; padding: 5px; }
+  #issue-155 .ad.banner img { height: 64px; max-height: 64px; }
+  #issue-155 .ad.banner h4 { font-size: 15px; }
+  #issue-155 .ad.banner p { font-size: 9px; margin-bottom: 1px; }
+  #issue-155 .boarding-flow { gap: 4px; }
+  #issue-155 .boarding-flow .boarding-step { padding: 3px 4px; }
+  #issue-155 .boarding-flow .boarding-step b { font-size: 10px; margin-bottom: 1px; }
+  #issue-155 .boarding-flow .boarding-step span { font-size: 8px; }
+  #issue-155 .colophon { margin-top: 3px; padding-top: 3px; font-size: 9px; }
+
+  /* 第156期朝刊: 各面をA3一枚に収める印刷専用調整（155と同型） */
+  #issue-156 { font-size: 12px; line-height: 1.36; }
+  #issue-156 p { margin-bottom: .28em; }
+  #issue-156 .page { padding-top: 3mm; }
+  #issue-156 .page:first-of-type { padding-top: 0; }
+  #issue-156 .sheet-top { margin-bottom: 5px; }
+  #issue-156 .sheet-body,
+  #issue-156 .sheet-body.front { gap: 5px 12px; }
+  #issue-156 .v-headline,
+  #issue-156 .headline,
+  #issue-156 .v-title,
+  #issue-156 .head-band .v-headline { font-size: 22px; line-height: 1.15; margin-bottom: 3px; }
+  #issue-156 .front .v-headline { font-size: 29px; }
+  #issue-156 .v-sub,
+  #issue-156 .subhead { font-size: 12.5px; line-height: 1.22; margin-bottom: 4px; padding-bottom: 3px; }
+  #issue-156 .lead { font-size: 12px; }
+  #issue-156 .v h2.story-heading { font-size: 16px; margin-top: .7em; }
+  #issue-156 .v h3 { font-size: 12px; margin-top: .4em; }
+  #issue-156 figure,
+  #issue-156 .photo { margin-bottom: 4px; }
+  #issue-156 img.fitmap { max-height: 65mm; }
+  #issue-156 img.fitmap.battle { max-height: 92mm; }
+  #issue-156 img.fitmap.battle.compact { max-height: 78mm; }
+  #issue-156 img.fitmap.mainmap,
+  #issue-156 img.fitmap.seamap { max-height: 55mm; }
+  #issue-156 .photo img.fitphoto { max-height: 34mm; }
+  #issue-156 figcaption { font-size: 9px; line-height: 1.18; }
+  #issue-156 .box { padding: 4px 6px; margin-bottom: 4px; }
+  #issue-156 .column-title { font-size: 10px; margin-bottom: 3px; }
+  #issue-156 table.data { font-size: 10px; margin-bottom: 4px; }
+  #issue-156 table.data th,
+  #issue-156 table.data td { padding: 1px 3px; }
+  #issue-156 .toc { font-size: 10px; }
+  #issue-156 .toc li { padding: 1px 0; }
+  #issue-156 .ad-row { margin-top: 5px; padding-top: 4px; }
+  #issue-156 .ad.banner { min-height: 76px; grid-template-columns: 110px 1fr; padding: 5px; }
+  #issue-156 .ad.banner img { height: 64px; max-height: 64px; }
+  #issue-156 .ad.banner h4 { font-size: 15px; }
+  #issue-156 .ad.banner p { font-size: 9px; margin-bottom: 1px; }
+  #issue-156 .boarding-flow { gap: 4px; }
+  #issue-156 .boarding-flow .boarding-step { padding: 3px 4px; }
+  #issue-156 .boarding-flow .boarding-step b { font-size: 10px; margin-bottom: 1px; }
+  #issue-156 .boarding-flow .boarding-step span { font-size: 8px; }
+  #issue-156 .colophon { margin-top: 3px; padding-top: 3px; font-size: 9px; }
+  /* 156 1面(front)は情報量が多いので、戦況図と表をさらに詰めて一枚に収める */
+  #issue-156 .front .v-headline { font-size: 26px; }
+  #issue-156 .front img.fitmap.battle { max-height: 74mm; }
+  #issue-156 .front .rail table.data,
+  #issue-156 .sheet-body.front table.data { font-size: 9px; margin-bottom: 3px; }
+  #issue-156 .sheet-body.front .box { padding: 3px 6px; margin-bottom: 3px; }
+  #issue-156 .sheet-body.front .toc { font-size: 9px; }
+  #issue-156 .sheet-body.front .ad-row { margin-top: 3px; padding-top: 3px; }
+
+  /* 第157期夕刊: 各面をA3一枚に収める印刷専用調整（156と同型） */
+  #issue-157 { font-size: 12px; line-height: 1.36; }
+  #issue-157 p { margin-bottom: .28em; }
+  #issue-157 .page { padding-top: 3mm; }
+  #issue-157 .page:first-of-type { padding-top: 0; }
+  #issue-157 .sheet-top { margin-bottom: 5px; }
+  #issue-157 .sheet-body,
+  #issue-157 .sheet-body.front { gap: 5px 12px; }
+  #issue-157 .v-headline,
+  #issue-157 .headline,
+  #issue-157 .v-title,
+  #issue-157 .head-band .v-headline { font-size: 22px; line-height: 1.15; margin-bottom: 3px; }
+  #issue-157 .front .v-headline { font-size: 26px; }
+  #issue-157 .v-sub,
+  #issue-157 .subhead { font-size: 12.5px; line-height: 1.22; margin-bottom: 4px; padding-bottom: 3px; }
+  #issue-157 .lead { font-size: 12px; }
+  #issue-157 .v h2.story-heading { font-size: 16px; margin-top: .7em; }
+  #issue-157 .v h3 { font-size: 12px; margin-top: .4em; }
+  #issue-157 figure,
+  #issue-157 .photo { margin-bottom: 4px; }
+  #issue-157 img.fitmap { max-height: 65mm; }
+  #issue-157 img.fitmap.battle { max-height: 92mm; }
+  #issue-157 img.fitmap.battle.compact { max-height: 78mm; }
+  #issue-157 img.fitmap.mainmap,
+  #issue-157 img.fitmap.seamap { max-height: 55mm; }
+  #issue-157 figcaption { font-size: 9px; line-height: 1.18; }
+  #issue-157 .box { padding: 4px 6px; margin-bottom: 4px; }
+  #issue-157 .column-title { font-size: 10px; margin-bottom: 3px; }
+  #issue-157 table.data { font-size: 10px; margin-bottom: 4px; }
+  #issue-157 table.data th,
+  #issue-157 table.data td { padding: 1px 3px; }
+  #issue-157 .toc { font-size: 10px; }
+  #issue-157 .toc li { padding: 1px 0; }
+  #issue-157 .ad-row { margin-top: 5px; padding-top: 4px; }
+  #issue-157 .ad.banner { min-height: 76px; grid-template-columns: 110px 1fr; padding: 5px; }
+  #issue-157 .ad.banner img { height: 64px; max-height: 64px; }
+  #issue-157 .ad.banner h4 { font-size: 15px; }
+  #issue-157 .ad.banner p { font-size: 9px; margin-bottom: 1px; }
+  #issue-157 .boarding-flow { gap: 4px; }
+  #issue-157 .boarding-flow .boarding-step { padding: 3px 4px; }
+  #issue-157 .boarding-flow .boarding-step b { font-size: 10px; margin-bottom: 1px; }
+  #issue-157 .boarding-flow .boarding-step span { font-size: 8px; }
+  #issue-157 .colophon { margin-top: 3px; padding-top: 3px; font-size: 9px; }
+  #issue-157 .front img.fitmap.battle { max-height: 74mm; }
+  #issue-157 .sheet-body.front table.data { font-size: 9px; margin-bottom: 3px; }
+  #issue-157 .sheet-body.front .box { padding: 3px 6px; margin-bottom: 3px; }
+  #issue-157 .sheet-body.front .toc { font-size: 9px; }
+  #issue-157 .sheet-body.front .ad-row { margin-top: 3px; padding-top: 3px; }
+
+  /* 第158期朝刊: 各面をA3一枚に収める印刷専用調整（157と同型） */
+  #issue-158 { font-size: 12px; line-height: 1.36; }
+  #issue-158 p { margin-bottom: .28em; }
+  #issue-158 .page { padding-top: 3mm; }
+  #issue-158 .page:first-of-type { padding-top: 0; }
+  #issue-158 .sheet-top { margin-bottom: 5px; }
+  #issue-158 .sheet-body,
+  #issue-158 .sheet-body.front { gap: 5px 12px; }
+  #issue-158 .v-headline,
+  #issue-158 .headline,
+  #issue-158 .v-title,
+  #issue-158 .head-band .v-headline { font-size: 22px; line-height: 1.15; margin-bottom: 3px; }
+  #issue-158 .front .v-headline { font-size: 26px; }
+  #issue-158 .v-sub,
+  #issue-158 .subhead { font-size: 12.5px; line-height: 1.22; margin-bottom: 4px; padding-bottom: 3px; }
+  #issue-158 .lead { font-size: 12px; }
+  #issue-158 .v h2.story-heading { font-size: 16px; margin-top: .7em; }
+  #issue-158 .v h3 { font-size: 12px; margin-top: .4em; }
+  #issue-158 figure,
+  #issue-158 .photo { margin-bottom: 4px; }
+  #issue-158 img.fitmap { max-height: 65mm; }
+  #issue-158 img.fitmap.battle { max-height: 92mm; }
+  #issue-158 img.fitmap.battle.compact { max-height: 78mm; }
+  #issue-158 img.fitmap.mainmap,
+  #issue-158 img.fitmap.seamap { max-height: 55mm; }
+  #issue-158 figcaption { font-size: 9px; line-height: 1.18; }
+  #issue-158 .box { padding: 4px 6px; margin-bottom: 4px; }
+  #issue-158 .column-title { font-size: 10px; margin-bottom: 3px; }
+  #issue-158 table.data { font-size: 10px; margin-bottom: 4px; }
+  #issue-158 table.data th,
+  #issue-158 table.data td { padding: 1px 3px; }
+  #issue-158 .toc { font-size: 10px; }
+  #issue-158 .toc li { padding: 1px 0; }
+  #issue-158 .ad-row { margin-top: 5px; padding-top: 4px; }
+  #issue-158 .ad.banner { min-height: 76px; grid-template-columns: 110px 1fr; padding: 5px; }
+  #issue-158 .ad.banner img { height: 64px; max-height: 64px; }
+  #issue-158 .ad.banner h4 { font-size: 15px; }
+  #issue-158 .ad.banner p { font-size: 9px; margin-bottom: 1px; }
+  #issue-158 .boarding-flow { gap: 4px; }
+  #issue-158 .boarding-flow .boarding-step { padding: 3px 4px; }
+  #issue-158 .boarding-flow .boarding-step b { font-size: 10px; margin-bottom: 1px; }
+  #issue-158 .boarding-flow .boarding-step span { font-size: 8px; }
+  #issue-158 .colophon { margin-top: 3px; padding-top: 3px; font-size: 9px; }
+  #issue-158 .front img.fitmap.battle { max-height: 74mm; }
+  #issue-158 .sheet-body.front table.data { font-size: 9px; margin-bottom: 3px; }
+  #issue-158 .sheet-body.front .box { padding: 3px 6px; margin-bottom: 3px; }
+  #issue-158 .sheet-body.front .toc { font-size: 9px; }
+  #issue-158 .sheet-body.front .ad-row { margin-top: 3px; padding-top: 3px; }
+
+  /* 第159期夕刊: 各面をA3一枚に収める印刷専用調整（158と同型） */
+  #issue-159 { font-size: 12px; line-height: 1.36; }
+  #issue-159 p { margin-bottom: .28em; }
+  #issue-159 .page { padding-top: 3mm; }
+  #issue-159 .page:first-of-type { padding-top: 0; }
+  #issue-159 .sheet-top { margin-bottom: 5px; }
+  #issue-159 .sheet-body,
+  #issue-159 .sheet-body.front { gap: 5px 12px; }
+  #issue-159 .v-headline,
+  #issue-159 .headline,
+  #issue-159 .v-title,
+  #issue-159 .head-band .v-headline { font-size: 22px; line-height: 1.15; margin-bottom: 3px; }
+  #issue-159 .front .v-headline { font-size: 26px; }
+  #issue-159 .v-sub,
+  #issue-159 .subhead { font-size: 12.5px; line-height: 1.22; margin-bottom: 4px; padding-bottom: 3px; }
+  #issue-159 .lead { font-size: 12px; }
+  #issue-159 .v h2.story-heading { font-size: 16px; margin-top: .7em; }
+  #issue-159 .v h3 { font-size: 12px; margin-top: .4em; }
+  #issue-159 figure,
+  #issue-159 .photo { margin-bottom: 4px; }
+  #issue-159 img.fitmap { max-height: 65mm; }
+  #issue-159 img.fitmap.battle { max-height: 92mm; }
+  #issue-159 img.fitmap.battle.compact { max-height: 78mm; }
+  #issue-159 img.fitmap.mainmap,
+  #issue-159 img.fitmap.seamap { max-height: 55mm; }
+  #issue-159 figcaption { font-size: 9px; line-height: 1.18; }
+  #issue-159 .box { padding: 4px 6px; margin-bottom: 4px; }
+  #issue-159 .column-title { font-size: 10px; margin-bottom: 3px; }
+  #issue-159 table.data { font-size: 10px; margin-bottom: 4px; }
+  #issue-159 table.data th,
+  #issue-159 table.data td { padding: 1px 3px; }
+  #issue-159 .toc { font-size: 10px; }
+  #issue-159 .toc li { padding: 1px 0; }
+  #issue-159 .ad-row { margin-top: 5px; padding-top: 4px; }
+  #issue-159 .ad.banner { min-height: 76px; grid-template-columns: 110px 1fr; padding: 5px; }
+  #issue-159 .ad.banner img { height: 64px; max-height: 64px; }
+  #issue-159 .ad.banner h4 { font-size: 15px; }
+  #issue-159 .ad.banner p { font-size: 9px; margin-bottom: 1px; }
+  #issue-159 .boarding-flow { gap: 4px; }
+  #issue-159 .boarding-flow .boarding-step { padding: 3px 4px; }
+  #issue-159 .boarding-flow .boarding-step b { font-size: 10px; margin-bottom: 1px; }
+  #issue-159 .boarding-flow .boarding-step span { font-size: 8px; }
+  #issue-159 .colophon { margin-top: 3px; padding-top: 3px; font-size: 9px; }
+  #issue-159 .front img.fitmap.battle { max-height: 74mm; }
+  #issue-159 .sheet-body.front table.data { font-size: 9px; margin-bottom: 3px; }
+  #issue-159 .sheet-body.front .box { padding: 3px 6px; margin-bottom: 3px; }
+  #issue-159 .sheet-body.front .toc { font-size: 9px; }
+  #issue-159 .sheet-body.front .ad-row { margin-top: 3px; padding-top: 3px; }
+}
+
+/* 第128期・入門講座：乗船から上陸までの手順 */
+.boarding-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+  margin: 4px 0 6px;
+  font-family: var(--gothic);
+  line-height: 1.4;
+}
+.boarding-flow .boarding-step {
+  min-width: 0;
+  border: 1px solid var(--rule);
+  background: var(--paper-ad);
+  padding: 7px 8px;
+  break-inside: avoid;
+}
+.boarding-flow .boarding-step b {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.boarding-flow .boarding-step span {
+  display: block;
+  font-size: 11px;
+}
+@media screen and (max-width: 700px) {
+  .boarding-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+</style>
+</head>
+<body id="issue-175">
+<div class="paper">
+<header class="masthead">
+  <div class="issue"><span class="edition">夕刊</span><br>第175期<br>トレーディア新聞社<br>定価　無料</div>
+  <div class="title">トレーディア<br class="narrow">新聞<small>THE TREDIA SHIMBUN</small></div>
+  <div class="date">トレーディア暦3年8月第4週<br>盛夏<br>本日15面</div>
+</header>
+<div class="ticker">
+  <span><b>主な記事</b></span><span>カペレナ、中立を宣言　青海と講和</span><span>青海は黄砂とも停戦、二戦線を畳む</span>
+  <span>教団、灰岩の都を囲む　町と兵站を奪う</span><span>教団の同盟軍入り、再び拒まれる</span><span>オリョルッル、百七十五期杯を受ける</span><span>火災、六か国で七万六千人</span><span>弾薬、十九を割る</span>
+</div>
+
+<!-- 1面 総合 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">総合</span>旗を降ろし、荷は通す<span class="pageno">1</span></div>
+<div class="sheet-body front">
+<div class="story"><div class="v">
+<h1 class="v-headline">カペレナ、中立を宣言　青海と講和<br>「王国は中立とす、されど両陣営への貿易は続行」</h1>
+<p class="v-sub">黒潮救援の援軍艦を沈められた青海が和を求め、カペレナが応じた　連合軍にとどまりつつ掲げた中立が、二股論に一つの答えを出した</p>
+<figure class="photo"><img class="fitphoto" src="../images/175-夕刊/175-capelena-neutral.png" alt="カペレナ王国の首都カペナグラードの議事堂前で、役人が中立を告げる布告を読み上げ、その傍らで港へ向かう荷車の列が変わらず動いている様子を描いた銅版画"><figcaption>カペナグラードで読み上げられた中立の布告。旗印を降ろす一方、港へ向かう荷車の列は止まらない。</figcaption></figure>
+<p class="lead noindent"><span class="dateline">【総合部】</span>カペレナ王国が第175期、青海共和国との戦争を終え、「王国は中立とす、されど両陣営への貿易は続行される」との声明を掲げた。前号で伝えたとおり、カペレナは黒潮自治国の救援に向かう青海の援軍艦を撃沈した。援軍二万千人を失った青海はカペレナへ講和を求め、第175期、両国の停戦が成立した。カペレナは連合軍にとどまったまま、旗印の上では中立を名乗り、どの陣営とも商いを続けると宣言したのである。</p>
+<p>本紙はこれまで、連合軍に属しながら教団やオリョルッルと友好を結ぶカペレナの姿を「二股の外交」とみてきた。今回の中立宣言は、その身の振り方に、カペレナ自身が一つの名を与えたものと読める。どちらの陣営にも深くは与せず、しかし双方と商う——「中立にして通商」という立場を、声明として正面から掲げた。前号で在チェスの農園主レンゾ・ヴァルトマン氏が「独立国家として外交の自由は縛られない」と語った見方を、カペレナは行動で裏づけた形だ。外交面の詳報は2面。</p>
+<figure class="photo"><img class="fitmap battle" src="../images/175-夕刊/175-haigan-wide.jpg" alt="教団対灰岩の戦況図。灰岩の首都ロシュグリーズの南で教団の砲兵・歩兵が灰岩の歩兵を包囲し、一部隊が全滅"><figcaption>灰岩戦線。教団（下）の砲兵・歩兵が灰岩の歩兵を包囲し、一部隊が全滅した。灰岩の首都ロシュグリーズは図の北にある。</figcaption></figure>
+<h2 class="story-heading">教団、灰岩の都を囲む</h2>
+<p>狐っ娘の尻尾教団は灰岩王国の町と兵站基地を奪い、兵站では予備兵千人が投降し、別の町では食糧五万トンを徴発した。灰岩の歩兵一部隊も玉砕し、人口は二万千九百人まで減った。首都ロシュグリーズは、もはや教団の目前にある。詳報は3面。</p>
+<h2 class="story-heading">オリョルッル、百七十五期杯を受ける</h2>
+<p>首位オリョルッル王国が、第175期の節目に「百七十五期杯」を受けた。人口百八十万六千六百人、領土三百七十一区画。黄砂との停戦も成り、北の巨人はいよいよ抜きん出た。詳報は8面。</p>
+</div></div>
+<aside class="rail">
+<table class="data"><caption>第175期の主な動き</caption><tbody>
+<tr class="hl"><td>カペレナ</td><td>中立を宣言・青海と講和</td></tr>
+<tr><td>青海―黄砂</td><td>停戦成立（二戦線を畳む）</td></tr>
+<tr class="hl"><td>教団―灰岩</td><td>町・兵站を占領、都に迫る</td></tr>
+<tr><td>教団の同盟軍入り</td><td>再び拒否される</td></tr>
+<tr><td>オリョルッル</td><td>百七十五期杯を受賞</td></tr>
+<tr><td>オリョルッル→桃谷</td><td>宣戦（180期開戦）</td></tr>
+<tr><td>火災</td><td class="num">六か国・7万6,800人</td></tr>
+<tr><td>弾薬相場</td><td class="num">18.9（十九割れ）</td></tr>
+</tbody></table>
+<div class="box"><div class="column-title">今号の紙面</div><ul class="toc">
+<li><span class="when">2面</span>カペレナの中立宣言</li>
+<li><span class="when">3面</span>教団、灰岩の都に迫る</li>
+<li><span class="when">4面</span>紅峰・朱川・銀嶺の戦線</li>
+<li><span class="when">5面</span>泰平対教団、装甲戦</li>
+<li><span class="when">6面</span>火災と移民</li>
+<li><span class="when">7面</span>交易と弾薬、十九割れ</li>
+<li><span class="when">8面</span>世界の都市図（上）</li>
+<li><span class="when">9面</span>世界の都市図（下）</li>
+<li><span class="when">10面</span>国特集　オリョルッル王国</li>
+<li><span class="when">11面</span>盛夏の空と潮目</li>
+<li><span class="when">12面</span>黒潮の谷の鍛冶市</li>
+<li><span class="when">13面</span>胡椒の夕涼み芝居</li>
+<li><span class="when">14面</span>翠湖の灯籠流し</li>
+<li><span class="when">15面</span>入門　商業同盟とは</li>
+</ul></div>
+<div class="box"><div class="column-title">本紙の見方</div>
+<p>カペレナの中立宣言は、旗を捨てる決断ではない。連合軍の籍は残したまま、戦う相手を減らし、商う相手を増やす。黒潮一国との戦だけを手元に残し、青海との二戦線を閉じた。本紙が「二股」と呼んできた綱渡りに、カペレナは「中立にして通商」という名札をつけた。旗の色より荷の流れを選ぶ——弱小国が乱世を生き抜く、一つの現実的な答えである。</p></div>
+</aside></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/175-夕刊/121-ad-steamer.jpg" alt="汽船の煙突"><div><h4>カペナグラード 両替・通商会所</h4><p class="catch">旗は中立、商いは両陣営へ。</p><p>どの港の荷も、どの国の銭も。中立を掲げる王国の通商会所が承ります。</p><p class="price">カペレナ・カペナグラード</p></div></div></div>
+</div></section>
+
+<!-- 2面 国際 カペレナの中立宣言 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">国際</span>二股に、名前がついた<span class="pageno">2</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">カペレナ「中立にして通商」　青海と講和し、戦は黒潮一国に<br>連合軍の籍は残したまま、旗印を降ろす</h2>
+<p class="v-sub">援軍艦を沈められた青海の講和要請に応じ、二戦線のうち一つを閉じた　教団・オリョルッルとの友好はそのまま、商いの道を広げる構え</p>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【国際部】</span>カペレナ王国が第175期、「王国は中立とす、されど両陣営への貿易は続行される」との声明を掲げ、青海共和国との戦争を終えた。前号で伝えたとおり、カペレナは黒潮の救援に向かう青海の援軍艦を撃沈した。援軍二万千人を失った青海はカペレナへ講和を求め、この期に停戦が成立している。カペレナが戦う相手は、第100期から続く黒潮一国だけになった。</p>
+<p>注目すべきは、カペレナが連合軍の籍を残したまま中立を名乗った点である。カペレナは今も連合軍の一員で、盟主は黄砂同盟、盟友には泰平天国とあろあろ国がいる。その陣営に属しながら、「王国は中立」と宣言し、「両陣営への貿易は続行」とうたう。旗の下にいながら、旗の色には染まらない——言葉の上での矛盾を、カペレナはあえて声明に刻んだ。</p>
+<p>本紙はこれまで数号にわたり、カペレナの立ち位置を「二股の外交」と評してきた。連合軍に属しながら、その盟主・黄砂と戦う相手のオリョルッルに鉱山を貸し、同じく盟友・泰平が攻める教団とは友好を保つ。旗印と実利が食い違うこの綱渡りに、カペレナ自身が「中立にして通商」という名札を与えた。前号で本紙の取材に応じた在チェス＝シロバキアの農園主レンゾ・ヴァルトマン氏は、「独立国家として、誰と戦い誰と交わるかを自分で決めるのは当たり前」と語っていた。カペレナの中立宣言は、その見方を当の本人が行動で裏づけた格好である。</p>
+<p>中立の実利は、はっきりしている。青海との海の戦を畳めば、黒潮一国に兵を集められる。両陣営と商いを続けると明言すれば、どちらの港も使え、交易の幅は広がる。カペレナの食料は七十八万千七百トンへ積み上がり、オリョルッルへ貸した鉱山の見返りも入り続ける。戦う相手を一つに絞り、商う相手を両陣営に広げる。弱小の王国が版図を保つための、計算された身の振り方だ。もっとも、連合軍の盟友から見れば、同じ旗の下で中立を名乗る国の姿は、心もとなく映るかもしれない。カペレナの「中立にして通商」が、連合軍の結束にどう響くかは、なお読み切れない。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>カペレナの立ち位置</caption><tbody>
+<tr class="hl"><td>声明</td><td>「王国は中立とす、されど両陣営への貿易は続行」</td></tr>
+<tr><td>所属</td><td>連合軍（盟主・黄砂）のまま</td></tr>
+<tr><td>友好</td><td>教団・オリョルッル</td></tr>
+<tr class="hl"><td>残る戦争</td><td>黒潮一国（第100期〜）</td></tr>
+<tr><td>畳んだ戦争</td><td>青海（講和成立）</td></tr>
+<tr><td>食料</td><td class="num">78万1,700トン</td></tr>
+</tbody></table>
+<div class="box"><div class="column-title">経緯　二股から中立へ</div>
+<table class="data"><tbody>
+<tr><td>前々号</td><td>オリョへ鉱山を百期貸与</td></tr>
+<tr><td>前号</td><td>黒潮救援の青海艦を撃沈</td></tr>
+<tr class="hl"><td>本号</td><td>青海と講和、中立を宣言</td></tr>
+</tbody></table></div>
+<div class="box"><div class="column-title">論説　旗より荷を選ぶ</div>
+<p>カペレナは、連合軍の旗を降ろさずに中立を名乗った。これは言葉遊びではなく、戦う相手を減らし商う相手を増やすための、明快な選択だ。旗の色に殉じる余裕は、人口四十万の王国にはない。どの陣営とも商い、戦は最小限に絞る。本紙が「二股」と呼んだ綱渡りは、当人の言葉で「中立にして通商」と定義し直された。乱世の弱小国の、一つの生き方である。</p></div>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/175-夕刊/107-ad-ship.jpg" alt="客船"><div><h4>箱庭郵船・外交便</h4><p class="catch">講和の報も、中立の報も、確かに運ぶ。</p><p>国と国を結ぶ文書の便から、交易の荷まで。激動の時代を支えます。</p><p class="price">各国の港にて</p></div></div></div>
+</div></section>
+
+<!-- 3面 戦況 教団対灰岩 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">戦況</span>都、目前に<span class="pageno">3</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">教団、灰岩の町と兵站を奪う　都は目前<br>予備兵千人が投降・食糧五万トンを徴発、歩兵一部隊が玉砕</h2>
+<p class="v-sub">開戦から十一期　灰岩の累計損害は十一万八百人に達し、人口は二万千九百人　首都ロシュグリーズは陥落の瀬戸際</p>
+<figure class="photo"><img class="fitmap battle" src="../images/175-夕刊/175-haigan-wide.jpg" alt="教団対灰岩の戦況図。灰岩の首都ロシュグリーズの南で教団の砲兵・歩兵が灰岩の歩兵を包囲し、一部隊が全滅"><figcaption>灰岩戦線。教団（下）の砲兵・歩兵が灰岩の歩兵一部隊を包囲して玉砕させた。灰岩の首都ロシュグリーズは図の北、教団の首都は図の南にある。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【軍事部】</span>狐っ娘の尻尾教団が第175期、灰岩王国の町と兵站基地を相次いで占領した。兵站基地では予備兵千人が投降し、別の町では食糧五万トンを徴発している。灰岩の農場も一つ奪われた。灰岩は最前線の歩兵一部隊を玉砕で失い、今期の損害は五千九百人。教団は六百人にとどまった。第164期の開戦から十一期、灰岩が受けた損害は累計十一万八百人に達し、教団の二万五千六百人の四倍を超えた。</p>
+<p>戦いは教団の圧倒で進んだ。教団の砲兵が灰岩の歩兵へ一撃千七百人、第三軍と第十二軍の歩兵が三千三百人、千六百人と続けて撃ち込んだ。灰岩の歩兵も反撃に出て、教団の歩兵へ千人の損害を与える場面はあったものの、受けた一撃に見合う力はもはや残っていない。別の戦場では、教団第一軍の歩兵が灰岩の歩兵一部隊を玉砕させた。奪われた町、兵站、農場は、いずれも首都ロシュグリーズの周囲に点在する。包囲の輪は、都のすぐ外まで狭まっている。</p>
+<p>灰岩は王国軍の盟主である。その盟主が、人口二万千九百人、兵力二万七千六百人まで細った。前期の二万八千人からさらに六千百人減り、国の規模は人口二万台の小国のそれだ。食糧五万トンを徴発されたことは、残る民と兵を養う蓄えにも響く。灰岩は今期も徴兵に踏み切ったが、兵を補う速さより、削られる速さのほうが速い。</p>
+<p>追い詰められた灰岩に、わずかな猶予がある。首位オリョルッル王国との開戦が第176期に迫っていたが、両国は停戦の準備に入った。オリョルッルが灰岩への開戦を見送れば、灰岩は北の巨人という新たな敵を一つ、免れることになる。だが、北の敵を一つ免れても、教団の攻めは止まらない。都の外まで迫った教団の包囲が、次の期にロシュグリーズへ届くのか。灰岩の命運は、残りわずかな兵と、乏しい蓄えに懸かっている。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>教団対灰岩・第175期</caption><tbody>
+<tr class="hl"><td>灰岩の損害</td><td class="num">5,900人（累計11万800）</td></tr>
+<tr><td>教団の損害</td><td class="num">600人（累計2万5,600）</td></tr>
+<tr><td>占領</td><td>町・兵站基地・農場</td></tr>
+<tr><td>投降・徴発</td><td>予備兵1,000人・食糧5万トン</td></tr>
+<tr><td>灰岩の人口</td><td class="num">2万1,900人（−6,100）</td></tr>
+<tr><td>灰岩の兵力</td><td class="num">2万7,600人</td></tr>
+</tbody></table>
+<div class="box"><div class="column-title">解説　オリョルッルの矛は下りるか</div>
+<p>灰岩には、第176期にオリョルッルとの開戦が控えていた。だが両国は停戦の準備に入り、矛が下りる見込みが出てきた。教団に都を囲まれた灰岩にとって、北の巨人との戦を一つ避けられるのは、細い命綱である。もっとも、教団の包囲は、オリョルッルの矛が下りても緩まない。</p></div>
+<div class="box"><div class="column-title">論説　盟主の落城前夜</div>
+<p>王国軍の盟主・灰岩は、人口二万千九百人まで削られ、都の外まで教団に迫られた。失ったのは町と兵站と農場、そして徴発された食糧五万トン。守る兵も、養う糧も尽きかけている。陣営の仲間が宣戦で囲んでも、盟主の足元の火は消せない。ロシュグリーズの灯が、どこまでもつか。</p></div>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/175-夕刊/121-ad-lamp.jpg" alt="灯りのともった室内"><div><h4>ロシュグリーズ 岩陰の宿</h4><p class="catch">灯りの消えぬうちに、旅の宿を。</p><p>岩を刳り抜いた宿と、山の膳。瀬戸際の古都にも、灯はある。</p><p class="price">灰岩・ロシュグリーズ</p></div></div></div>
+</div></section>
+
+<!-- 4面 戦況 紅峰・朱川・銀嶺 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">戦況</span>押す側、押される側<span class="pageno">4</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">なのです、紅峰をさらに削る　朱川は町を奪われ兵を失う<br>チェスは銀嶺へ四千人、オリョルッルは黄砂の歩兵を玉砕</h2>
+<p class="v-sub">なのです対紅峰は二期目　朱川は丹城周辺の町を占領され、空兵一部隊が全滅した</p>
+</div>
+<div class="cell span-6">
+<figure class="photo"><img class="fitmap battle" src="../images/175-夕刊/175-koho-wide.jpg" alt="なのです対紅峰の戦況図。首都の南で海兵・歩兵と紅峰の歩兵・山岳兵が撃ち合う"><figcaption>紅峰戦線。なのです（緑）の海兵・歩兵が紅峰（赤）の首都ローテンホルンの南で攻め続ける。</figcaption></figure>
+</div>
+<div class="cell span-6">
+<figure class="photo"><img class="fitmap battle" src="../images/175-夕刊/175-shukawa-wide.jpg" alt="オラニウム対朱川の戦況図。丹城周辺でオラニウムの歩兵・装甲兵・山岳兵が朱川の砲兵・空兵を攻め、空兵が全滅"><figcaption>朱川戦線。オラニウム（青緑）が朱川（赤）の丹城周辺の町を占領し、朱川の空兵一部隊が全滅した。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【軍事部】</span>なのです主義人民共和国と紅峰公国の戦いは二期目に入り、なのですが紅峰をさらに削った。北東ではオラニウム連邦が朱川共和国の町を奪って空兵一部隊を全滅させ、東ではチェス＝シロバキア共和国が銀嶺侯国の砲兵へ四千人の損害を与えた。北ではオリョルッル王国が黄砂同盟の歩兵一部隊を玉砕させている。</p>
+<h3>なのです対紅峰　二期目も海兵が押す</h3>
+<p>なのですの海兵三部隊と歩兵が、紅峰の首都ローテンホルンの南で、紅峰の歩兵・山岳兵を攻め続けた。今期の損害は紅峰一万五百人、なのです五千四百人。開戦二期で累計は紅峰二万二千人、なのです一万二千人となった。紅峰の反撃も続き、歩兵と山岳兵がなのですの海兵へ合わせて二千四百人の死傷を与えている。紅峰は人口八万五千二百人まで減ったが、兵力九万九千六百人を保ち、首都の盾を崩していない。紅峰は自国の港へ対人ミサイルを放つ場面もあり、守りに必死である。</p>
+<h3>北東　朱川、町を奪われる</h3>
+<p>オラニウムの装甲兵が朱川の空兵へ四千百人の損害を与え、山岳兵がこの空兵部隊を玉砕させた。オラニウムは朱川の首都丹城の北の町を占領している。今期の損害は朱川六千六百人、オラニウム五百人。累計は朱川九万八千百人、オラニウム五万七百人。朱川の人口は三万千八百人、兵力は一万五千百人まで細った。朱川は丹城を保ってはいるが、守る兵は目に見えて減っている。</p>
+<h3>東・北　銀嶺と黄砂も削られる</h3>
+<p>チェスの装甲兵が銀嶺の砲兵へ四千人の損害を与えた。銀嶺の反撃は百人。累計は銀嶺三万二百人、チェス五千四百人となった。北では、オリョルッルの砲兵が黄砂の歩兵一部隊を玉砕させた。ただし、北の戦線には変化の兆しもある。オリョルッルと黄砂は、この期に停戦の準備へ入った。くわしくは2面・8面の外交の動きとあわせて見たい。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>各戦線・第175期の損害</caption><tbody>
+<tr class="hl"><td>なのです―紅峰</td><td class="num">紅峰10,500／なのです5,400</td></tr>
+<tr><td>オラニウム―朱川</td><td class="num">朱川6,600／オラニウム500</td></tr>
+<tr><td>チェス―銀嶺</td><td class="num">銀嶺4,000／チェス100</td></tr>
+<tr><td>オリョルッル―黄砂</td><td>歩兵1部隊を玉砕</td></tr>
+</tbody></table>
+<table class="data"><caption>累計の損害</caption><tbody>
+<tr><td>紅峰／なのです</td><td class="num">22,000／12,000</td></tr>
+<tr><td>朱川／オラニウム</td><td class="num">98,100／50,700</td></tr>
+<tr><td>銀嶺／チェス</td><td class="num">30,200／5,400</td></tr>
+</tbody></table>
+<div class="box"><div class="column-title">論説　削る速さの差</div>
+<p>どの戦線も、損害の比は五対一から十対一に開く。攻める側は部隊を玉砕させ、町を奪い、守る側は兵を減らし続ける。紅峰は首都の盾を保ち、朱川は丹城を保つが、盾の内側の兵は日に日に薄い。削る速さと、兵を補う速さ。その差が詰まらない限り、守勢の国は盾を立てたまま痩せていく。</p></div>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/175-夕刊/121-ad-net.jpg" alt="港で干された漁網"><div><h4>丹城 川港組合</h4><p class="catch">朱の川の港、灯を絶やさず。</p><p>川舟の係留と荷の番。瀬戸際の都の港を、守り抜きます。</p><p class="price">朱川・丹城</p></div></div></div>
+</div></section>
+
+<!-- 5面 戦況 泰平対教団 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">戦況</span>砲が装甲を削り続ける<span class="pageno">5</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">泰平の砲、教団の装甲へ一撃三千八百人<br>開戦四期、累計の損害は教団三万四千人、泰平二万二千七百人</h2>
+<p class="v-sub">装甲戦は四期目に入り、教団の装甲兵が削られ続ける　泰平は国庫を満たし、海兵を前線へ送り込んだ</p>
+<figure class="photo"><img class="fitmap battle" src="../images/175-夕刊/175-taihei-wide.jpg" alt="泰平対教団の戦況図。教団の装甲兵と泰平の装甲部隊・砲兵・山岳兵・海兵が鉱山地帯で撃ち合う"><figcaption>教団戦線（対泰平）。教団（左）の装甲兵へ、泰平（右）の砲兵・装甲部隊・山岳兵が攻めかかる。泰平は海兵も前線に加えた。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【軍事部】</span>泰平天国と狐っ娘の尻尾教団の装甲戦は、第175期で四期目に入った。今期の損害は教団一万百人、泰平五千人。開戦からの累計は教団三万四千人、泰平二万二千七百人に達した。教団の損害が泰平を一万千三百人上回る。砲で距離を取って削る泰平と、装甲で詰める教団という構図は、四期を通じて変わらない。</p>
+<p>今期も、泰平の砲が戦いを決めた。泰平の第二十軍の砲兵は、反撃を受けないまま教団の装甲兵へ一撃三千八百人を与えた。別の砲兵も教団の歩兵へ千八百人を撃ち込んでいる。装甲部隊も三千四百人、三千九百人と続けて叩いた。教団の装甲兵は、泰平の砲と装甲の二重の打撃に晒され、削られ続けている。反撃を伴わない砲撃の分は、公報の損害集計には含まれていないが、戦場で実際に流れた血はこれより重い。</p>
+<p>泰平の後方は、むしろ潤っている。国庫は一万四千四百九十三億円から、上限の一万八千億円まで満ちた。食料は七十一万二千五百トンから七十七万四千百トンへ積み増し、人手の不足も十七万九千三百人まで縮んだ。前線で兵を消耗しながら、蔵と庫は満ちていく。前号で見た「飢えた大国」の面影は、いまや薄い。泰平はこの期、前線に海兵を新たに送り込み、攻勢を強める構えを見せた。</p>
+<p>対する教団は、人口を三十一万三千七百人から三十三万二千百人へ戻し、兵力も五十六万六千八百人へ増やした。移民の流入と徴兵で、削られた分を埋めている。もっとも、教団の国庫は一万七千九百七十二億円から四千三百三十四億円へ、一万三千六百億円余りも激減した。二正面の戦費と、徴兵、技術の引き上げが、懐を一気に細らせたとみられる。兵と人は保っても、金が尽きれば戦は続けられない。教団の懐具合は、泰平戦と灰岩戦の両方の先行きを左右する。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>泰平対教団・第175期</caption><tbody>
+<tr class="hl"><td>教団の損害</td><td class="num">1万100人（累計3万4,000）</td></tr>
+<tr><td>泰平の損害</td><td class="num">5,000人（累計2万2,700）</td></tr>
+<tr><td>泰平の砲兵の一撃</td><td class="num">3,800人（反撃なし）</td></tr>
+<tr><td>泰平の国庫</td><td class="num">1兆8,000億円（上限）</td></tr>
+<tr><td>泰平の食料</td><td class="num">77万4,100トン</td></tr>
+<tr class="hl"><td>教団の国庫</td><td class="num">4,334億円（前期1兆7,972）</td></tr>
+<tr><td>教団の兵力</td><td class="num">56万6,800人</td></tr>
+</tbody></table>
+<div class="box"><div class="column-title">論説　満ちる庫、細る財布</div>
+<p>泰平は前線で兵を失いながら、国庫を上限まで満たし、食料を積み増した。教団は兵と人を保ちながら、国庫を一万三千六百億円も失った。削り合っているのは兵だけではない。戦費という財布もだ。砲に装甲を削られ続ける教団が、空になりかけた財布でどこまで二正面を支えるか。灰岩の都を囲む今が、その底力の正念場である。</p></div>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/175-夕刊/121-ad-rope.jpg" alt="巻かれた荷役用の綱"><div><h4>天都 兵站問屋</h4><p class="catch">満ちた蔵から、前線へ。</p><p>兵糧・弾薬・資材の手配。潤う大国の台所を、確かに回します。</p><p class="price">泰平・天都</p></div></div></div>
+</div></section>
+
+<!-- 6面 社会 火災・移民 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">社会</span>火と、国を移る人々<span class="pageno">6</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">火災、六か国で七万六千八百人　チェスは十か所で三万五千人<br>工場二つも焼ける</h2>
+<p class="v-sub">乾いた盛夏が火を広げ、被害は前期の五万を上回った　青海から銀嶺へ移民、怪獣いのらはなのですの町を踏み荒らす</p>
+<figure class="photo"><img class="fitmap" src="../images/175-夕刊/175-fire-chart.png" alt="第175期の国別火災被害のグラフ。チェスが突出し、オリョルッル、泰平が続く"><figcaption>第175期の火災による死亡。六か国二十か所で七万六千八百人。チェス＝シロバキアが十か所・三万五千三百人で突出した。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【社会部】</span>第175期の火災は、六か国に及び、あわせて七万六千八百人が死亡した。前期の七か国・五万二百人を大きく上回る。被害が突出したのはチェス＝シロバキア共和国で、都市と町の十か所が焼け、三万五千三百人が死亡した。オリョルッル王国は四か所・一万四千五百人、泰平天国は三か所・一万三千二百人。あろあろ国、なのです、スルガ、金野も町を焼かれた。火災は人口減だけでなく、なのですとオリョルッルで工場を一つずつ全壊させており、生産の足元にも傷を残した。</p>
+<p>火が広がった背景には、乾いた盛夏の空がある。雨の少ない日が続き、人口の多い都市を抱える国ほど、火の回りが速い。チェスは四方を敵に囲まれて戦いながら、後方では二期連続で三万人を超える民を火に奪われている。外の戦と内の火の二重の消耗が、この大国を静かに削り続けている。9面の気象面とあわせて読みたい。</p>
+<h3>人の流れと、怪獣</h3>
+<p>国を移る人の動きは、この期は小さかった。青海共和国から銀嶺侯国へ、仕事を求める六千人が渡った。前期に三万人規模の移民が相次いだのに比べれば、静かな一期である。いっぽう、中立地では怪獣キングいのらが、なのですの町を踏み荒らした。戦と火と天災が、それぞれ別の形で各地の暮らしを脅かしている。</p>
+<p>戦に絡む人の損失は、むしろ戦場で起きた。朱川共和国では、オラニウムの攻めで人口が五千二百人減り、灰岩王国は教団に町を奪われ食糧を徴発されて六千百人を失った。紅峰公国もなのですとの戦で八千百人減っている。火で失う人、戦で失う人、国を移る人。盛夏の社会面は、三つの形の人の減りで満ちている。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>第175期の火災被害（国別）</caption><tbody>
+<tr class="hl"><td>チェス＝シロバキア</td><td class="num">3万5,300人（10か所）</td></tr>
+<tr><td>オリョルッル王国</td><td class="num">1万4,500人（4か所＋工場）</td></tr>
+<tr><td>泰平天国</td><td class="num">1万3,200人（3か所）</td></tr>
+<tr><td>あろあろ国</td><td class="num">3,800人（1か所）</td></tr>
+<tr><td>なのです</td><td class="num">3,600人（1か所＋工場）</td></tr>
+<tr><td>スルガ</td><td class="num">3,600人（1か所）</td></tr>
+<tr><td>金野伯爵領</td><td class="num">2,800人（1か所）</td></tr>
+<tr class="hl"><td>六か国合計</td><td class="num">7万6,800人</td></tr>
+</tbody></table>
+<div class="box"><div class="column-title">短信　工場が二つ焼ける</div>
+<p>火災は人口減だけでなく、なのですとオリョルッルの工場を一つずつ全壊させた。前線の消耗に加え、後方の生産拠点も火で削られている。戦う国ほど、火の備えに手が回らない。</p></div>
+<div class="box"><div class="column-title">短信　怪獣、なのですへ</div>
+<p>中立地で暴れる怪獣キングいのらが、なのですの町を踏み荒らした。紅峰との戦を抱えるなのですに、天災が重なった。</p></div>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/175-夕刊/121-ad-bread.jpg" alt="焼き立ての麦菓子"><div><h4>各地の消防組</h4><p class="catch">乾いた盛夏こそ、火の用心。</p><p>火の見櫓と水桶の点検、工場の防火。二期続きの大火に、備えを怠りなく。</p><p class="price">各国の町にて</p></div></div></div>
+</div></section>
+
+<!-- 7面 経済 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">経済</span>弾薬、十九を割る<span class="pageno">7</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">弾薬、ついに十九割れ　六期で八・五下がる<br>なのですは交易四万七千で独走、教団の国庫は激減</h2>
+<p class="v-sub">戦が増えるほど弾は安くなる逆説が続く　カペレナは中立を掲げ商いを広げ、青海は競売で食料を買った</p>
+<figure class="photo"><img class="fitmap" src="../images/175-夕刊/175-ammo-chart.png" alt="弾薬の世界相場が第170期の27.38から第175期の18.89まで下がり続ける折れ線グラフ"><figcaption>弾薬の世界相場の推移。第170期の二十七・三八から六期連続で下がり、第175期に十九を割った。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【経済部】</span>弾薬の世界相場が第175期、ついに十九を割った。十八・八九である。第170期の二十七・三八から六期連続で下がり続け、この間の下げ幅は八・五に迫る。カペレナの中立宣言、教団の灰岩包囲、なのです対紅峰の二期目と、戦の火種は増える一方だが、弾の値はそれを尻目に沈み続けている。各国が戦に備えて弾を作り溜め、生産が消費を上回る構図が、半年を越えて変わらない。作るほど安くなる弾という逆説は、いよいよ底が見えないところまで来た。工業品も四十四・二八へ下げ、こちらも弾薬を追うように安い。</p>
+<p>交易では、なのです主義人民共和国が四万七千四百八十七を記録し、首位を守った。紅峰との戦のさなかでも、この国の商いは揺るがない。二位はオリョルッル王国の三万千六十一、三位は二正面を抱える狐っ娘の尻尾教団で二万七千八百四十八。上位の顔ぶれは四期連続で動いていない。</p>
+<p>国庫の明暗は大きく分かれた。泰平天国は上限の一万八千億円まで満ち、白波王国やチェスも上限に張り付く。対照的に、狐っ娘の尻尾教団の国庫は一万七千九百七十二億円から四千三百三十四億円へ、一万三千六百億円余りも激減した。二正面の戦費、相次ぐ徴兵、技術の引き上げが重なったとみられる。交易で三位につける国が、懐では火の車に陥っている。戦が長びくほど、戦う国の財布は細る。</p>
+<p>個別の商いも動いた。中立を宣言したカペレナ王国は、両陣営との通商を続けると掲げ、商いの道を広げる構えだ。青海共和国は競売で食料八十四単位を七十五億円で落札した。あろあろ国の民間はチェスへ工業品を送る長い約束を結び、オラニウムからテキスタンへの鉱石の約束は違約金三十三億円で打ち切られた。戦時の物流の乱れと、商いを広げる国。経済面は、相変わらず両方の顔を見せている。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>交易額 上位三か国</caption><tbody>
+<tr class="hl"><td>なのです</td><td class="num">47,487（独走）</td></tr>
+<tr><td>オリョルッル王国</td><td class="num">31,061</td></tr>
+<tr><td>狐っ娘の尻尾教団</td><td class="num">27,848（戦中で三位）</td></tr>
+</tbody></table>
+<table class="data"><caption>世界相場（前期比）</caption><tbody>
+<tr class="hl"><td>弾薬</td><td class="num">18.89（−1.43／十九割れ）</td></tr>
+<tr><td>工業品</td><td class="num">44.28（−0.62）</td></tr>
+<tr><td>燃料</td><td class="num">6.80（±0）</td></tr>
+<tr><td>石油・鉱石・鋼鉄・石材</td><td>横ばい</td></tr>
+</tbody></table>
+<div class="box"><div class="column-title">国庫の明暗</div>
+<table class="data"><tbody>
+<tr class="hl"><td>泰平</td><td class="num">1兆8,000億円（上限）</td></tr>
+<tr><td>教団</td><td class="num">4,334億円（−1兆3,638）</td></tr>
+<tr><td>カペレナ</td><td class="num">5,487億円</td></tr>
+</tbody></table></div>
+<div class="box"><div class="column-title">論説　財布が先に尽きる</div>
+<p>兵は徴兵で補え、人は移民で増える。だが国庫は、戦えば戦うほど一方向に減る。教団は兵と人を保ちながら、国庫を一万三千六百億円も失った。弾が安いのは救いだが、それは買う金があっての話だ。砲弾の値より先に、戦う国の財布が底をつく。教団の懐は、二正面の寿命を測る物差しになった。</p></div>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/175-夕刊/121-ad-scale.jpg" alt="天秤ばかり"><div><h4>環海経済協力機構</h4><p class="catch">海でつながる商いの輪、会員募集中。</p><p>友好国限定の港を共に使い、中継港の通過料は半額に。加盟は代表国の承認制です。</p><p class="price">代表国・なのです主義人民共和国</p></div></div></div>
+</div></section>
+
+<!-- 8面 地理 世界の都市図 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">地理</span>諸国の都をたどる（上）<span class="pageno">8</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">盤面に散らばる、百三十八の都市</h2>
+<p class="v-sub">首都二十五、大都市六十七、現代都市四十六　戦と交易の舞台となる諸国の都を、二面にわたり地図でたどる</p>
+<figure class="photo"><img class="fitmap mainmap" src="../images/175-夕刊/175-cities-capitals.png" alt="第175期の世界の首都図。各大陸に散らばる25か国の首都を赤い星で示した地図"><figcaption>第175期の世界の首都図。七つの大陸に、現存する二十五か国の首都が散らばる。星は首都の位置を示す。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【地理部】</span>戦況や交易の記事に、毎号のように都市の名が登場する。天都、ロシュグリーズ、丹城、ローテンホルン——それらは盤面のどこにあり、どの国のものなのか。本紙はこのほど、記者クラブの公表資料をもとに、現存する二十五か国の都市を一枚の地図に起こした。首都が二十五、大都市が六十七、現代都市が四十六。あわせて百三十八の都市が、七つの大陸に散らばっている。</p>
+<p>首都図（上）を見ると、各国の本拠の位置関係が一目で分かる。ボレアリス大陸の南には泰平の天都、セントラ大陸の中央には狐っ娘の尻尾教団の都と、紅峰のローテンホルンが近接する。ノルステア大陸には、オラニウム、あろあろ、スルガ、銀嶺といった国々の首都がひしめき、この一帯の戦が絶えない理由がうかがえる。南のロンギード大陸には、四方を敵に囲まれるチェス＝シロバキアの首都が、ただ一つ大きく構える。</p>
+<p>都市の数は、国の規模をそのまま映す。首位オリョルッル王国は、首都を含めて最多の十九都市を抱え、二位のなのですが十五、三位の青海が十二と続く。いずれも人口や交易で上位の国だ。対して、戦に削られた国の都市は乏しい。黒潮自治国は首都を失い、残る都市もわずか。灰岩王国は教団に町を次々と奪われ、都の周りが削られ続けている。都市の数と分布は、盤面の勢力図の、もう一つの顔である。</p>
+<p>本号は、まず全世界の首都図（上）と、都市の密なノルステア・セントラの二大陸を大きく掲げ、残る五大陸は次面（9面）に回す。ノルステア大陸（右上）には十か国近くがひしめき、現代都市が海沿いに連なる。都市名が密に重なる一帯は、位置を線で指し示した。セントラ大陸（右下）では、教団・泰平・灰岩・紅峰・なのですの戦線が交錯し、都市の奪い合いがそのまま戦況になっている。首都ロシュグリーズを囲まれた灰岩、首都の南を突かれる紅峰の位置も、この図で確かめられる。</p>
+<h3>三つの格——首都、大都市、現代都市</h3>
+<p>地図の印は三つに分かれる。星が首都、二重丸が大都市、黒丸が現代都市である。首都は二十五、すなわち現存する国の数とちょうど等しい。大都市は六十七、現代都市は四十六。この三つの格は、その国がどこまで育ったかの目安でもある。大都市と現代都市を多く抱える国ほど、人口と交易の土台が厚い。首位オリョルッルが十九、二位のなのですが十五という都市数は、戦果の多寡ではなく、長く積み上げてきた開発の厚みを映している。</p>
+<p>種別の分布には、国ごとの性格もにじむ。交易で盤面の頂を競うなのですやシンジケートは、現代都市を海沿いに連ね、港と工場で稼ぐ姿が図から読み取れる。対して、丘の開拓で版図を広げたオリョルッルは、内陸にも都市を点々と置き、ソルエクア大陸をほぼ一国で覆っている。都市の置き方そのものが、その国の生き方なのである。</p>
+<h3>消えた都、削られる都</h3>
+<p>都市の少なさは、戦の傷をそのまま示す。かつて谷に都を構えた黒潮自治国は、長い戦のすえ首都を失い、地図に残る都市はわずかとなった。セントラ大陸で教団に押される灰岩王国も、町を次々と奪われ、首都ロシュグリーズの周りが削られ続けている。地図の上で都市の印がまばらになった一帯は、そのまま、国が痩せていった跡でもある。都市図は勢力の大小を映すと同時に、どこで戦が国を削ったかを、静かに語っている。本紙は今後も、都の増減を折にふれて地図に起こし、盤面の移り変わりを伝えていきたい。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<figure class="photo"><img class="fitmap" src="../images/175-夕刊/175-cities-east.png" alt="第175期のノルステア大陸の都市図。オラニウム・あろあろ・スルガ・銀嶺などの首都と都市が密集"><figcaption>ノルステア大陸。オラニウム、あろあろ、スルガ、銀嶺などの都市が密集する。藍岬のシネモルスクも。</figcaption></figure>
+<figure class="photo"><img class="fitmap" src="../images/175-夕刊/175-cities-centra.png" alt="第175期のセントラ大陸の都市図。教団・紅峰・灰岩・桃谷・青海などの首都と都市"><figcaption>セントラ大陸。教団の都、紅峰のローテンホルン、灰岩のロシュグリーズなど、戦線の集まる一帯。</figcaption></figure>
+<div class="box"><div class="column-title">都市の数　上位三か国</div>
+<table class="data"><tbody>
+<tr class="hl"><td>オリョルッル王国</td><td class="num">19都市</td></tr>
+<tr><td>なのです</td><td class="num">15都市</td></tr>
+<tr><td>青海共和国</td><td class="num">12都市</td></tr>
+</tbody></table>
+<p>※首都・大都市・現代都市の合計。</p></div>
+<div class="box"><div class="column-title">都市の種別</div>
+<table class="data"><tbody>
+<tr><td>首都（★）</td><td class="num">25</td></tr>
+<tr><td>大都市（◎）</td><td class="num">67</td></tr>
+<tr><td>現代都市（●）</td><td class="num">46</td></tr>
+<tr class="hl"><td>合計</td><td class="num">138</td></tr>
+</tbody></table></div>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/175-夕刊/107-ad-festival.jpg" alt="祭りの賑わい"><div><h4>箱庭郵船・諸国周遊便</h4><p class="catch">七つの大陸の、都から都へ。</p><p>各国の港を結ぶ定期便。戦を避けた安全な航路で、諸国の都をお訪ねください。</p><p class="price">各国の港にて</p></div></div></div>
+</div></section>
+
+<!-- 9面 地理 世界の都市図（残る五大陸） -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">地理</span>諸国の都をたどる（下）<span class="pageno">9</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">北の二大陸、南の三大陸をめぐる</h2>
+<p class="v-sub">ボレアリス・ソルエクア・アウストレア・アカピ・ロンギード　前面に載せきれなかった五つの大陸の都を、一枚ずつたどる</p>
+</div>
+<div class="cell span-6">
+<figure class="photo"><img class="fitmap" src="../images/175-夕刊/175-cities-boreas.png" alt="第175期のボレアリス大陸の都市図。泰平・黄砂・テキスタンの首都と都市"><figcaption>ボレアリス大陸。泰平の天都、黄砂のネルシア、テキスタンのテキシャ。北の大陸に三か国の都が並ぶ。</figcaption></figure>
+</div>
+<div class="cell span-6">
+<figure class="photo"><img class="fitmap" src="../images/175-夕刊/175-cities-solequa.png" alt="第175期のソルエクア大陸の都市図。オリョルッルの首都と都市群"><figcaption>ソルエクア大陸。首位オリョルッルの本拠。首都オリョルッルを中心に、最多十九の都市が広がる。</figcaption></figure>
+</div>
+<div class="cell span-6">
+<figure class="photo"><img class="fitmap" src="../images/175-夕刊/175-cities-austrea.png" alt="第175期のアウストレア大陸の都市図。なのです・シンジケートの首都と都市"><figcaption>アウストレア大陸。なのですの電都、シンジケートのプライム。開発に徹する二国の都がある。</figcaption></figure>
+</div>
+<div class="cell span-6">
+<figure class="photo"><img class="fitmap" src="../images/175-夕刊/175-cities-akapi.png" alt="第175期の北西の都市図。カペレナ・黒潮・蒼森の首都と都市"><figcaption>北西の一帯。カペレナのカペナグラード、黒潮の谷の都、蒼森のブロースコーグ。中立を掲げるカペレナの本拠。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【地理部】</span>前面に続き、残る五つの大陸の都を一枚ずつたどる。前面に載せた都市の密なノルステア・セントラに対し、ここに並ぶ五大陸は、一国か二国がゆったりと版図を占める、おおらかな顔立ちをしている。都の置かれ方の違いは、そのまま国の成り立ちの違いでもある。</p>
+<h3>北のボレアリス、西のソルエクア</h3>
+<p>北のボレアリス大陸には、泰平・黄砂・テキスタンの三か国の首都が並ぶ。中央にそびえる泰平の天都は、いま教団へ海兵を送り込む大国の本拠である。その西に黄砂のネルシア、さらに西にテキスタンのテキシャが続き、三国の都が大陸をほぼ横一線に分け合う。黄砂はオリョルッルとの北の戦を畳もうとしており、この一帯の緊張もいくらか和らぐ見込みだ。</p>
+<p>西のソルエクア大陸は、首位オリョルッル王国がほぼ一国で占める。首都オリョルッルを中心に、最多十九の都市が内陸までびっしりと点在する。戦で奪うのではなく、開拓と友好で土地を肥やしてきた王国の歩みが、この都市の多さに表れている。大陸を一国で覆う姿は、盤面でも稀である。</p>
+<h3>南のアウストレア、北西の一帯</h3>
+<p>南のアウストレア大陸には、開発に徹するなのですとシンジケートの都がある。なのですの電都は、交易で盤面の頂を走る国の中心だ。海沿いに現代都市を連ね、工場と港で富を積む。南のシンジケートのプライムもまた、戦より商いに軸足を置く都である。二つの国は干戈を交えず、それぞれの流儀で大陸を分け持つ。</p>
+<p>北西の一帯には、来し方の異なる三つの都が集まる。中立を宣言したばかりのカペレナのカペナグラードは、両陣営と商いを続ける中立国の表玄関だ。すぐ近くには、長い戦に首都を削られた黒潮の谷の都がある。そして北に、第177期になのですへの開戦を控える蒼森のブロースコーグ。和を選んだ国と、戦に傾く国の都が、狭い一帯に隣り合う。</p>
+<h3>南東に独り立つ、ロンギードの都</h3>
+<p>最後に、南東のロンギード大陸。ここはチェス＝シロバキアがただ一国で構える。白波・銀嶺・金野・灰岩の四か国に海を隔てて囲まれながら、この大陸の都を守り続けている。四方を敵に望む地の利の悪さは、首都図でも際立つ。七つの大陸に散らばる百三十八の都市は、国の規模と来歴、そしていまの戦況を映す鏡でもある。本紙は次号以降も、都の増減を折にふれて地図に起こし、盤面の移り変わりを伝えていきたい。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<figure class="photo"><img class="fitmap" src="../images/175-夕刊/175-cities-longead.png" alt="第175期のロンギード大陸の都市図。チェス＝シロバキアの首都と都市"><figcaption>ロンギード大陸。チェス＝シロバキアがただ一国で構える。四方を敵に囲まれてなお、都を守り続ける。</figcaption></figure>
+<div class="box"><div class="column-title">大陸と主な国</div>
+<table class="data"><tbody>
+<tr><td>ボレアリス</td><td>泰平・黄砂・テキスタン</td></tr>
+<tr><td>ソルエクア</td><td>オリョルッル</td></tr>
+<tr><td>アウストレア</td><td>なのです・シンジケート</td></tr>
+<tr><td>北西の一帯</td><td>カペレナ・黒潮・蒼森</td></tr>
+<tr><td>ロンギード</td><td>チェス＝シロバキア</td></tr>
+<tr class="hl"><td>前面（8面）</td><td>ノルステア・セントラ</td></tr>
+</tbody></table></div>
+<div class="box"><div class="column-title">地図の見方</div>
+<p>★は首都、◎は大都市、●は現代都市。都市名が密に重なる所は、位置を細い線で指し示した。地形・国境は記者クラブの公開地図にもとづく。</p></div>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/175-夕刊/121-ad-inn.jpg" alt="雪道のそばに灯る宿"><div><h4>各地の街道宿</h4><p class="catch">都から都へ、旅の一夜を。</p><p>七つの大陸の街道沿いに、安らぎの宿。諸国めぐりの道中を支えます。</p><p class="price">各国の街道にて</p></div></div></div>
+</div></section>
+
+<!-- 10面 国特集 オリョルッル王国 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">国特集</span>七つの丘の王国・オリョルッル<span class="pageno">10</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">百八十万の都、百七十五期杯を受ける</h2>
+<p class="v-sub">「七つの丘からはじまった」　人口・領土で盤面の頂に立つ首位の王国が、節目の杯を受け、黄砂との停戦で北の戦も畳もうとしている</p>
+<figure class="photo"><img class="fitphoto" src="../images/175-夕刊/175-oryo-hills.png" alt="オリョルッル王国の首都オリョルッルの、七つの丘に段々に広がる市街と、丘の上に翻る王旗、麓に集う移民の列を一望に描いた銅版画"><figcaption>七つの丘に広がるオリョルッルの首都。人口百八十万、領土三百七十一区画。盤面の頂に立つ王国の都。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【特集部・オリョルッル=現地取材】</span>七つの丘に段々と広がる市街を、麓から見上げる。「七つの丘からはじまった」と名乗るオリョルッル王国の首都は、いまや人口百八十万六千六百人を抱える、盤面最大の都である。領土は三百七十一区画、国力の得点も五万五千を超え、二位の泰平を大きく引き離す。第175期、王国はこの節目に「百七十五期杯」を受けた。丘の上の王旗の下に、祝いの鐘が鳴り響いたという。</p>
+<p>この王国の強さは、戦場の勝ち負けより、人と土地の積み増しにある。今期も人口は一万五千八百人増え、橙原からの移民を受け入れてきた前期からの流れが続く。領土は中立地の開拓と、友好国・教団からの割譲で広がった。教団はこの期も、首都の近くの一区画をオリョルッルへ割譲している。戦で削るのではなく、友好と開拓で肥える。それがこの王国の、頂への登り方だった。</p>
+<p>戦線でも、オリョルッルは優位を崩さない。北で続いた黄砂同盟との戦いでは、今期も黄砂の歩兵一部隊を玉砕させた。黄砂が受けた累計損害は八万五千人に達し、オリョルッルの一万八千七百人の四倍を超える。そしてこの期、両国は停戦の準備へ入った。北の戦を畳めば、オリョルッルは余力をさらに蓄えられる。もっとも、王国の前にも新たな戦が控える。第177期に蒼森、第178期に金野がオリョルッルへ開戦し、オリョルッル自身も第180期に桃谷へ宣戦した。頂に立つ者は、四方から狙われる。</p>
+<h3>丘の暮らし、移民の都</h3>
+<p>七つの丘の市街には、各地から流れ着いた人々が暮らす。橙原から、灰岩から、青海から——戦と火に追われた民が、頂の都に安寧を求めてやってくる。「丘の上から下まで、いろんな国の訛りが聞こえる。みんな、ここなら食えると思って来るんだ」。丘の中腹で宿を営む女将が、段々の市街を見下ろして言った。首位の王国の繁栄は、戦果ではなく、吸い寄せられる人の数に支えられている。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>オリョルッル王国の素顔</caption><tbody>
+<tr class="hl"><td>人口</td><td class="num">180万6,600人（世界首位）</td></tr>
+<tr><td>兵力</td><td class="num">69万8,900人</td></tr>
+<tr><td>領土</td><td class="num">371区画</td></tr>
+<tr><td>国力得点</td><td class="num">5万5,543（首位）</td></tr>
+<tr><td>首都</td><td>オリョルッル</td></tr>
+<tr class="hl"><td>節目</td><td>百七十五期杯を受賞</td></tr>
+</tbody></table>
+<table class="data"><caption>オリョルッルの戦線</caption><tbody>
+<tr><td>黄砂</td><td>停戦の準備へ（累計8万5,000）</td></tr>
+<tr><td>灰岩</td><td>第176期開戦の準備中</td></tr>
+<tr class="hl"><td>蒼森</td><td>第177期に被宣戦</td></tr>
+<tr><td>金野</td><td>第178期に被宣戦</td></tr>
+<tr><td>桃谷</td><td>第180期に宣戦（オリョから）</td></tr>
+</tbody></table>
+<div class="box"><div class="column-title">論説　戦わずして肥える</div>
+<p>オリョルッルは、相手を滅ぼして大きくなったのではない。友好で土地を譲られ、開拓で畑を広げ、移民で人を集めた。黄砂との戦も、玉砕を重ねる一方的な削りで、自国の損害は軽い。戦果ではなく、人と土地の引力で頂に立つ。四方から宣戦を受ける立場になってなお、この王国が揺らがないのは、その太い土台ゆえである。</p></div>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/175-夕刊/121-ad-timber.jpg" alt="積まれた木材"><div><h4>オリョルッル 丘の移住会所</h4><p class="catch">七つの丘に、新しい暮らしを。</p><p>家と畑の斡旋、仕事の紹介。流れ着いた人を、頂の都が迎えます。</p><p class="price">オリョルッル・丘の都</p></div></div></div>
+</div></section>
+
+<!-- 11面 気象・海況 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">気象・海況</span>盛夏の空と潮目<span class="pageno">11</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">晴れがわずかに増え、火の夏なお続く</h2>
+<p class="v-sub">曇りが減り晴れが増えた　乾いた空が二期続きの大火を招く　予想図には台風の警戒帯が二本、遠洋の漁場は十五か所が開いた</p>
+</div>
+<div class="cell span-6">
+<figure class="photo"><img class="fitmap mainmap" src="../images/175-夕刊/175-weather.png" alt="第175期の世界天気図"><figcaption>第175期の天気。曇りが四千九百九十一地点で優勢ながら前期より減り、晴れが二千三百二地点へ増えた。</figcaption></figure>
+</div>
+<div class="cell span-6">
+<figure class="photo"><img class="fitmap mainmap" src="../images/175-夕刊/175-weather-forecast.png" alt="第176期の世界天気予想図"><figcaption>第176期の天気予報（予想）。前期からの雲や雨の動きをもとにした見通しで、確定予報ではない。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【気象部】</span>第175期の空は、曇りが四千九百九十一地点で優勢ながら、前期より二十六地点減った。かわりに晴れが二千三百二地点へ十九地点増え、雨も七百二十六地点へ七地点増えている。雪は八十一地点で変わらず、雷はこの期も観測されなかった。曇りがやや退いて晴れが増えた分、乾いた日が増え、火の回りやすい空になった。火災が六か国で七万六千八百人に膨らみ、工場二つを焼いたのも、この乾いた盛夏の下でのことだ。6面の火災記事とあわせて読みたい。</p>
+<p>海は、この期も穏やかに凪いでいる。海流に大きな乱れはなく、遠洋の漁場は十六か所のうち十五か所が開いた。休漁は一か所にまで減り、盛夏の水揚げは順調である。穏やかな潮の上で、なのですと紅峰が首都の沖で撃ち合い、朱川の川港でもオラニウムとの戦が続く。各大陸の西岸を寒流が、東岸を暖流が洗う姿は変わらない。カペレナと青海が講和したことで、西の海の砲声は一つ減った。</p>
+<h3>予想図の見どころ</h3>
+<p>第176期の予想図は、雨域が西へ二、南へ〇動く目安を示している。まとまった雨は、教団・紅峰・青海にまたがる中央の一帯と、桃谷・胡椒の周りに残り、チェスやあろあろ、カペレナの国土は晴れが広がる見通しだ。台風の警戒地域は、赤い帯で二本が示された。一本はオリョルッル、灰岩、翠湖、桃谷、胡椒の上を、もう一本は教団、紅峰、橙原、青海の上を横切っている。灰岩や教団、紅峰といった戦の最中の国が警戒帯に入っており、空模様の急変は前線にも響きうる。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>世界の天候　第175期（前期比）</caption><tbody>
+<tr class="hl"><td>晴れ</td><td class="num">2,302（+19）</td></tr>
+<tr><td>曇り</td><td class="num">4,991（−26）</td></tr>
+<tr><td>雨</td><td class="num">726（+7）</td></tr>
+<tr><td>雪</td><td class="num">81（±0）</td></tr>
+<tr><td>雷</td><td class="num">0（±0）</td></tr>
+</tbody></table>
+<table class="data"><caption>遠洋漁場</caption><tbody>
+<tr><td>漁場</td><td class="num">16か所</td></tr>
+<tr class="hl"><td>操業可</td><td class="num">15か所</td></tr>
+<tr><td>休漁</td><td class="num">1か所</td></tr>
+</tbody></table>
+<div class="box"><div class="column-title">盛夏の見通し</div>
+<p>晴れが増え、火の危険はなお高い。二期続きの大火を受け、人口の多い都市は火の備えを緩められない。海は穏やかで、漁と海路には良い条件が続く。遠洋の漁場は十五か所が開き、水揚げは順調。予想図の台風警戒帯には戦中の国が多く、空の急変に注意したい。</p></div>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/175-夕刊/121-ad-boat.jpg" alt="岸に寄せた小舟"><div><h4>沿岸漁協</h4><p class="catch">盛夏の漁り場、十五か所が開いています。</p><p>朝獲れの魚と、干物の仕込み。海の安全は、みなで守る。</p><p class="price">各地の漁港にて</p></div></div></div>
+</div></section>
+
+<!-- 12面 文化・スポーツ（遊び1） 黒潮の鍛冶市 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">文化・スポーツ</span>黒潮の谷の鍛冶市<span class="pageno">12</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">谷の鍛冶場に、槌の音が響く</h2>
+<p class="v-sub">黒潮自治国・谷間の都の盛夏の名物　「谷間の首都と外洋航路の自治国」で、鍛冶職人が刃物と細工の腕を競う市が立った</p>
+<figure class="photo"><img class="fitphoto" src="../images/175-夕刊/175-kuroshio-forge.png" alt="黒潮自治国の谷あいの鍛冶場で、炉の炎を背に職人たちが赤熱した鉄を槌で打ち、できあがった刃物や鍋が露店に並ぶ鍛冶市の賑わいを描いた銅版画"><figcaption>黒潮の谷の鍛冶市。炉の炎を背に職人が鉄を打つ。長い戦に削られてなお、谷の槌の音は絶えない。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【文化部・谷間の都=現地取材】</span>盛夏の黒潮自治国で、谷あいの「鍛冶市」が立った。「谷間の首都と外洋航路の自治国」を名乗るこの国では、谷の奥に古くからの鍛冶場が集まり、夏になると職人たちが刃物や細工の腕を競う市を開く。炉の炎を背に、赤熱した鉄が槌で打たれ、谷いっぱいに澄んだ槌の音が響く。できあがった包丁や鋏、鍋や釘が、露店に所狭しと並べられた。</p>
+<p>黒潮は、第100期から続くカペレナとの戦で、長く削られてきた国である。人口は一万六千二百人、領土は十二区画まで縮んだ。それでも、谷の鍛冶の火だけは消えていない。「船は沈められ、町は焼かれた。だが、鉄を打つ腕は誰にも奪えない」。白い顎鬚の老鍛冶が、打ち上げたばかりの包丁を陽にかざして言った。黒潮の刃物は切れ味で知られ、戦の合間にも、谷の外から買い付けに来る商人が絶えないという。</p>
+<p>市のかたわらでは、鍛冶の火で焼いた谷の川魚と、谷水で冷やした酒が振る舞われた。「うちの国は小さくなった。だが、谷が残る限り、鍛冶市は続ける」。槌を振るう若い職人が、汗を拭いながら言った。外洋の航路を失い、本土を削られてなお、黒潮の民は谷の鉄を打ち続けている。削られる国の夏に、槌の音だけが、変わらぬ響きで谷を満たしていた。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<div class="box"><div class="column-title">鍛冶市・今年の評判</div>
+<table class="data"><tbody>
+<tr class="hl"><td>切れ味一番</td><td>老鍛冶の谷打ち包丁</td></tr>
+<tr><td>細工一番</td><td>若手の透かし彫りの鋏</td></tr>
+<tr><td>実用一番</td><td>厚手の谷鍋</td></tr>
+</tbody></table>
+<p>※切れ味と細工の美しさで競った。</p></div>
+<div class="box"><div class="column-title">谷の食卓　鍛冶火の川魚焼き</div>
+<p>黒潮では、鍛冶市の日に、鍛冶の炉の余り火で谷の川魚を焼いて供する。谷水で冷やした酒を添えるのが習わし。強い炭火で一気に焼いた魚は、皮は香ばしく身はふっくら。小さくなった国の、変わらぬ谷の味である。</p></div>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/175-夕刊/121-ad-stew.jpg" alt="器に盛られた煮込み"><div><h4>谷間の都 鍛冶問屋</h4><p class="catch">谷の鉄、切れ味そのまま。</p><p>包丁・鋏・鍋・釘。谷の名工が打つ刃物を、各地へお届けします。</p><p class="price">黒潮・谷間の都</p></div></div></div>
+</div></section>
+
+<!-- 13面 文化・スポーツ（遊び2） 胡椒の夕涼み芝居 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">文化・スポーツ</span>胡椒の夕涼み芝居<span class="pageno">13</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">広場の仮設舞台に、夏の夜が集う</h2>
+<p class="v-sub">胡椒帝国・胡椒の盛夏の名物　「されたことは根に持つ」帝国で、恨みと意趣返しを題にした芝居が、夕涼みの客を沸かせた</p>
+<figure class="photo"><img class="fitphoto" src="../images/175-夕刊/175-kosho-play.png" alt="胡椒帝国の首都胡椒の広場に組まれた仮設の舞台で、派手な衣装の役者が見得を切り、ござを敷いて夕涼みする大勢の観客が団扇をあおぎながら見入る夜芝居の情景を描いた銅版画"><figcaption>胡椒の夕涼み芝居。広場の仮設舞台で役者が見得を切る。恨みと意趣返しの筋が、夏の夜の客を沸かせる。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【文化部・胡椒=現地取材】</span>盛夏の胡椒帝国で、恒例の「夕涼み芝居」が開かれた。日が落ちて暑さが和らぐ頃、首都胡椒の広場に仮設の舞台が組まれ、ござを敷いた客が団扇をあおぎながら集まってくる。「されたことは根に持ちますそれだけです」と国是に掲げるこの帝国の芝居は、受けた恨みを忘れず、巡り巡って意趣を返す筋立てが多い。派手な衣装の役者が見得を切るたび、広場は喝采と笑いに沸いた。</p>
+<p>今年の人気は、昔むかし小国を見下した大国が、やがて立場が逆転して詫びを入れるという筋の一幕。「胡椒の芝居は、やられたらやり返す。でも、刀じゃなく機知で返すのが粋なのさ」。舞台の袖で化粧を直す老役者が、そう言って笑った。恨みを笑いに変える芝居は、気難しいと評判の帝国の、意外にからりとした一面を映している。</p>
+<p>広場の端では、胡椒をきかせた屋台の料理と、冷やした果実水が売られていた。「芝居を見て笑って、辛いものを食って汗をかく。これが胡椒の夏さ」。屋台の女将が、湯気の立つ皿を差し出して言った。交戦国を持たず、商いと香辛料で栄えるこの帝国の夏は、舞台の口上と、辛い料理の湯気で更けていった。やられたら根に持つ——その言葉とは裏腹に、夕涼みの広場は、笑い声で満ちていた。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<div class="box"><div class="column-title">夕涼み芝居・今年の人気</div>
+<table class="data"><tbody>
+<tr class="hl"><td>一番人気</td><td>立場逆転の意趣返し劇</td></tr>
+<tr><td>二番人気</td><td>香辛料商の出世噺</td></tr>
+<tr><td>子ども人気</td><td>怪獣退治の勧善懲悪劇</td></tr>
+</tbody></table>
+<p>※広場の喝采の大きさで番付けした。</p></div>
+<div class="box"><div class="column-title">胡椒の食卓　夜芝居の辛味屋台</div>
+<p>胡椒では、夕涼み芝居の夜、広場の屋台で香辛料をきかせた串焼きや煮込みを供する。冷やした果実水を添えるのが定番。舌を刺す辛味で汗をかき、冷たい水で涼をとる。暑い夏の夜を、辛さと冷たさで乗り切る帝国の知恵である。</p></div>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/175-夕刊/121-ad-coffee.jpg" alt="湯気の立つ温かな飲み物"><div><h4>胡椒 広場の茶店</h4><p class="catch">芝居のあとは、辛味と果実水を。</p><p>香辛料の串焼きと冷やし果実水。夕涼みの広場で、夏の夜のひとときを。</p><p class="price">胡椒帝国・胡椒</p></div></div></div>
+</div></section>
+
+<!-- 14面 文化・スポーツ（遊び3） 翠湖の灯籠流し -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">文化・スポーツ</span>翠湖の灯籠流し<span class="pageno">14</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">翡翠の湖に、無数の灯がゆれる</h2>
+<p class="v-sub">翠湖自治州・湖陽の盛夏の名物　「翡翠色の湖のほとりの自治州」で、湖面に灯籠を流し、夏の夜を静かに過ごす行事が営まれた</p>
+<figure class="photo"><img class="fitphoto" src="../images/175-夕刊/175-suiko-lantern.png" alt="翠湖自治州の翡翠色の湖の岸辺で、人々が火を灯した小さな灯籠をそっと湖面に流し、無数の灯が暗い水面に広がって揺れる灯籠流しの静かな情景を描いた銅版画"><figcaption>翠湖・湖陽の灯籠流し。翡翠色の湖面に無数の灯がゆれる。夏の夜、人々は静かに灯を見送る。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【文化部・湖陽=現地取材】</span>盛夏の翠湖自治州で、湖の「灯籠流し」が営まれた。夏の遠泳でにぎわった湖は、夜になると打って変わって静まりかえる。岸辺に集まった人々が、火を灯した小さな灯籠をそっと湖面に置くと、翡翠色の水面に、無数の灯がゆらゆらと広がっていく。「翡翠色の湖のほとりの自治州」を名乗るこの国の、夏の終わりを告げる静かな行事である。</p>
+<p>灯籠には、それぞれの願いや、亡き人への想いが託される。「湖は、流した灯を向こう岸まで運んでくれる。だから、言えなかったことを、灯に乗せるんだ」。灯籠を流し終えた老人が、暗い水面を見つめて言った。遠泳の歓声とは対照的に、灯籠流しの夜は、言葉少なに過ぎていく。交戦国を持たぬ翠湖の夏は、にぎわいと静けさの両方を、同じ湖で味わう。</p>
+<p>岸辺の茶店では、灯籠を見送りながら、温かい湖魚の汁と、湖水で冷やした甘味が供された。「夏は、泳いで、流して、終わる。来年もまた、同じ湖で」。茶店の女将が、湖面の灯を数えるように見やって言った。各地で戦の続く盤面で、翠湖の湖だけは、灯籠の灯と、さざ波の音に包まれていた。翡翠の水面を漂う無数の灯は、やがて闇の向こうへ、ゆっくりと消えていった。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<div class="box"><div class="column-title">灯籠流し・夏の暦</div>
+<table class="data"><tbody>
+<tr class="hl"><td>夏の初め</td><td>湖の遠泳会（にぎわい）</td></tr>
+<tr><td>夏の終わり</td><td>灯籠流し（静けさ）</td></tr>
+<tr><td>灯籠の願い</td><td>亡き人への想い・来年の無事</td></tr>
+</tbody></table>
+<p>※同じ湖で、夏の初めと終わりを過ごす。</p></div>
+<div class="box"><div class="column-title">湖の食卓　灯籠夜の湖魚汁</div>
+<p>翠湖では、灯籠流しの夜に、湖魚を具にした温かい汁を供する。昼は冷たい湖水の酒で涼をとる湖畔も、夜は温かい汁で体を温める。湖水で冷やした甘味を添えるのが習わし。静かな夜を、やわらかな味で見送る。</p></div>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/175-夕刊/121-ad-indigo.jpg" alt="藍染めの布"><div><h4>湖陽 みずうみの宿</h4><p class="catch">灯籠の夜を、湖のほとりで。</p><p>湖を望む客間と、湖魚の膳。夏の終わりの静けさを、ゆっくりとお過ごしください。</p><p class="price">翠湖・湖陽</p></div></div></div>
+</div></section>
+
+<!-- 15面 入門・短信 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">入門・短信</span>商業同盟とは<span class="pageno">15</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">箱庭入門講座（第27回）　商業同盟とは――軍事陣営とは別の、商いの輪</h2>
+<p class="v-sub">カペレナは「両陣営への貿易」を掲げ中立を宣言した　港と関税、商業同盟の仕組みから、国どうしの商いの道を整理する</p>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent"><span class="dateline">【編集部】</span>第175期、カペレナ王国が「両陣営への貿易は続行」と掲げて中立を宣言した。国と国の商いは、どんな仕組みで動くのか。第27回は、港と関税、そして軍事陣営とは別の「商業同盟」を扱う。</p>
+<p>国どうしの商いは、港を通じて行われる。港を持たない国の民間は、海路で売ることも買うこともできない。港には開放設定があり、「非交戦国へ開放」「友好国限定」「閉鎖」の三つから選ぶ。相手国に輸入品を売ると、その国の国庫に関税が入る。関税率は国ごとに〇から三割の範囲で決められる。ただし、戦争中・禁輸中・港を閉じている相手とは、新しい商いはできない。カペレナが「中立にして通商」と掲げても、戦っている黒潮とは商えない。商いの可否は、まず戦争の有無で決まる。</p>
+<p>この港の商いに、もう一つの輪が重なる。「商業同盟」である。これは軍事陣営とはまったく別の組織で、各国の民間が一つだけ所属できる。どの国も名前をつけて新しく作ることができ、作った国が代表になる。同盟国どうしには、二つの得がある。一つは、相手が港を「友好国限定」にしていても、同じ商業同盟の国なら使えること。もう一つは、他国の港を中継するときの通過料が半額になることだ。加入は代表国の承認制で、脱退すると十期は再加入できない。</p>
+<p>肝心なのは、商業同盟が軍事陣営の線をまたげる点である。前号で見たとおり、灰岩交易同盟には王国軍の国と連邦軍の国が同居している。旗の下では別の陣営でも、商いの輪では手を結べる。カペレナが代表を務める「コマーセス協商連合」は今のところカペレナ一国だが、中立を掲げて両陣営と商う構えのカペレナにとって、商業同盟は、旗の色を越えて商いを広げる道具になりうる。戦う相手は陣営で分かれても、商う相手は陣営に縛られない。乱世の交易は、この二つの輪の重なりの中で動いている。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<div class="boarding-flow">
+<div class="boarding-step"><b>①商いは港から</b><span>港がなければ海路の商いはできない。開放は三段階。</span></div>
+<div class="boarding-step"><b>②関税は相手国の収入</b><span>輸入品の関税は相手国の国庫へ。0〜3割、国ごとに設定。</span></div>
+<div class="boarding-step"><b>③商業同盟は別の輪</b><span>軍事陣営とは別。各国の民間が一つだけ所属。代表国の承認制。</span></div>
+<div class="boarding-step"><b>④陣営をまたげる</b><span>友好国限定の港を使え、中継料は半額。陣営の線をまたいで組める。</span></div>
+</div>
+<div class="box"><div class="column-title">豆知識　戦争は商いを止める</div>
+<p>どれほど商いを広げたくても、戦争中・禁輸中・港を閉じている相手とは、新しい取引はできない。宣戦すると、陸路で運んでいる途中の荷は拿捕され、買い手の国の国庫に入る。中立を掲げても、現に戦う相手とは商えない。カペレナが黒潮と商えないのは、この決まりゆえである。</p></div>
+</div>
+<h2 class="story-heading">外交・開発短信</h2>
+<div class="box brief">
+<div class="item"><p><b>カペレナ、中立を宣言</b>　青海と講和し、「王国は中立とす、されど両陣営への貿易は続行」と掲げた。戦う相手は黒潮一国に。</p></div>
+<div class="item"><p><b>青海、黄砂とも停戦</b>　青海はカペレナに続き黄砂同盟とも停戦し、二つの戦線を畳んだ。</p></div>
+<div class="item"><p><b>教団の同盟軍入り、拒否</b>　教団の加入申請を、盟主・青海の同盟軍が再び拒んだ。教団はオリョルッルへ一区画を割譲。</p></div>
+<div class="item"><p><b>オリョルッル、桃谷へ宣戦</b>　首位オリョルッルが桃谷へ宣戦（第180期開戦）。百七十五期杯も受けた。</p></div>
+</div>
+<div class="box"><div class="column-title">次号の見どころ</div>
+<p><b>灰岩</b>　教団に都を囲まれた盟主。オリョルッルとの停戦が成れば、北の敵は一つ減る。</p>
+<p><b>なのです</b>　紅峰に加え、蒼森との開戦が始まった。二正面に入る。</p>
+<p><b>カペレナ</b>　中立宣言の後、連合軍の盟友とどう向き合うか。</p></div>
+</div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/175-夕刊/126-ad-kiln.jpg" alt="窯の火"><div><h4>各地の窯元組合</h4><p class="catch">器も工業品も、焼きたてを。</p><p>日用の器から工場向けの部材まで。窯の火は、戦時にも絶やしません。</p><p class="price">各国の窯場にて</p></div></div></div>
+</div></section>
+
+<footer class="colophon">
+  <span>トレーディア新聞社　第175期 夕刊</span>
+  <span>トレーディア暦3年8月第4週・盛夏</span>
+  <span>各国政府・軍の発表と公開情報をもとに編集</span>
+</footer>
+
+</div>
+</body>
+</html>
