@@ -1,0 +1,1410 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>トレーディア新聞 第189期 夕刊</title>
+<style>
+/* トレーディア新聞 ── 横書きの紙面 */
+
+:root {
+  --paper: #f4ecd8;
+  --paper-ad: #fffdf7;
+  --ink: #2b2b2b;
+  --ink-soft: #555;
+  --accent: #8c2d19;
+  --rule: #2b2b2b;
+  --rule-soft: #b9ad92;
+  --mincho: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", "MS PMincho", serif;
+  --gothic: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Meiryo", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 24px 12px;
+  background: #5a5248;
+  color: var(--ink);
+  font-family: var(--mincho);
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+
+.paper {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 22px 28px 28px;
+  background: var(--paper);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, .45);
+}
+
+img { max-width: 100%; display: block; }
+img.fitmap {
+  max-height: 760px;
+  width: auto;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+img.fitmap.mainmap { max-height: 620px; }
+img.fitmap.seamap { max-height: 620px; }
+img.fitmap.battle { width: 100%; max-width: 100%; height: auto; max-height: none; }
+img.fitmap.battle.compact {
+  width: auto;
+  max-width: min(100%, 960px);
+  max-height: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.mill {
+  display: grid;
+  grid-template-columns: 1.1fr auto 1fr auto 1.3fr;
+  gap: 8px 10px;
+  align-items: center;
+  margin: 4px 0 14px;
+}
+.mill .step {
+  border: 1px solid var(--rule);
+  padding: 8px 10px;
+  text-align: center;
+  background: var(--paper);
+}
+.mill .step b { display: block; font-size: 15px; }
+.mill .arr { text-align: center; font-weight: 800; font-size: 18px; }
+.wx-board.cols2 { grid-template-columns: 1fr 1fr; }
+.wx-board {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  margin: 0 0 10px;
+}
+.wx-card {
+  border: 1px solid var(--rule-soft);
+  border-radius: 8px;
+  background: var(--paper-ad);
+  text-align: left;
+  padding: 4px 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+.wx-card svg { width: 22px; height: 22px; margin: 0; display: block; flex: none; }
+.wx-card .wx-name {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 12.5px;
+  letter-spacing: 0;
+  margin: 0;
+  text-indent: 0;
+  line-height: 1.2;
+}
+.wx-card .wx-state {
+  font-family: var(--gothic);
+  color: var(--ink-soft);
+  font-size: 11.5px;
+  margin: 0;
+  text-indent: 0;
+  line-height: 1.2;
+}
+hr { border: 0; border-top: 1px solid var(--rule); margin: 10px 0; }
+p { margin: 0 0 .55em; text-align: justify; text-indent: 1em; }
+p.noindent, .lead, figcaption, .brief p, .byline, .ad p, .toc li, .schedule li { text-indent: 0; }
+
+.masthead {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: 8px;
+  border-top: 4px solid var(--rule);
+  border-bottom: 4px solid var(--rule);
+  padding: 8px 0 10px;
+  position: relative;
+}
+.masthead::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 2px;
+  border-bottom: 1px solid var(--rule);
+}
+.masthead .title {
+  font-weight: 900;
+  font-size: 56px;
+  letter-spacing: .14em;
+  line-height: 1;
+  text-align: center;
+}
+.masthead .title br.narrow { display: none; }
+.masthead .title small {
+  display: block;
+  font-family: var(--gothic);
+  font-size: 12px;
+  letter-spacing: .5em;
+  margin-top: 6px;
+  font-weight: 600;
+}
+.masthead .issue, .masthead .date {
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.masthead .date { text-align: right; }
+.masthead .edition {
+  display: inline-block;
+  font-weight: 800;
+  color: #fff;
+  background: var(--accent);
+  padding: 2px 10px;
+  margin-bottom: 3px;
+  letter-spacing: .2em;
+}
+
+.ticker {
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  border-bottom: 2px solid var(--rule);
+  padding: 4px 0;
+  margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+.ticker b { color: var(--accent); margin-right: 1em; }
+.ticker > span + span::before { content: "／"; color: var(--rule-soft); margin: 0 .7em; }
+
+.page { margin-bottom: 8px; padding: 12px 0 14px; }
+.page + .page { border-top: 3px double var(--rule); }
+
+.page-name, .sheet-top {
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: .28em;
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.page-name .tag, .sheet-top .tag {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 2px 10px;
+  letter-spacing: .2em;
+}
+.page-name .pageno, .sheet-top .pageno {
+  margin-left: auto;
+  letter-spacing: .05em;
+  color: var(--ink-soft);
+}
+
+.grid, .sheet-body {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px 18px;
+  align-items: start;
+}
+.grid > *, .sheet-body > * { grid-column: span 12; min-width: 0; }
+.span-3, .cell.span-3 { grid-column: span 3 !important; }
+.span-4, .cell.span-4 { grid-column: span 4 !important; }
+.span-5, .cell.span-5 { grid-column: span 5 !important; }
+.span-6, .cell.span-6 { grid-column: span 6 !important; }
+.span-7, .cell.span-7 { grid-column: span 7 !important; }
+.span-8, .cell.span-8 { grid-column: span 8 !important; }
+.span-12, .cell.span-12 { grid-column: 1 / -1 !important; }
+
+/* 旧縦書き用のクラスも横書きとして扱う */
+.sheet { background: transparent; border: 0; height: auto; overflow: visible; box-shadow: none; display: block; }
+.sheet-body { direction: ltr; }
+.sheet-body.front,
+.sheet-body.cols-2,
+.sheet-body.cols-3,
+.sheet-body.cols-3-rail {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px 18px;
+  height: auto;
+}
+.sheet-body.front > .rail { grid-column: span 4; }
+.sheet-body.front > .story { grid-column: span 8; }
+.sheet-body.front > .head-band { grid-column: span 12; }
+.sheet-body.cols-2 > * { grid-column: span 6; }
+.sheet-body.cols-3 > * { grid-column: span 4; }
+.sheet-body.cols-3-rail > *:nth-child(1) { grid-column: span 5; }
+.sheet-body.cols-3-rail > *:nth-child(2) { grid-column: span 4; }
+.sheet-body.cols-3-rail > *:nth-child(3) { grid-column: span 3; }
+
+.cell { border: 0; padding: 0; overflow: visible; display: block; }
+.cell.stack { display: block; }
+.cell.fig { display: block; }
+.split-v { display: block; }
+.split-v > * + * { border-top: 1px solid var(--rule-soft); margin-top: 10px; padding-top: 10px; }
+
+.ruled-left { border-left: 1px solid var(--rule); padding-left: 16px; }
+.ruled-right { border-right: 1px solid var(--rule); padding-right: 16px; }
+
+.cols-2, .v .cols-2 { columns: 2; column-gap: 18px; column-rule: 1px solid var(--rule-soft); }
+.cols-3 { columns: 3; column-gap: 16px; column-rule: 1px solid var(--rule-soft); }
+
+.kicker, .v-kicker {
+  writing-mode: horizontal-tb;
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: .1em;
+  margin: 0 0 2px;
+}
+
+.headline, .v-headline, .v-title, .head-band .v-headline {
+  writing-mode: horizontal-tb;
+  font-family: var(--gothic);
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 1.3;
+  margin: 0 0 6px;
+  letter-spacing: .02em;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+.headline.xl, .front .v-headline { font-size: 36px; }
+@media (max-width: 680px) {
+  .front h1.v-headline {
+    font-size: clamp(18px, 5.1vw, 34px);
+    white-space: nowrap;
+  }
+}
+.headline.lg { font-size: 24px; }
+.v-title { font-size: 22px; font-weight: 800; }
+@media (max-width: 900px) {
+  h2.v-headline.two-line { font-size: 21px; }
+}
+
+.subhead, .v-sub {
+  writing-mode: horizontal-tb;
+  font-family: var(--gothic);
+  font-weight: 700;
+  font-size: 15.5px;
+  line-height: 1.4;
+  margin: 0 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+  height: auto;
+  overflow: visible;
+}
+
+.v, .head-band {
+  writing-mode: horizontal-tb;
+  height: auto;
+  overflow: visible;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+  display: block;
+}
+.head-band { margin-bottom: 8px; }
+
+article h2, .yoko h2 {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1.3;
+  margin: 0 0 8px;
+}
+article h3, .v h3 {
+  font-family: var(--gothic);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: .85em 0 .3em;
+  padding-left: 8px;
+  border-left: 3px solid var(--ink);
+  border-block-start: 0;
+  padding-block-start: 0;
+}
+.v h2.story-heading {
+  writing-mode: horizontal-tb;
+  font-family: var(--gothic);
+  font-size: 19px;
+  line-height: 1.32;
+  font-weight: 900;
+  letter-spacing: .01em;
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+  margin: 1.25em 0 .48em;
+  padding: .36em 0 .25em;
+  break-after: avoid;
+}
+.front .v h2.story-heading { font-size: 21px; }
+.v h2.story-heading + p,
+.v h3 + p { break-before: avoid; }
+.lead { font-weight: 700; font-size: 15px; }
+.lead .dateline, .dateline { font-family: var(--gothic); font-weight: 800; }
+
+figure, .photo {
+  writing-mode: horizontal-tb;
+  margin: 0 0 10px;
+  max-height: none;
+}
+.photo img, figure img {
+  border: 1px solid var(--rule);
+  width: 100%;
+  max-height: none;
+  object-fit: initial;
+}
+.photo img.fitphoto {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+}
+.photo img.fitmap.mainmap,
+.photo img.fitmap.seamap,
+figure img.fitmap.mainmap,
+figure img.fitmap.seamap {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+figcaption {
+  font-family: var(--gothic);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  margin-top: 3px;
+  line-height: 1.4;
+}
+figcaption::before { content: "▲"; margin-right: .15em; }
+figure.float-right { float: right; display: table; width: auto; max-width: 42%; margin: 0 0 8px 12px; }
+figure.float-left { float: left; display: table; width: auto; max-width: 42%; margin: 0 12px 8px 0; }
+figure.float-left figcaption,
+figure.float-right figcaption { display: table-caption; caption-side: bottom; }
+.v h2, .v h3 { clear: both; }
+
+.box {
+  writing-mode: horizontal-tb;
+  border: 1px solid var(--ink);
+  padding: 10px 12px;
+  background: rgba(255,255,255,.25);
+  margin-bottom: 10px;
+  width: auto;
+  display: block;
+}
+.column-title {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 12px;
+  background: var(--ink);
+  color: var(--paper);
+  display: inline-block;
+  padding: 1px 8px;
+  margin-bottom: 5px;
+  letter-spacing: .12em;
+}
+.byline {
+  font-family: var(--gothic);
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+.byline b { color: var(--ink); }
+.poem {
+  writing-mode: horizontal-tb;
+  white-space: pre-line;
+  text-indent: 0;
+  line-height: 2;
+  font-size: 14.5px;
+  height: auto;
+  overflow: visible;
+  text-align: left;
+}
+
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  margin: 4px 0 10px;
+  display: table;
+}
+table.data caption { text-align: left; font-weight: 700; margin-bottom: 3px; }
+table.data th, table.data td { padding: 3px 6px; border-bottom: 1px solid var(--rule-soft); }
+table.data thead th {
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  text-align: left;
+  background: rgba(0,0,0,.04);
+}
+table.data td.num, table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.data tr.hl td { background: rgba(140,45,25,.08); font-weight: 700; }
+
+.toc, .schedule {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--gothic);
+  font-size: 12.5px;
+  width: auto;
+  display: block;
+}
+.toc li, .schedule li {
+  padding: 4px 0;
+  border-bottom: 1px dotted var(--rule-soft);
+  display: flex;
+  gap: 8px;
+}
+.toc .when, .schedule .when { font-weight: 700; min-width: 4.5em; }
+
+.brief .item { margin-bottom: 6px; }
+.brief .item b { font-family: var(--gothic); }
+.brief .item b::before { content: "◆"; color: var(--accent); margin-right: .15em; }
+
+.ad-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 2px solid var(--rule);
+  writing-mode: horizontal-tb;
+  direction: ltr;
+  height: auto;
+  overflow: visible;
+}
+.ad {
+  border: 2px solid var(--ink);
+  background: var(--paper-ad);
+  padding: 8px;
+  font-family: var(--gothic);
+  position: relative;
+  min-height: 110px;
+  line-height: 1.45;
+}
+.ad .ad-label {
+  position: absolute;
+  top: -1px;
+  right: 6px;
+  font-size: 9px;
+  letter-spacing: .2em;
+  background: var(--paper-ad);
+  padding: 0 4px;
+  color: var(--ink-soft);
+}
+.ad h4 {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: .05em;
+}
+.ad p { margin: 0; font-size: 11.5px; text-align: center; }
+.ad img { display: block; border: 0; margin: 0 auto 4px; max-height: 84px; max-width: 100%; width: auto; }
+.ad.wide { grid-column: span 2; }
+.ad.banner { grid-column: span 4; display: grid; grid-template-columns: 220px 1fr; gap: 14px; align-items: center; min-height: 168px; }
+.ad.half { grid-column: span 2; display: grid; grid-template-columns: 128px 1fr; gap: 10px; align-items: center; min-height: 156px; }
+.ad.banner img, .ad.half img { max-height: 148px; width: 100%; height: 148px; object-fit: cover; margin: 0; }
+.ad.banner h4, .ad.half h4 { text-align: left; font-size: 22px; letter-spacing: .08em; margin: 0 0 2px; }
+.ad.half h4 { font-size: 18px; }
+.ad.banner p, .ad.half p { text-align: left; font-size: 13px; margin: 0 0 4px; }
+.ad .catch { font-weight: 800; font-size: 15px; }
+.ad.accent-border { border-color: var(--accent); }
+.ad .price { font-weight: 800; color: var(--accent); font-size: 12.5px; margin-top: 3px; text-align: center; }
+
+b.mark { color: var(--accent); font-weight: 800; }
+b.sea { color: #1f5f7a; font-weight: 800; }
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 0 0 10px;
+}
+.facts .fact {
+  background: #fffdf7;
+  border-top: 4px solid var(--accent);
+  padding: 8px 6px 6px;
+  text-align: center;
+}
+.facts .fact.sea { border-top-color: #1f5f7a; }
+.facts .fact .n {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.15;
+  color: var(--accent);
+}
+.facts .fact.sea .n { color: #1f5f7a; }
+.facts .fact .k {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .04em;
+  margin-bottom: 2px;
+}
+.facts .fact .l {
+  font-family: var(--gothic);
+  font-size: 11.5px;
+  line-height: 1.35;
+  margin-top: 2px;
+}
+.fact-head {
+  font-family: var(--gothic);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .14em;
+  margin: 0 0 6px;
+  text-indent: 0;
+  color: var(--accent);
+}
+.scale { margin: 2px 0 10px; }
+.scale-row {
+  display: grid;
+  grid-template-columns: 5.2em 1fr 2.4em;
+  gap: 6px;
+  align-items: center;
+  font-family: var(--gothic);
+  font-size: 12px;
+  margin: 3px 0;
+}
+.scale-bar { display: block; height: 12px; background: var(--accent); }
+.scale-bar.s0 { width: 8%; background: var(--rule-soft); }
+.scale-bar.s1 { width: 18%; }
+.scale-bar.s3 { width: 36%; }
+.scale-bar.s5 { width: 54%; }
+.scale-bar.s7 { width: 72%; }
+.scale-bar.s10 { width: 100%; background: #1f5f7a; }
+
+.colophon {
+  border-top: 4px solid var(--rule);
+  margin-top: 8px;
+  padding-top: 8px;
+  font-family: var(--gothic);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: none;
+}
+.colophon a { color: inherit; }
+
+.archive {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--gothic);
+}
+.archive li {
+  border-bottom: 1px solid var(--rule-soft);
+  padding: 10px 0;
+  display: grid;
+  grid-template-columns: 11em 1fr;
+  gap: 12px;
+}
+.archive a { color: var(--ink); font-weight: 700; text-decoration: none; }
+.archive a:hover { color: var(--accent); }
+
+@media (max-width: 900px) {
+  .paper { padding: 16px; }
+  .masthead { grid-template-columns: 1fr; text-align: center; }
+  .masthead .date { text-align: center; }
+  .masthead .title { font-size: 40px; }
+  .grid > *, .sheet-body > *,
+  .sheet-body.front > *,
+  .sheet-body.cols-2 > *,
+  .sheet-body.cols-3 > *,
+  .sheet-body.cols-3-rail > *,
+  .sheet-body > .cell,
+  .grid > .cell { grid-column: 1 / -1 !important; }
+  .ruled-left, .ruled-right { border: 0; padding: 0; }
+  .cols-2, .cols-3 { columns: 1; }
+  .ad-row { grid-template-columns: 1fr 1fr; }
+  .ad.banner, .ad.half { grid-column: span 2; grid-template-columns: 120px 1fr; }
+  .ad.banner img, .ad.half img { height: 110px; max-height: 110px; }
+  figure.float-left, figure.float-right { float: none; width: 100%; margin: 0 0 10px; }
+  .facts { grid-template-columns: 1fr; }
+  .mill { grid-template-columns: 1fr; }
+  .mill .arr { transform: rotate(90deg); }
+}
+@media (max-width: 420px) {
+  .masthead .title br.narrow { display: block; }
+}
+@media (max-width: 560px) {
+  .ad-row { grid-template-columns: minmax(0, 1fr); }
+  .ad.wide, .ad.banner, .ad.half { grid-column: 1 / -1; }
+  .ad.banner, .ad.half { grid-template-columns: 1fr; }
+  .ad.banner img, .ad.half img { height: 180px; max-height: 180px; }
+  .ticker { font-size: 12px; }
+  table.data { font-size: 12px; }
+}
+@page { size: A3 portrait; margin: 14mm; }
+@media print {
+  body { background: none; padding: 0; }
+  .paper { box-shadow: none; max-width: none; padding: 0; }
+  .page { break-before: page; margin: 0; padding: 8mm 0 0; border: 0; }
+  .page:first-of-type { break-before: auto; padding-top: 0; }
+  .page + .page { border: 0; }
+  h1, h2, h3, .v-headline, .v-sub { break-after: avoid; }
+  figure, .ad, .box, table, .wx-board, .ad-row { break-inside: avoid; }
+  img { break-inside: avoid; }
+  img.fitmap.battle { max-height: 168mm; width: auto; max-width: 100%; }
+  img.fitmap.battle.compact { max-height: 148mm; max-width: min(100%, 960px); }
+  img.fitmap.mainmap { max-height: 85mm; }
+  img.fitmap.seamap { max-height: 85mm; }
+  .photo img.fitphoto,
+  figure.cap-photo img { max-height: 48mm; width: auto; object-fit: contain; }
+  .page:nth-of-type(5) .photo img.fitphoto { max-height: 36mm; }
+  .boarding-flow { break-inside: avoid; }
+
+  /* 第155期夕刊: 各面をA3一枚に収める印刷専用調整 */
+  #issue-155 { font-size: 12px; line-height: 1.36; }
+  #issue-155 p { margin-bottom: .28em; }
+  #issue-155 .page { padding-top: 3mm; }
+  #issue-155 .page:first-of-type { padding-top: 0; }
+  #issue-155 .sheet-top { margin-bottom: 5px; }
+  #issue-155 .sheet-body,
+  #issue-155 .sheet-body.front { gap: 5px 12px; }
+  #issue-155 .v-headline,
+  #issue-155 .headline,
+  #issue-155 .v-title,
+  #issue-155 .head-band .v-headline { font-size: 22px; line-height: 1.15; margin-bottom: 3px; }
+  #issue-155 .front .v-headline { font-size: 29px; }
+  #issue-155 .v-sub,
+  #issue-155 .subhead { font-size: 12.5px; line-height: 1.22; margin-bottom: 4px; padding-bottom: 3px; }
+  #issue-155 .lead { font-size: 12px; }
+  #issue-155 .v h2.story-heading { font-size: 16px; margin-top: .7em; }
+  #issue-155 .v h3 { font-size: 12px; margin-top: .4em; }
+  #issue-155 figure,
+  #issue-155 .photo { margin-bottom: 4px; }
+  #issue-155 img.fitmap { max-height: 65mm; }
+  #issue-155 img.fitmap.battle.compact { max-height: 78mm; }
+  #issue-155 img.fitmap.mainmap,
+  #issue-155 img.fitmap.seamap { max-height: 55mm; }
+  #issue-155 .photo img.fitphoto { max-height: 34mm; }
+  #issue-155 figcaption { font-size: 9px; line-height: 1.18; }
+  #issue-155 .box { padding: 4px 6px; margin-bottom: 4px; }
+  #issue-155 .column-title { font-size: 10px; margin-bottom: 3px; }
+  #issue-155 table.data { font-size: 10px; margin-bottom: 4px; }
+  #issue-155 table.data th,
+  #issue-155 table.data td { padding: 1px 3px; }
+  #issue-155 .toc { font-size: 10px; }
+  #issue-155 .toc li { padding: 1px 0; }
+  #issue-155 .ad-row { margin-top: 5px; padding-top: 4px; }
+  #issue-155 .ad.banner { min-height: 76px; grid-template-columns: 110px 1fr; padding: 5px; }
+  #issue-155 .ad.banner img { height: 64px; max-height: 64px; }
+  #issue-155 .ad.banner h4 { font-size: 15px; }
+  #issue-155 .ad.banner p { font-size: 9px; margin-bottom: 1px; }
+  #issue-155 .boarding-flow { gap: 4px; }
+  #issue-155 .boarding-flow .boarding-step { padding: 3px 4px; }
+  #issue-155 .boarding-flow .boarding-step b { font-size: 10px; margin-bottom: 1px; }
+  #issue-155 .boarding-flow .boarding-step span { font-size: 8px; }
+  #issue-155 .colophon { margin-top: 3px; padding-top: 3px; font-size: 9px; }
+
+  /* 第156期朝刊: 各面をA3一枚に収める印刷専用調整（155と同型） */
+  #issue-156 { font-size: 12px; line-height: 1.36; }
+  #issue-156 p { margin-bottom: .28em; }
+  #issue-156 .page { padding-top: 3mm; }
+  #issue-156 .page:first-of-type { padding-top: 0; }
+  #issue-156 .sheet-top { margin-bottom: 5px; }
+  #issue-156 .sheet-body,
+  #issue-156 .sheet-body.front { gap: 5px 12px; }
+  #issue-156 .v-headline,
+  #issue-156 .headline,
+  #issue-156 .v-title,
+  #issue-156 .head-band .v-headline { font-size: 22px; line-height: 1.15; margin-bottom: 3px; }
+  #issue-156 .front .v-headline { font-size: 29px; }
+  #issue-156 .v-sub,
+  #issue-156 .subhead { font-size: 12.5px; line-height: 1.22; margin-bottom: 4px; padding-bottom: 3px; }
+  #issue-156 .lead { font-size: 12px; }
+  #issue-156 .v h2.story-heading { font-size: 16px; margin-top: .7em; }
+  #issue-156 .v h3 { font-size: 12px; margin-top: .4em; }
+  #issue-156 figure,
+  #issue-156 .photo { margin-bottom: 4px; }
+  #issue-156 img.fitmap { max-height: 65mm; }
+  #issue-156 img.fitmap.battle { max-height: 92mm; }
+  #issue-156 img.fitmap.battle.compact { max-height: 78mm; }
+  #issue-156 img.fitmap.mainmap,
+  #issue-156 img.fitmap.seamap { max-height: 55mm; }
+  #issue-156 .photo img.fitphoto { max-height: 34mm; }
+  #issue-156 figcaption { font-size: 9px; line-height: 1.18; }
+  #issue-156 .box { padding: 4px 6px; margin-bottom: 4px; }
+  #issue-156 .column-title { font-size: 10px; margin-bottom: 3px; }
+  #issue-156 table.data { font-size: 10px; margin-bottom: 4px; }
+  #issue-156 table.data th,
+  #issue-156 table.data td { padding: 1px 3px; }
+  #issue-156 .toc { font-size: 10px; }
+  #issue-156 .toc li { padding: 1px 0; }
+  #issue-156 .ad-row { margin-top: 5px; padding-top: 4px; }
+  #issue-156 .ad.banner { min-height: 76px; grid-template-columns: 110px 1fr; padding: 5px; }
+  #issue-156 .ad.banner img { height: 64px; max-height: 64px; }
+  #issue-156 .ad.banner h4 { font-size: 15px; }
+  #issue-156 .ad.banner p { font-size: 9px; margin-bottom: 1px; }
+  #issue-156 .boarding-flow { gap: 4px; }
+  #issue-156 .boarding-flow .boarding-step { padding: 3px 4px; }
+  #issue-156 .boarding-flow .boarding-step b { font-size: 10px; margin-bottom: 1px; }
+  #issue-156 .boarding-flow .boarding-step span { font-size: 8px; }
+  #issue-156 .colophon { margin-top: 3px; padding-top: 3px; font-size: 9px; }
+  /* 156 1面(front)は情報量が多いので、戦況図と表をさらに詰めて一枚に収める */
+  #issue-156 .front .v-headline { font-size: 26px; }
+  #issue-156 .front img.fitmap.battle { max-height: 74mm; }
+  #issue-156 .front .rail table.data,
+  #issue-156 .sheet-body.front table.data { font-size: 9px; margin-bottom: 3px; }
+  #issue-156 .sheet-body.front .box { padding: 3px 6px; margin-bottom: 3px; }
+  #issue-156 .sheet-body.front .toc { font-size: 9px; }
+  #issue-156 .sheet-body.front .ad-row { margin-top: 3px; padding-top: 3px; }
+
+  /* 第157期夕刊: 各面をA3一枚に収める印刷専用調整（156と同型） */
+  #issue-157 { font-size: 12px; line-height: 1.36; }
+  #issue-157 p { margin-bottom: .28em; }
+  #issue-157 .page { padding-top: 3mm; }
+  #issue-157 .page:first-of-type { padding-top: 0; }
+  #issue-157 .sheet-top { margin-bottom: 5px; }
+  #issue-157 .sheet-body,
+  #issue-157 .sheet-body.front { gap: 5px 12px; }
+  #issue-157 .v-headline,
+  #issue-157 .headline,
+  #issue-157 .v-title,
+  #issue-157 .head-band .v-headline { font-size: 22px; line-height: 1.15; margin-bottom: 3px; }
+  #issue-157 .front .v-headline { font-size: 26px; }
+  #issue-157 .v-sub,
+  #issue-157 .subhead { font-size: 12.5px; line-height: 1.22; margin-bottom: 4px; padding-bottom: 3px; }
+  #issue-157 .lead { font-size: 12px; }
+  #issue-157 .v h2.story-heading { font-size: 16px; margin-top: .7em; }
+  #issue-157 .v h3 { font-size: 12px; margin-top: .4em; }
+  #issue-157 figure,
+  #issue-157 .photo { margin-bottom: 4px; }
+  #issue-157 img.fitmap { max-height: 65mm; }
+  #issue-157 img.fitmap.battle { max-height: 92mm; }
+  #issue-157 img.fitmap.battle.compact { max-height: 78mm; }
+  #issue-157 img.fitmap.mainmap,
+  #issue-157 img.fitmap.seamap { max-height: 55mm; }
+  #issue-157 figcaption { font-size: 9px; line-height: 1.18; }
+  #issue-157 .box { padding: 4px 6px; margin-bottom: 4px; }
+  #issue-157 .column-title { font-size: 10px; margin-bottom: 3px; }
+  #issue-157 table.data { font-size: 10px; margin-bottom: 4px; }
+  #issue-157 table.data th,
+  #issue-157 table.data td { padding: 1px 3px; }
+  #issue-157 .toc { font-size: 10px; }
+  #issue-157 .toc li { padding: 1px 0; }
+  #issue-157 .ad-row { margin-top: 5px; padding-top: 4px; }
+  #issue-157 .ad.banner { min-height: 76px; grid-template-columns: 110px 1fr; padding: 5px; }
+  #issue-157 .ad.banner img { height: 64px; max-height: 64px; }
+  #issue-157 .ad.banner h4 { font-size: 15px; }
+  #issue-157 .ad.banner p { font-size: 9px; margin-bottom: 1px; }
+  #issue-157 .boarding-flow { gap: 4px; }
+  #issue-157 .boarding-flow .boarding-step { padding: 3px 4px; }
+  #issue-157 .boarding-flow .boarding-step b { font-size: 10px; margin-bottom: 1px; }
+  #issue-157 .boarding-flow .boarding-step span { font-size: 8px; }
+  #issue-157 .colophon { margin-top: 3px; padding-top: 3px; font-size: 9px; }
+  #issue-157 .front img.fitmap.battle { max-height: 74mm; }
+  #issue-157 .sheet-body.front table.data { font-size: 9px; margin-bottom: 3px; }
+  #issue-157 .sheet-body.front .box { padding: 3px 6px; margin-bottom: 3px; }
+  #issue-157 .sheet-body.front .toc { font-size: 9px; }
+  #issue-157 .sheet-body.front .ad-row { margin-top: 3px; padding-top: 3px; }
+
+  /* 第158期朝刊: 各面をA3一枚に収める印刷専用調整（157と同型） */
+  #issue-158 { font-size: 12px; line-height: 1.36; }
+  #issue-158 p { margin-bottom: .28em; }
+  #issue-158 .page { padding-top: 3mm; }
+  #issue-158 .page:first-of-type { padding-top: 0; }
+  #issue-158 .sheet-top { margin-bottom: 5px; }
+  #issue-158 .sheet-body,
+  #issue-158 .sheet-body.front { gap: 5px 12px; }
+  #issue-158 .v-headline,
+  #issue-158 .headline,
+  #issue-158 .v-title,
+  #issue-158 .head-band .v-headline { font-size: 22px; line-height: 1.15; margin-bottom: 3px; }
+  #issue-158 .front .v-headline { font-size: 26px; }
+  #issue-158 .v-sub,
+  #issue-158 .subhead { font-size: 12.5px; line-height: 1.22; margin-bottom: 4px; padding-bottom: 3px; }
+  #issue-158 .lead { font-size: 12px; }
+  #issue-158 .v h2.story-heading { font-size: 16px; margin-top: .7em; }
+  #issue-158 .v h3 { font-size: 12px; margin-top: .4em; }
+  #issue-158 figure,
+  #issue-158 .photo { margin-bottom: 4px; }
+  #issue-158 img.fitmap { max-height: 65mm; }
+  #issue-158 img.fitmap.battle { max-height: 92mm; }
+  #issue-158 img.fitmap.battle.compact { max-height: 78mm; }
+  #issue-158 img.fitmap.mainmap,
+  #issue-158 img.fitmap.seamap { max-height: 55mm; }
+  #issue-158 figcaption { font-size: 9px; line-height: 1.18; }
+  #issue-158 .box { padding: 4px 6px; margin-bottom: 4px; }
+  #issue-158 .column-title { font-size: 10px; margin-bottom: 3px; }
+  #issue-158 table.data { font-size: 10px; margin-bottom: 4px; }
+  #issue-158 table.data th,
+  #issue-158 table.data td { padding: 1px 3px; }
+  #issue-158 .toc { font-size: 10px; }
+  #issue-158 .toc li { padding: 1px 0; }
+  #issue-158 .ad-row { margin-top: 5px; padding-top: 4px; }
+  #issue-158 .ad.banner { min-height: 76px; grid-template-columns: 110px 1fr; padding: 5px; }
+  #issue-158 .ad.banner img { height: 64px; max-height: 64px; }
+  #issue-158 .ad.banner h4 { font-size: 15px; }
+  #issue-158 .ad.banner p { font-size: 9px; margin-bottom: 1px; }
+  #issue-158 .boarding-flow { gap: 4px; }
+  #issue-158 .boarding-flow .boarding-step { padding: 3px 4px; }
+  #issue-158 .boarding-flow .boarding-step b { font-size: 10px; margin-bottom: 1px; }
+  #issue-158 .boarding-flow .boarding-step span { font-size: 8px; }
+  #issue-158 .colophon { margin-top: 3px; padding-top: 3px; font-size: 9px; }
+  #issue-158 .front img.fitmap.battle { max-height: 74mm; }
+  #issue-158 .sheet-body.front table.data { font-size: 9px; margin-bottom: 3px; }
+  #issue-158 .sheet-body.front .box { padding: 3px 6px; margin-bottom: 3px; }
+  #issue-158 .sheet-body.front .toc { font-size: 9px; }
+  #issue-158 .sheet-body.front .ad-row { margin-top: 3px; padding-top: 3px; }
+
+  /* 第159期夕刊: 各面をA3一枚に収める印刷専用調整（158と同型） */
+  #issue-159 { font-size: 12px; line-height: 1.36; }
+  #issue-159 p { margin-bottom: .28em; }
+  #issue-159 .page { padding-top: 3mm; }
+  #issue-159 .page:first-of-type { padding-top: 0; }
+  #issue-159 .sheet-top { margin-bottom: 5px; }
+  #issue-159 .sheet-body,
+  #issue-159 .sheet-body.front { gap: 5px 12px; }
+  #issue-159 .v-headline,
+  #issue-159 .headline,
+  #issue-159 .v-title,
+  #issue-159 .head-band .v-headline { font-size: 22px; line-height: 1.15; margin-bottom: 3px; }
+  #issue-159 .front .v-headline { font-size: 26px; }
+  #issue-159 .v-sub,
+  #issue-159 .subhead { font-size: 12.5px; line-height: 1.22; margin-bottom: 4px; padding-bottom: 3px; }
+  #issue-159 .lead { font-size: 12px; }
+  #issue-159 .v h2.story-heading { font-size: 16px; margin-top: .7em; }
+  #issue-159 .v h3 { font-size: 12px; margin-top: .4em; }
+  #issue-159 figure,
+  #issue-159 .photo { margin-bottom: 4px; }
+  #issue-159 img.fitmap { max-height: 65mm; }
+  #issue-159 img.fitmap.battle { max-height: 92mm; }
+  #issue-159 img.fitmap.battle.compact { max-height: 78mm; }
+  #issue-159 img.fitmap.mainmap,
+  #issue-159 img.fitmap.seamap { max-height: 55mm; }
+  #issue-159 figcaption { font-size: 9px; line-height: 1.18; }
+  #issue-159 .box { padding: 4px 6px; margin-bottom: 4px; }
+  #issue-159 .column-title { font-size: 10px; margin-bottom: 3px; }
+  #issue-159 table.data { font-size: 10px; margin-bottom: 4px; }
+  #issue-159 table.data th,
+  #issue-159 table.data td { padding: 1px 3px; }
+  #issue-159 .toc { font-size: 10px; }
+  #issue-159 .toc li { padding: 1px 0; }
+  #issue-159 .ad-row { margin-top: 5px; padding-top: 4px; }
+  #issue-159 .ad.banner { min-height: 76px; grid-template-columns: 110px 1fr; padding: 5px; }
+  #issue-159 .ad.banner img { height: 64px; max-height: 64px; }
+  #issue-159 .ad.banner h4 { font-size: 15px; }
+  #issue-159 .ad.banner p { font-size: 9px; margin-bottom: 1px; }
+  #issue-159 .boarding-flow { gap: 4px; }
+  #issue-159 .boarding-flow .boarding-step { padding: 3px 4px; }
+  #issue-159 .boarding-flow .boarding-step b { font-size: 10px; margin-bottom: 1px; }
+  #issue-159 .boarding-flow .boarding-step span { font-size: 8px; }
+  #issue-159 .colophon { margin-top: 3px; padding-top: 3px; font-size: 9px; }
+  #issue-159 .front img.fitmap.battle { max-height: 74mm; }
+  #issue-159 .sheet-body.front table.data { font-size: 9px; margin-bottom: 3px; }
+  #issue-159 .sheet-body.front .box { padding: 3px 6px; margin-bottom: 3px; }
+  #issue-159 .sheet-body.front .toc { font-size: 9px; }
+  #issue-159 .sheet-body.front .ad-row { margin-top: 3px; padding-top: 3px; }
+}
+
+/* 第128期・入門講座：乗船から上陸までの手順 */
+.boarding-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+  margin: 4px 0 6px;
+  font-family: var(--gothic);
+  line-height: 1.4;
+}
+.boarding-flow .boarding-step {
+  min-width: 0;
+  border: 1px solid var(--rule);
+  background: var(--paper-ad);
+  padding: 7px 8px;
+  break-inside: avoid;
+}
+.boarding-flow .boarding-step b {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.boarding-flow .boarding-step span {
+  display: block;
+  font-size: 11px;
+}
+@media screen and (max-width: 700px) {
+  .boarding-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+</style>
+<style>
+#issue-189 img.fitmap.battle {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+}
+#issue-189 section.page:nth-of-type(3) .cell.span-7 figure.photo,
+#issue-189 section.page:nth-of-type(4) .cell.span-7 figure.photo,
+#issue-189 section.page:nth-of-type(5) .cell.span-7 figure.photo {
+  display: block;
+  width: 100%;
+}
+#issue-189 section.page:nth-of-type(6) .cell.span-12 .fitphoto {
+  width: 100%;
+  height: 285px;
+  object-fit: cover;
+}
+#issue-189 section.page:nth-of-type(7) .cell.span-12 .chart {
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+}
+#issue-189 section.page:nth-of-type(9) .cell.span-6 img.fitmap.mainmap {
+  width: 100%;
+  height: auto;
+}
+#issue-189 section.page:nth-of-type(13) .chart {
+  width: 100%;
+  max-height: 260px;
+  object-fit: contain;
+}
+@media (max-width: 760px) {
+  #issue-189 section.page .cell.span-5 table.data,
+  #issue-189 section.page .cell.span-5 .box {
+    display: block;
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body id="issue-189">
+<div class="paper">
+<header class="masthead">
+  <div class="issue"><span class="edition">夕刊</span><br>第189期<br>トレーディア新聞社<br>定価　無料</div>
+  <div class="title">トレーディア<br class="narrow">新聞<small>THE TREDIA SHIMBUN</small></div>
+  <div class="date">トレーディア暦3年12月第2週<br>冬季<br>本日13面</div>
+</header>
+<div class="ticker">
+  <span><b>主な記事</b></span><span>ナンリプ陥落</span><span>青海と橙原が開戦</span>
+  <span>紅峰・銀嶺が遷都</span><span>橙原から泰平へ二万三千八百人</span><span>火災十九件・七万三千九百人</span><span>入門　停戦と講和</span>
+</div>
+
+<!-- 1面 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">総合</span>ナンリプ陥落<span class="pageno">1</span></div>
+<div class="sheet-body front">
+<div class="story"><div class="v">
+<h1 class="v-headline">ナンリプ陥落　青海と橙原が開戦</h1>
+<p class="v-sub">桃谷の現代都市がオリョルッル領に　紅峰と銀嶺は遷都　橙原の部隊は全滅</p>
+<figure class="photo"><img class="fitphoto" src="../images/189-夕刊/189-front.jpg" alt="冬の谷の現代都市が静まる銅版画"><figcaption>ナンリプ。桃谷の現代都市が、今期オリョルッルの占領下に入った。</figcaption></figure>
+<p class="lead noindent">【総合部】第189期、オリョルッル王国は桃谷連邦共和国の現代都市ナンリプ（43,45）を占領した。首都ナンサプ（41,43）に近い地点が敵領となり、桃谷の防衛線はさらに縮んだ。同じ期、予告どおり青海共和国と橙原自治共和国が開戦した。橙原はなのです主義人民共和国とも交戦しており、二正面を抱える。詳報は2面・3面・4面。</p>
+<p>紅峰公国は首都を（41,52）から（41,51）へ移し、ローテンホルンの名を継いだ。銀嶺侯国も首都を（77,28）からモンタルジェント（76,29）へ移し、首都欄は陥落から復帰した。紅峰では町（42,52）がなのですに占領され食糧五万トンが徴発され、兵站基地（41,53）では予備兵千人が投降した。詳報は5面。</p>
+<h2 class="story-heading">橙原の部隊が全滅　移民二万三千八百人</h2>
+<p>橙原自治共和国の部隊（45,54）は全滅した。なのですとの今期損害はなのです四千人、橙原八千八百人。青海との損害は青海千四百人、橙原二百人。橙原島から泰平天国島へ二万三千八百人が移住し、泰平は受け入れを決めた。国特集は8面のカペレナ王国。</p>
+</div></div>
+<aside class="rail">
+<table class="data"><caption>第189期の主な動き</caption><tbody>
+<tr class="hl"><td>ナンリプ（43,45）</td><td>陥落（オリョルッル領）</td></tr>
+<tr class="hl"><td>青海×橙原</td><td>開戦（今期）</td></tr>
+<tr class="hl"><td>紅峰・銀嶺</td><td>遷都</td></tr>
+<tr><td>橙原部隊（45,54）</td><td>全滅</td></tr>
+<tr><td>紅峰町（42,52）</td><td>徴発5万トン</td></tr>
+<tr><td>紅峰兵站（41,53）</td><td>投降1,000</td></tr>
+<tr><td>黒潮兵站（18,16）</td><td>投降1,000</td></tr>
+<tr><td>橙原→泰平</td><td class="num">移民2万3,800</td></tr>
+<tr><td>火災</td><td class="num">19件・7万3,900人</td></tr>
+</tbody></table>
+<div class="box"><div class="column-title">今号の紙面</div><ul class="toc">
+<li><span class="when">2面</span>開戦と宣戦、移民</li>
+<li><span class="when">3面</span>ナンリプと桃谷</li>
+<li><span class="when">4面</span>橙原二正面</li>
+<li><span class="when">5面</span>紅峰・銀嶺・各地</li>
+<li><span class="when">6面</span>火災十九件</li>
+<li><span class="when">7面</span>弾薬下落、交易</li>
+<li><span class="when">8面</span>国特集　カペレナ王国</li>
+<li><span class="when">9面</span>雨増え、雪は減</li>
+<li><span class="when">10面</span>胡椒の冬市</li>
+<li><span class="when">11面</span>翠湖の渡し</li>
+<li><span class="when">12面</span>橙原からの移民</li>
+<li><span class="when">13面</span>入門　停戦と講和</li>
+</ul></div>
+<div class="box"><div class="column-title">本紙の見方</div>
+<p>今期は、紅峰の兵站基地（41,53）で予備兵千人が投降し、町（42,52）では食糧五万トンが徴発された。橙原の部隊（45,54）は戦闘で全滅した。投降、徴発、全滅はそれぞれ異なる戦況を示す。記事では人員の移動、物資の接収、部隊の喪失を分けて記した。</p>
+</div>
+</aside></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/189-夕刊/183-ad-grain.jpg" alt="穀物の袋と量り"><div><h4>諸国穀物取引所</h4><p class="catch">冬の糧を、確かな蔵へ。</p><p>麦・豆・干し果実の売り買い、蔵入れの手配まで。</p><p class="price">各国の港の取引所にて</p></div></div></div>
+</div></section>
+
+<!-- 2面 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">国際・安全保障</span>開戦と宣戦、移民<span class="pageno">2</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">青海と橙原が開戦　カペレナは藍岬へ宣戦、一九四期に開戦</h2>
+<p class="v-sub">橙原から泰平へ二万三千八百人　翠湖→青海は一九〇期、あろあろ→銀嶺は一九二期</p>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent">【国際部】青海共和国と橙原自治共和国の戦闘が第189期に始まった。宣戦予告どおりの開戦で、橙原はなのです主義人民共和国との戦闘に加え二正面となった。青海戦線の今期損害は青海千四百人、橙原二百人。なのですとの戦線では、なのです四千人、橙原八千八百人の損害が出て、橙原の部隊（45,54）が全滅した。橙原は二つの戦線を抱え、なのですへ停戦を打診している。</p>
+<p>カペレナ王国は藍岬共和国連邦へ宣戦を布告した。開戦予定は第194期。藍岬はすでになのです、オラニウム連邦、オリョルッル王国と交戦しており、さらに一正面が加わる見通しだ。カペレナは黒潮自治国との戦争を続け、今期は黒潮の兵站基地（18,16）を占領して予備兵千人の投降を受け入れた。</p>
+<h3>橙原から泰平へ二万三千八百人</h3>
+<p>【国際部】橙原自治共和国島から泰平天国島へ二万三千八百人が移り、泰平は受け入れを決めた。公報が示した移住理由は仕事探し。受け入れ後の泰平の人口は百四十三万三千五百人となった。橙原は青海、なのですとの二正面を抱え、今期損害は合わせて一万千三百人。開戦と移住が同じ期に重なり、橙原の人口は三万五千二百人となった。移住者数は現在の橙原人口の約三分の二に相当する規模だ。</p>
+<h3>開戦控えと停戦の打診</h3>
+<p>青海共和国と橙原自治共和国は第189期に開戦した。翠湖自治州と青海共和国の開戦予定は第190期、あろあろ国と銀嶺侯国は第192期、カペレナ王国と藍岬共和国連邦は第194期。銀嶺はチェス＝シロバキア共和国へ、紅峰はなのです主義人民共和国へ停戦を打診し、橙原もなのですへ申し入れた。狐っ娘の尻尾教団と蒼森辺境伯領の休戦協議も続く。開戦予定と停戦交渉が並行し、各国の外交日程が相次いでいる。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>今期の開戦・宣戦</caption><tbody>
+<tr class="hl"><td>青海×橙原</td><td>開戦（189）</td></tr>
+<tr class="hl"><td>カペレナ→藍岬</td><td>宣戦（194開戦）</td></tr>
+</tbody></table>
+<table class="data"><caption>開戦控え</caption><tbody>
+<tr><td>翠湖→青海</td><td>190期</td></tr>
+<tr><td>あろあろ→銀嶺</td><td>192期</td></tr>
+<tr><td>カペレナ→藍岬</td><td>194期</td></tr>
+</tbody></table>
+<table class="data"><caption>関係国の兵力</caption><tbody>
+<tr class="hl"><td>青海</td><td class="num">16万1,300</td></tr>
+<tr><td>橙原</td><td class="num">5万4,600</td></tr>
+<tr><td>なのです</td><td class="num">69万4,200</td></tr>
+<tr><td>カペレナ</td><td class="num">10万6,600</td></tr>
+<tr><td>藍岬</td><td class="num">9万2,200</td></tr>
+</tbody></table>
+<figure class="photo"><img class="fitphoto" src="../images/189-夕刊/189-migration.jpg" alt="移民が荷を下ろす桟橋の銅版画"><figcaption>泰平の港。橙原からの到着者が帳場の前に列を作った。</figcaption></figure>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/189-夕刊/183-ad-compass.jpg" alt="羅針盤と海図"><div><h4>青海　外洋海図堂</h4><p class="catch">冬の海を、安全に読み切る。</p><p>最新の海図、航路図、羅針盤の調整。</p><p class="price">青海・セルヴァナ</p></div></div></div>
+</div></section>
+
+<!-- 3面 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">戦況</span>ナンリプ・桃谷<span class="pageno">3</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">ナンリプ（43,45）陥落　首都ナンサプに近い現代都市がオリョルッル領に</h2>
+<p class="v-sub">桃谷の人口2万6,200　兵力5万300　領土7　累計損害　桃谷6万8,200／オリョ1万3,700</p>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent">【戦況部】オリョルッル王国は桃谷連邦共和国の現代都市ナンリプ（43,45）を占領した。首都ナンサプ（41,43）に近い現代都市が敵領となり、桃谷は前期の兵站基地に続いて重要拠点を失った。桃谷の累計損害は六万八千二百人、オリョルッルは一万三千七百人。前期から累計の数字が変わらないなか、支配地はさらに縮小した。今期の公報が伝える中心は、兵員数より都市の移転である。</p>
+<figure class="photo"><img class="fitmap battle" src="../images/189-夕刊/189-momo-wide.jpg" alt="ナンリプ周辺の戦況図"><figcaption>ナンリプ周辺。現代都市の札を入れた。</figcaption></figure>
+<p>桃谷の人口は二万六千二百人、兵力五万三百人、領土七区画。前号の人口二万九千四百人、領土九区画と比べ、人口は三千二百人、領土は二区画減った。兵站基地（40,42）を失った前期に続き、今期はナンリプも占領された。首都ナンサプの東側に残る拠点と、五万三百人の兵力をどこへ配するかが、防衛の要となる。オリョルッルは黄砂同盟の軍港（34,6）も占領し、別の戦線でも足場を広げた。</p>
+<figure class="photo"><img class="fitphoto" src="../images/189-夕刊/189-nanlip.jpg" alt="ナンリプの冬の街の銅版画"><figcaption>ナンリプ。谷の現代都市が今期、オリョルッル領となった。</figcaption></figure>
+<div class="box"><div class="column-title">軍事評論</div>
+<div class="byline"><b>南條史彦</b>　軍事評論家</div>
+<p>ナンリプは首都ナンサプの近くにある現代都市で、今期その支配が移った。前期に兵站基地（40,42）を失い、続いて都市を失ったことで、桃谷の防衛拠点は九区画から七区画へ減少した。人口は前期比三千二百人減の二万六千二百人。兵力は五万三百人を保つが、守る領土が縮むなか、首都周辺にどれだけの部隊を集められるかが問われる。オリョルッルが黄砂同盟の軍港も押さえたことから、同国は桃谷以外でも占領地を増やしている。</p>
+</div>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>ナンリプ陥落</caption><tbody>
+<tr class="hl"><td>位置</td><td>（43,45）</td></tr>
+<tr><td>種類</td><td>現代都市</td></tr>
+<tr><td>新支配</td><td>オリョルッル</td></tr>
+<tr><td>今期陸戦損害</td><td>未集計</td></tr>
+</tbody></table>
+<table class="data"><caption>桃谷連邦共和国</caption><tbody>
+<tr class="hl"><td>人口</td><td class="num">2万6,200</td></tr>
+<tr><td>兵力</td><td class="num">5万300</td></tr>
+<tr><td>領土</td><td class="num">7</td></tr>
+<tr><td>首都</td><td>ナンサプ（41,43）</td></tr>
+<tr><td>累計損害</td><td>6万8,200／1万3,700</td></tr>
+</tbody></table>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/189-夕刊/183-ad-peach.jpg" alt="桃"><div><h4>ナンサプ　桃菓子屋</h4><p class="catch">段の実を、菓子に。</p><p>干し桃・羊羹・小さな包み。</p><p class="price">桃谷・ナンサプ</p></div></div></div>
+</div></section>
+
+<!-- 4面 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">戦況</span>橙原二正面<span class="pageno">4</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">青海と開戦　なのです戦線では部隊全滅、損害八千八百人</h2>
+<p class="v-sub">青海1,400／橙原200　なのです4,000／橙原8,800　艦砲で沿岸に被害</p>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent">【戦況部】青海共和国との開戦初日、橙原自治共和国は二正面の戦闘に入った。青海戦線の今期損害は青海千四百人、橙原二百人。なのです主義人民共和国との戦線ではなのです四千人、橙原八千八百人で、橙原の部隊（45,54）が全滅した。累計はなのです七千五百人、橙原一万千三百人。青海との累計は開戦初の千四百人／二百人。</p>
+<figure class="photo"><img class="fitmap battle" src="../images/189-夕刊/189-orange-wide.jpg" alt="橙原周辺の戦況図"><figcaption>橙原正面。青海との開戦と、なのですとの戦闘が重なる。</figcaption></figure>
+<p>なのですの艦砲は橙原の町（45,54）で七百人、大都市（45,56）で百人、町（46,54）で計千六百人が犠牲となった。橙原は開戦後もなのですへ停戦を打診しているが、合意の発表はない。人口三万五千二百人、兵力五万四千六百人、領土十二区画で二正面を抱える。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>青海×橙原（今期）</caption><tbody>
+<tr class="hl"><td>開戦</td><td>第189期</td></tr>
+<tr><td>損害</td><td>1,400／200</td></tr>
+</tbody></table>
+<table class="data"><caption>なのです×橙原（今期）</caption><tbody>
+<tr class="hl"><td>損害</td><td>4,000／8,800</td></tr>
+<tr><td>部隊（45,54）</td><td>全滅</td></tr>
+<tr><td>累計</td><td>7,500／1万1,300</td></tr>
+<tr><td>停戦打診</td><td>橙原→なのです</td></tr>
+</tbody></table>
+<table class="data"><caption>橙原の現況</caption><tbody>
+<tr class="hl"><td>人口</td><td class="num">3万5,200</td></tr>
+<tr><td>兵力</td><td class="num">5万4,600</td></tr>
+<tr><td>領土</td><td class="num">12</td></tr>
+<tr><td>首都</td><td>晴灣（45,54）</td></tr>
+</tbody></table>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/189-夕刊/182-ad-spice.jpg" alt="香辛料"><div><h4>胡椒　香辛料市</h4><p class="catch">冬の鍋に、一掴み。</p><p>胡椒・生姜・乾燥実。</p><p class="price">胡椒帝国・本港</p></div></div></div>
+</div></section>
+
+<!-- 5面 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">戦況</span>紅峰・銀嶺・各地<span class="pageno">5</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">紅峰と銀嶺が遷都　紅峰は町を失い五万トン徴発、兵站で千人投降</h2>
+<p class="v-sub">紅峰6,900／なのです400　銀嶺2,600／チェス100　泰平1万3,300／教団1万2,300</p>
+</div>
+<div class="cell span-6">
+<figure class="photo"><img class="fitmap battle" src="../images/189-夕刊/189-koho-wide.jpg" alt="紅峰戦線"><figcaption>紅峰正面。遷都後のローテンホルンと旧都の札。</figcaption></figure>
+</div>
+<div class="cell span-6">
+<figure class="photo"><img class="fitmap battle" src="../images/189-夕刊/189-ginrei-wide.jpg" alt="銀嶺戦線"><figcaption>銀嶺正面。首都をモンタルジェント（76,29）へ移した。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent">【戦況部】紅峰公国は首都を（41,52）から（41,51）へ移し、ローテンホルンの名を継いだ。公報の首都欄は陥落から復帰している。同じ期、町（42,52）がなのですに占領され食糧五万トンが徴発され、兵站基地（41,53）では予備兵千人が投降した。今期損害は紅峰六千九百人、なのです四百人。累計は紅峰九万二千七百人、なのです五万千百人。</p>
+<p>銀嶺侯国は首都を（77,28）からモンタルジェント（76,29）へ移した。チェス＝シロバキア共和国との今期損害は銀嶺二千六百人、チェス百人。累計は銀嶺六万四千四百人、チェス一万五千五百人。第192期にはあろあろ国との開戦も控える。</p>
+<p>泰平天国と狐っ娘の尻尾教団の戦線では、今期損害が泰平一万三千三百人、教団一万二千三百人。累計は泰平十四万七千三百人、教団十八万千六百人。カペレナ王国は黒潮の兵站（18,16）を占領し予備兵千人が投降、今期損害はカペレナ百人。朱川共和国ではオラニウムの装甲兵が首都丹城の砲兵を全滅させ、今期損害は朱川千七百人、オラニウム二百人。</p>
+</div></div>
+<div class="cell span-5">
+<figure class="photo"><img class="fitmap battle" src="../images/189-夕刊/189-taihei-wide.jpg" alt="泰平・教団"><figcaption>泰平と教団。双方で万人規模の損害。</figcaption></figure>
+<figure class="photo"><img class="fitmap battle" src="../images/189-夕刊/189-capia-wide.jpg" alt="カペレナ・黒潮"><figcaption>カペレナと黒潮。兵站（18,16）がカペレナ領に。</figcaption></figure>
+<figure class="photo"><img class="fitmap battle" src="../images/189-夕刊/189-shukawa-wide.jpg" alt="朱川戦線"><figcaption>朱川正面。丹城の砲兵が全滅した。</figcaption></figure>
+<figure class="photo"><img class="chart" src="../images/189-夕刊/189-damage-chart.png" alt="損害グラフ"><figcaption>主な戦線の公報損害（人数付き分）。</figcaption></figure>
+</div>
+</div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/189-夕刊/183-ad-forge.jpg" alt="鍛冶"><div><h4>オリョルッル　七丘の刃物店</h4><p class="catch">七つの丘の鋼を、暮らしの刃に。</p><p>包丁・鉈・鋤鍬、研ぎ直しも承ります。</p><p class="price">オリョルッル・丘の都</p></div></div></div>
+</div></section>
+
+<!-- 6面 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">社会</span>火災<span class="pageno">6</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">火災十九件　犠牲七万三千九百人</h2>
+<p class="v-sub">なのです2万4,100人　チェス1万5,400人　泰平1万1,300人　カペレナ1万人</p>
+<figure class="photo"><img class="fitphoto" src="../images/189-夕刊/189-city-fire.jpg" alt="冬の都市火災の銅版画"><figcaption>冬の街の火災。バケツ列が煙の下を往復した。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent">【社会部】第189期の都市火災は十九件、犠牲は七万三千九百人だった。国別ではなのです主義人民共和国二万四千百人、チェス＝シロバキア共和国一万五千四百人、泰平天国一万千三百人、カペレナ王国一万人、青海共和国六千七百人、狐っ娘の尻尾教団三千三百人、オリョルッル王国三千百人。掲載七か国の合計は七万三千九百人となる。なのですとチェスの二国だけで三万九千五百人に上り、全体の過半を占めた。</p>
+<p>十九件の火災で七万三千九百人が犠牲となり、一件あたりの平均は約三千九百人。なのですとチェスの合計は三万九千五百人で全体の約五三％、残る五か国で三万四千四百人だった。カペレナは一万人で三番目に多い。被害は七か国にまたがり、国別の順位と全体に占める割合の両方に差が表れた。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<figure class="photo"><img class="chart" src="../images/189-夕刊/189-fire-chart.png" alt="火災グラフ"><figcaption>国別の火災犠牲者。</figcaption></figure>
+<table class="data"><caption>火災（国別）</caption><tbody>
+<tr class="hl"><td>なのです</td><td class="num">24,100</td></tr>
+<tr><td>チェス</td><td class="num">15,400</td></tr>
+<tr><td>泰平</td><td class="num">11,300</td></tr>
+<tr><td>カペレナ</td><td class="num">10,000</td></tr>
+<tr><td>青海</td><td class="num">6,700</td></tr>
+<tr><td>教団</td><td class="num">3,300</td></tr>
+<tr><td>オリョルッル</td><td class="num">3,100</td></tr>
+</tbody></table>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/189-夕刊/181-ad-reed.jpg" alt="葦"><div><h4>湖陽　防火用具店</h4><p class="catch">桶と砂を、手元に。</p><p>消火桶・砂袋・手拭い。</p><p class="price">翠湖・湖陽</p></div></div></div>
+</div></section>
+
+<!-- 7面 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">経済</span>相場と交易<span class="pageno">7</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">弾薬13.90　前期からさらに下落</h2>
+<p class="v-sub">燃料7.15（＋0.01）　交易　なのです5万6,670／あろあろ4万503／教団4万360</p>
+<figure class="photo"><img class="chart" src="../images/189-夕刊/189-ammo-chart.png" alt="弾薬相場の推移"><figcaption>弾薬の世界相場（第177〜189期）。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent">【経済部】弾薬の世界相場は13.90で、前期の14.33から0.43下がった。燃料は7.15で0.01上昇。工業品34.87、石油4.85、鉱石3.23、鋼鉄9.40、石材3.77、木材3.20だった。民間交易額は、なのです五万六千六百七十、あろあろ国四万五百三、狐っ娘の尻尾教団四万三百六十の順。首位となのです以外の二国の差は百四十三で、上位三国の取引額は近い水準に並んだ。</p>
+<p>競売には十四件の出品があり、工業品・鉱石・石材・木材・食料・燃料・石油・鋼鉄が並んだ。締切は第190期から第195期。橙原と黄砂同盟は食料六百単位を出品している。締切が六期にまたがるため、買い手は必要な時期に合わせて入札できる。売り手も在庫をいつまで確保できるかを見て、出品期を選ぶことになる。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>世界相場</caption><tbody>
+<tr class="hl"><td>弾薬</td><td class="num">13.90</td></tr>
+<tr><td>燃料</td><td class="num">7.15</td></tr>
+<tr><td>工業品</td><td class="num">34.87</td></tr>
+<tr><td>石油</td><td class="num">4.85</td></tr>
+<tr><td>鋼鉄</td><td class="num">9.40</td></tr>
+</tbody></table>
+<table class="data"><caption>交易上位</caption><tbody>
+<tr class="hl"><td>なのです</td><td class="num">56,670</td></tr>
+<tr><td>あろあろ</td><td class="num">40,503</td></tr>
+<tr><td>教団</td><td class="num">40,360</td></tr>
+</tbody></table>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/189-夕刊/183-ad-compass.jpg" alt="羅針盤"><div><h4>セルヴァナ　潮見計器</h4><p class="catch">冬の風を、数字に。</p><p>気圧計・方位盤。</p><p class="price">青海・セルヴァナ</p></div></div></div>
+</div></section>
+
+<!-- 8面 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">国特集</span>カペレナ王国<span class="pageno">8</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">カペレナ王国　北の戦争を締め、湯と石の都で息を整える</h2>
+<p class="v-sub">人口39万2,400　兵力10万6,600　領土144　首都カペナグラード（14,21）　黒潮と交戦、藍岬へは194期開戦</p>
+<figure class="photo"><img class="fitphoto" src="../images/189-夕刊/189-capelena-feature.jpg" alt="カペレナの冬の浴場街の銅版画"><figcaption>カペナグラード。石造の浴場街に、冬の湯気が立つ。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent">【特集部】カペレナ王国は人口三十九万二千四百人、兵力十万六千六百人、領土百四十四区画。食料二百七十四万千五百トン、国庫一万千八百八十八億円を持つ。首都はカペナグラード（14,21）。政府声明は「国内問題の解決への一歩」と「北部戦争の終結」を掲げる。黒潮自治国との戦争は続き、今期は兵站基地（18,16）を占領して予備兵千人の投降を受け入れた。同じ期に藍岬共和国連邦へ宣戦し、開戦は第194期に予定する。</p>
+<p>カペナグラードの浴場街には共同湯が並び、湯上がりには果実茶や川魚の一夜干しが供される。北港では石工が防波堤や桟橋を補修し、冬場の港湾維持を担う。通商会所は入港した荷の品目と行き先を記録し、北部戦線向けの補給品と民間交易の荷を扱う。浴場、港の工事、会所の物流が、それぞれ市民生活と戦争を支える。</p>
+<p>カペレナは北部戦争の終結を掲げながら、藍岬へ宣戦し、第194期の開戦を予定する。黒潮戦線では兵站基地を占領したが、戦争そのものは続いている。兵力十万六千六百人を黒潮との戦闘に置きつつ、新たな戦線にも備える必要がある。外交声明が掲げる戦争終結と、次の宣戦準備をどう両立させるか。第194期までの部隊配置と補給が、王国の方針を試すことになる。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>カペレナ王国</caption><tbody>
+<tr class="hl"><td>人口</td><td class="num">39万2,400</td></tr>
+<tr><td>兵力</td><td class="num">10万6,600</td></tr>
+<tr><td>領土</td><td class="num">144</td></tr>
+<tr><td>食料</td><td class="num">274万1,500</td></tr>
+<tr><td>国庫</td><td class="num">1万1,888億円</td></tr>
+<tr><td>首都</td><td>カペナグラード</td></tr>
+<tr><td>交戦</td><td>黒潮</td></tr>
+<tr><td>宣戦</td><td>藍岬（194開戦）</td></tr>
+</tbody></table>
+<div class="box"><div class="column-title">街の名所・食</div>
+<ul>
+<li>浴場街の果実茶</li>
+<li>川魚の一夜干し</li>
+<li>北港の石工冬仕事</li>
+<li>通商会所の冬帳場</li>
+</ul>
+</div>
+<div class="box"><div class="column-title">次回の国特集</div>
+<p>翠湖自治州</p>
+</div>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/189-夕刊/183-ad-lantern.jpg" alt="灯籠"><div><h4>礁の湯　茶寮</h4><p class="catch">湯上がりに、温かい杯を。</p><p>果実茶・一夜干し・小さな菓子。</p><p class="price">カペレナ・浴場街</p></div></div></div>
+</div></section>
+
+<!-- 9面 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">気象・海事</span>世界の天候<span class="pageno">9</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">雨が増え雪は減る　冬季の曇りが続く</h2>
+<p class="v-sub">晴れ2,123・曇り4,385・雨1,484・雪94・雷14　航海　青海879／なのです409／黒潮361</p>
+</div>
+<div class="cell span-6"><figure class="photo"><img class="fitmap mainmap" src="../images/189-夕刊/189-weather.png" alt="第189期の天候図"><figcaption>世界の天候　第189期（前期比）。雨が九十四地点増えた。</figcaption></figure></div>
+<div class="cell span-6"><figure class="photo"><img class="fitmap mainmap" src="../images/189-夕刊/189-weather-forecast.png" alt="第190期の天気予報図"><figcaption>第190期の予報：雨域がなお広がりやすい。</figcaption></figure></div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent">【気象部】第189期はトレーディア暦三年十二月第二週。晴れ二千百二十三地点、曇り四千三百八十五、雨千四百八十四、雪九十四、雷十四だった。前期比は晴れ二十六増、曇り百十減、雨九十四増、雪十減、雷は横ばい。雪が減る一方、雨は九十四地点増えた。遠洋漁場は十六か所中、操業可能十二、休漁四。航海距離は青海共和国八百七十九、なのです四百九、黒潮自治国三百六十一。青海は前期から四、なのですは十八距離を伸ばし、黒潮は同じ距離だった。</p>
+<p>第190期の予報図では雨域がさらに広がる見込みだ。前期から休漁は四か所で変わらず、操業可能な漁場は十二か所。天候図は地点数、漁場表は操業の可否を示すため、出漁の判断には双方を確かめたい。航海距離は青海が最長の八百七十九、なのです四百九、黒潮三百六十一。天候の推移と航行実績を合わせて見ると、各国がどの海域を使ったかを比べられる。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>世界の天候　第189期（前期比）</caption><tbody>
+<tr class="hl"><td>晴れ</td><td class="num">2,123（＋26）</td></tr>
+<tr><td>曇り</td><td class="num">4,385（−110）</td></tr>
+<tr><td>雨</td><td class="num">1,484（＋94）</td></tr>
+<tr><td>雪</td><td class="num">94（−10）</td></tr>
+<tr><td>雷</td><td class="num">14（±0）</td></tr>
+</tbody></table>
+<table class="data"><caption>遠洋・航海</caption><tbody>
+<tr class="hl"><td>漁場</td><td>16（操業可12・休漁4）</td></tr>
+<tr><td>青海</td><td class="num">879</td></tr>
+<tr><td>なのです</td><td class="num">409</td></tr>
+<tr><td>黒潮</td><td class="num">361</td></tr>
+</tbody></table>
+</div>
+<div class="cell span-12">
+<figure class="photo"><img class="fitmap mainmap" src="../images/189-夕刊/189-sea.png" alt="海流と漁場図"><figcaption>海流と漁場。休漁の印がある水域もある。</figcaption></figure>
+</div>
+</div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/189-夕刊/183-ad-grain.jpg" alt="穀物"><div><h4>シャンドール　麦倉</h4><p class="catch">冬の糧を、乾いた倉へ。</p><p>麦・粉・保存袋。</p><p class="price">金野・シャンドール</p></div></div></div>
+</div></section>
+
+<!-- 10面 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">文化・スポーツ</span>胡椒の市<span class="pageno">10</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">胡椒の冬市　鍋用の瓶が棚を埋める</h2>
+<p class="v-sub">量り売りと帳簿照合　港から五棟の倉庫へ</p>
+<figure class="photo"><img class="fitphoto" src="../images/189-夕刊/189-kosho-market.jpg" alt="胡椒の冬市の銅版画"><figcaption>胡椒の市。冬の鍋向けに瓶が並ぶ。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent">【文化部】胡椒帝国の冬市では、鍋に使う胡椒、乾燥生姜、シナモンを量り売りする。品目ごとに瓶へ分け、帳場では種類と重さを記録。買い手は必要な品と量を伝え、店側は注文に応じて小袋へ詰める。家ごとの人数や料理に合わせて少量から選べるのが、量り売りの利点だ。瓶の中身と帳簿を照合し、買い手が求めた品を確かめて渡す。</p>
+<p>港から届いた袋は五棟の倉庫で品目ごとに仕分けられ、数量を帳簿に記して市へ出す。港での計量記録と店の在庫を照らせば、入荷した香辛料がどれだけ売り場へ回ったかを確かめられる。冬は乾燥生姜や胡椒など保存しやすい品が並び、必要量を小分けにして販売する。船での荷揚げ、倉庫での保管、市場での量り売りがつながり、遠方の産品が家庭の鍋に届く。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>冬市の流れ</caption><tbody>
+<tr class="hl"><td>朝</td><td>倉庫から搬入</td></tr>
+<tr><td>昼前</td><td>量り売り</td></tr>
+<tr><td>夕方</td><td>瓶の点検</td></tr>
+</tbody></table>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/189-夕刊/121-ad-indigo.jpg" alt="藍"><div><h4>シネモルスク　染屋</h4><p class="catch">冬の布を、藍に。</p><p>藍染め・裏返し干し。</p><p class="price">藍岬・シネモルスク</p></div></div></div>
+</div></section>
+
+<!-- 11面 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">文化・スポーツ</span>翠湖の渡し<span class="pageno">11</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">翠湖・湖陽の冬渡し　開戦控えの湖に舟が続く</h2>
+<p class="v-sub">人口9万700　兵力4万3,000　青海との開戦は190期</p>
+<figure class="photo"><img class="fitphoto" src="../images/189-夕刊/189-suihu-ferry.jpg" alt="翠湖の冬の渡しの銅版画"><figcaption>湖陽の渡し。冬の霧のなか、対岸へ向かう。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent">【文化部】翠湖自治州の人口は九万七百人、兵力四万三千人。前期の人口十万二千三百人から一万千六百人減った一方、兵力は三万五千九百人から七千百人増えた。首都湖陽（46,36）の朝市には、冬も蓮根、湖魚、干し魚、葦細工が並ぶ。生の湖産品が少なくなる季節は、干し魚と手仕事の品が売り場を支える。市場は夜明け後に始まり、昼前に片付けられる。</p>
+<p>青海共和国との開戦予定は第190期。湖陽の渡し舟は対岸の集落と朝市を結び、人と荷を運ぶ。前期に泰平天国から三万千四百人を受け入れた翠湖自治州の人口は、十万二千三百人から九万七百人へ一万千六百人減った。兵力は三万五千九百人から四万三千人へ七千百人増加。人口と兵力が逆の動きを示すなか、湖陽の市場と渡しは、次期の開戦を前に住民と物資を結ぶ役割を担う。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>翠湖</caption><tbody>
+<tr class="hl"><td>人口</td><td class="num">9万700</td></tr>
+<tr><td>兵力</td><td class="num">4万3,000</td></tr>
+<tr><td>首都</td><td>湖陽（46,36）</td></tr>
+<tr><td>青海へ</td><td>190期開戦控え</td></tr>
+</tbody></table>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/189-夕刊/183-ad-lantern.jpg" alt="灯"><div><h4>湖陽　霧灯屋</h4><p class="catch">渡しの朝を、小さく照らす。</p><p>手灯・油・替え芯。</p><p class="price">翠湖・湖陽岸</p></div></div></div>
+</div></section>
+
+<!-- 12面 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">文化・スポーツ</span>移民の港<span class="pageno">12</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">橙原から泰平へ二万三千八百人</h2>
+<p class="v-sub">受入後の泰平人口百四十三万三千五百人　橙原は二正面の開戦下</p>
+<figure class="photo"><img class="fitphoto" src="../images/189-夕刊/189-migration.jpg" alt="港で荷を下ろす銅版画"><figcaption>泰平の港。橙原からの移住者が名簿に名を記す。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent">【文化部】橙原自治共和国島から泰平天国島へ二万三千八百人が移住した。受け入れ後の泰平の人口は百四十三万三千五百人。公報が示した移住理由は仕事探しだ。橙原の人口は三万五千二百人で、二万三千八百人の移住は現在の人口の約六八％に当たる。青海共和国となのです主義人民共和国との二正面を抱え、今期は両戦線で計一万千三百人の損害が出た。開戦と部隊全滅が重なった期に、大規模な人口移動が起きた。</p>
+<p>受け入れ先の泰平天国は狐っ娘の尻尾教団と交戦中で、今期の損害は泰平一万三千三百人、教団一万二千三百人。戦時下で二万三千八百人を受け入れ、人口は百四十三万三千五百人となった。一方の橙原は二正面で一万千三百人を失い、部隊（45,54）も全滅した。移住者の出発地と到着地の双方で、人口の変動と戦況が同じ期に重なっている。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<table class="data"><caption>移民</caption><tbody>
+<tr class="hl"><td>橙原→泰平</td><td class="num">23,800</td></tr>
+<tr><td>泰平人口</td><td class="num">143万3,500</td></tr>
+<tr><td>橙原人口</td><td class="num">3万5,200</td></tr>
+</tbody></table>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/189-夕刊/182-ad-reading.jpg" alt="鞄"><div><h4>天都　旅装具</h4><p class="catch">遠い荷を、肩に収める。</p><p>鞄・縄・名札。</p><p class="price">泰平・天都</p></div></div></div>
+</div></section>
+
+<!-- 13面 -->
+<section class="page"><div class="sheet">
+<div class="sheet-top"><span class="tag">入門講座</span>第41回<span class="pageno">13</span></div>
+<div class="sheet-body">
+<div class="cell span-12">
+<h2 class="v-headline">入門第41回　停戦と講和の手続き</h2>
+<p class="v-sub">双方の応諾で停戦成立　双方の意思が揃って初めて戦線が閉じる</p>
+<figure class="photo"><img class="fitphoto" src="../images/189-夕刊/189-ceasefire-intro.jpg" alt="停戦交渉の銅版画"><figcaption>交渉の机。一方の打診だけでは、戦線は閉じない。</figcaption></figure>
+</div>
+<div class="cell span-7"><div class="v">
+<p class="lead noindent">【編集部】停戦の打診は、戦闘を止めるための交渉開始を相手国へ伝えるものだ。打診しただけでは停戦にならず、双方が応じた時点で成立する。第189期、橙原はなのですへ停戦を打診したが、二正面での戦闘は続いている。紅峰、銀嶺、黒潮などにも交渉の動きがある。公報の「打診」と「成立」は段階が異なり、成立の発表があるまでは交戦中として読む。</p>
+<p>手順は、第一に停戦したい相手を定め、第二に打診を送り、第三に相手の応諾を確認する。双方の意思がそろえば停戦が成立し、戦闘を止める。講和は停戦後に戦争状態を正式に終える取り決めを指す。第189期の橙原は、なのですへ停戦を求める一方で青海との戦闘に入った。交渉の相手と、現在戦闘中の相手を分けて記録すれば、停戦がどの戦線に及ぶかを読み違えない。</p>
+<p>宣戦と開戦も別の段階だ。カペレナ王国は藍岬共和国連邦へ宣戦したが、開戦予定は第194期。対して橙原は二正面の戦闘に入り、なのですへ停戦を打診している。国際面を読む際は、宣戦・開戦・停戦打診・停戦成立を区別し、対象国と予定期を確認したい。今号では新たな開戦予定と進行中の停戦交渉が並んでおり、外交日程が戦況を左右する。</p>
+<h3>短信</h3>
+<p>落盤八か所。ナンリプ陥落。青海×橙原開戦。カペレナ→藍岬宣戦（194）。橙原→泰平移民二万三千八百人。</p>
+</div></div>
+<div class="cell span-5 yoko ruled-left">
+<div class="box"><div class="column-title">覚えたい点</div>
+<ul>
+<li>打診と成立は別</li>
+<li>双方の応諾で停戦</li>
+<li>講和は平時への復帰</li>
+<li>開戦控えと並行しうる</li>
+</ul>
+</div>
+<div class="box"><div class="column-title">次回</div>
+<p>第42回「首都遷都と陥落のちがい」</p>
+</div>
+</div></div>
+<div class="ad-row"><div class="ad banner"><span class="ad-label">広告</span><img src="../images/189-夕刊/183-ad-forge.jpg" alt="鍛冶"><div><h4>諸国武具商会</h4><p class="catch">刃と鎧を、整え直す。</p><p>簡易修理・砥石・紐。</p><p class="price">各地の商会窓口</p></div></div></div>
+</div></section>
+
+</div>
+</body>
+</html>
